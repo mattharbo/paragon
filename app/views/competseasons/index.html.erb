@@ -2,5 +2,5 @@
 <h2>All exercices in DB:</h2>
 
 <% @exercices.each do |exercice| %>
-    • <%= exercice.competition.name %> (<%= exercice.season.year %>)
+    • <%= exercice.competition.name %> (<%= exercice.season.year %>) <br>
 <%end%>
