@@ -1,0 +1,6 @@
+
+<h2>All exercices in DB:</h2>
+
+<% @exercices.each do |exercice| %>
+    • <%= exercice.competition.name %> (<%= exercice.season.year %>)
+<%end%>
