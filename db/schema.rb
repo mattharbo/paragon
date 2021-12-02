@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_02_193439) do
+ActiveRecord::Schema.define(version: 2021_12_02_200435) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,20 @@ ActiveRecord::Schema.define(version: 2021_12_02_193439) do
     t.index ["season_id"], name: "index_competseasons_on_season_id"
   end
 
+  create_table "fixtures", force: :cascade do |t|
+    t.bigint "hometeam_id", null: false
+    t.bigint "awayteam_id", null: false
+    t.integer "scorehome"
+    t.integer "scoreaway"
+    t.bigint "competseason_id", null: false
+    t.integer "round"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["awayteam_id"], name: "index_fixtures_on_awayteam_id"
+    t.index ["competseason_id"], name: "index_fixtures_on_competseason_id"
+    t.index ["hometeam_id"], name: "index_fixtures_on_hometeam_id"
+  end
+
   create_table "seasons", force: :cascade do |t|
     t.string "year"
     t.datetime "created_at", precision: 6, null: false
@@ -46,4 +60,7 @@ ActiveRecord::Schema.define(version: 2021_12_02_193439) do
 
   add_foreign_key "competseasons", "competitions"
   add_foreign_key "competseasons", "seasons"
+  add_foreign_key "fixtures", "competseasons"
+  add_foreign_key "fixtures", "teams", column: "awayteam_id"
+  add_foreign_key "fixtures", "teams", column: "hometeam_id"
 end
