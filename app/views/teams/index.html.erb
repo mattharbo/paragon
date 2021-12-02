@@ -1,0 +1,6 @@
+
+<h2>List of all teams in DB:</h2>
+
+<% @teams.each do |team| %>
+    • <%=team.name%> (<%=team.shortname%>)
+<%end%>
