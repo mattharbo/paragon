@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_03_174719) do
+ActiveRecord::Schema.define(version: 2021_12_03_181933) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,18 @@ ActiveRecord::Schema.define(version: 2021_12_03_174719) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "selections", force: :cascade do |t|
+    t.bigint "contract_id", null: false
+    t.bigint "fixture_id", null: false
+    t.boolean "starter"
+    t.integer "substitutiontime"
+    t.integer "note"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["contract_id"], name: "index_selections_on_contract_id"
+    t.index ["fixture_id"], name: "index_selections_on_fixture_id"
+  end
+
   create_table "teams", force: :cascade do |t|
     t.string "name"
     t.string "shortname"
@@ -86,4 +98,6 @@ ActiveRecord::Schema.define(version: 2021_12_03_174719) do
   add_foreign_key "fixtures", "competseasons"
   add_foreign_key "fixtures", "teams", column: "awayteam_id"
   add_foreign_key "fixtures", "teams", column: "hometeam_id"
+  add_foreign_key "selections", "contracts"
+  add_foreign_key "selections", "fixtures"
 end
