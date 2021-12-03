@@ -1,0 +1,10 @@
+
+<h2>All contracts in DB:</h2>
+
+<% @contracts.each do |contract| %>
+    • <%= contract.player.name %>
+    <b> <%= contract.player.firstname %></b>
+    #<%= contract.jerseynumber %>
+    | <%= contract.team.shortname %>
+    <br>
+<%end%>
