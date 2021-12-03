@@ -1,0 +1,101 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2580
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 Helvetica-Bold;}
+{\colortbl;\red255\green255\blue255;\red194\green229\blue166;}
+{\*\expandedcolortbl;;\cssrgb\c80097\c91038\c70905;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11660\viewh6740\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 Un patient a plusieurs m\'e9decins\
+Un m\'e9decin a plusieurs patients\
+
+\f1\b Patient >> rdv << M\'e9decin
+\f0\b0 \
+\
+Un patient a une seule chambre\
+Une chambre a plusieurs patient\
+
+\f1\b Patient << Chambre
+\f0\b0 \
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 ##########################################\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\b \cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \cb2 team
+\f0\b0 \
+id
+\f1\b \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\b0 \cf0 name:string\
+shortname:string
+\f1\b \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 season
+\f0\b0 \
+id\
+year:string
+\f1\b \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+competition
+\f0\b0 \
+id\
+name:string\
+country:string\
+\
+
+\f1\b competseason
+\f0\b0 \
+id\
+Season:references\
+competition:references
+\f1\b \
+\
+fixture\
+
+\f0\b0 id\
+hometeam:references\
+awayteam:references\
+scorehome:integer\
+scoreaway:integer\
+competseason:references\
+round:integer\cb1 \
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\b \cf0 player\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\b0 \cf0 id\
+name
+\f1\b \
+
+\f0\b0 firstname\
+team:references\
+
+\f1\b \
+\
+event
+\f0\b0 \
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 ##########################################\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+Fixture.create(hometeam:Team.find(5), awayteam:Team.find(20), scorehome:2, scoreaway:2, competseason:Competseason.find(1),round:16)\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 Fixture.create(hometeam:Team.find(19), awayteam:Team.find(16), scorehome:0, scoreaway:0, competseason:Competseason.find(1),round:16)\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 Fixture.create(hometeam:Team.find(11), awayteam:Team.find(13), competseason:Competseason.find(1),round:17)\
+\
+Fixture.create(hometeam:Team.find(19), awayteam:Team.find(20), competseason:Competseason.find(1),round:17)\
+}

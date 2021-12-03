@@ -4,6 +4,16 @@
 <% @fixtures.each do |fixture| %>
     • <b> <%= fixture.competseason.competition.name %> Round <%= fixture.round %> </b> |
     <%= link_to fixture_path(fixture.id) do %>
-        <%= fixture.hometeam.name %> vs. <%= fixture.awayteam.name %>
+        
+        <%= fixture.hometeam.name %>
+        
+        <%if !fixture.scorehome.nil? && !fixture.scoreaway.nil? %>
+            <b> <%= fixture.scorehome%> - <%= fixture.scoreaway%> </b>
+        <%else%>
+            vs.
+        <%end%>
+
+        <%= fixture.awayteam.name %>
+
     <%end%> <br>
 <%end%>
