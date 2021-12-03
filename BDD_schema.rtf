@@ -65,7 +65,11 @@ scorehome:integer\
 scoreaway:integer\
 competseason:references\
 round:integer\cb1 \
-\
+formationhome\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 formationaway\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
 \f1\b \cf0 player\
@@ -76,13 +80,40 @@ name
 \f1\b \
 
 \f0\b0 firstname\
-team:references\
+
+\f1\b \
+contract\
+
+\f0\b0 id
+\f1\b \
+
+\f0\b0 team:references\
+player:references\
+jerseynumber\
+startdate\
+enddate
+\f1\b \
+\
+selection\
+
+\f0\b0 id\
+contract:references\
+fixture:references\
+position\
+starter:boolean\
+substitutiontime\
+playerin:references\
+\
+\
+Formation???\
 
 \f1\b \
 \
 event
 \f0\b0 \
-\
+id\
+contract:references\
+fixture:references\
 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 \cf0 ##########################################\
