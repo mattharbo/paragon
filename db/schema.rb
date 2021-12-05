@@ -102,5 +102,5 @@ ActiveRecord::Schema.define(version: 2021_12_05_180337) do
   add_foreign_key "fixtures", "teams", column: "hometeam_id"
   add_foreign_key "selections", "contracts"
   add_foreign_key "selections", "fixtures"
-  add_foreign_key "selections", "players", column: "substitute_id"
+  add_foreign_key "selections", "contracts", column: "substitute_id"
 end

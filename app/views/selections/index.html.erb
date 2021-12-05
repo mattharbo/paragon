@@ -1,0 +1,11 @@
+
+<h2>All selections in DB:</h2>
+
+<% @selections.each do |selection| %>
+    <%= selection.id %> • 
+    <%= selection.contract.player.name %> (#<%= selection.contract.jerseynumber %>) for 
+    <%= selection.contract.team.name %> during 
+    #<%= selection.fixture.hometeam.shortname %><%= selection.fixture.awayteam.shortname %> | 
+    Note: <%= selection.note %>
+    <br>
+<%end%>
