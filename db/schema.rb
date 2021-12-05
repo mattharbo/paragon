@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_03_182158) do
+ActiveRecord::Schema.define(version: 2021_12_05_180337) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,10 +77,10 @@ ActiveRecord::Schema.define(version: 2021_12_03_182158) do
     t.bigint "fixture_id", null: false
     t.boolean "starter"
     t.integer "substitutiontime"
-    t.integer "note"
+    t.float "note"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "substitute_id", null: false
+    t.bigint "substitute_id"
     t.index ["contract_id"], name: "index_selections_on_contract_id"
     t.index ["fixture_id"], name: "index_selections_on_fixture_id"
     t.index ["substitute_id"], name: "index_selections_on_substitute_id"
