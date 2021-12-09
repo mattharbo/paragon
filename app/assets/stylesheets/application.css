@@ -13,3 +13,10 @@
  *= require_tree .
  *= require_self
  */
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500;700;800&display=swap');
+
+html{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 11px;
+}

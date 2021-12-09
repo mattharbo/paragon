@@ -7,14 +7,6 @@ class FixturesController < ApplicationController
   end
 
   def show
-
-  end
-
-  private 
-
-  def set_fixture
-    @fixture=Fixture.find(params[:id])
-
     @fixtureselections=Selection.where(fixture:params[:id]).where(starter: true)
 
     hometeam=Fixture.find(params[:id]).hometeam
@@ -25,7 +17,7 @@ class FixturesController < ApplicationController
     indexhome=indexaway=0
 
     @fixtureselections.each do |fixtureselection|
-            
+
       case fixtureselection.contract.team.id
       when hometeam.id
         indexhome+=1
@@ -36,7 +28,12 @@ class FixturesController < ApplicationController
       end
     
     end
+  end
 
+  private 
+
+  def set_fixture
+    @fixture=Fixture.find(params[:id])
   end
 
 end
