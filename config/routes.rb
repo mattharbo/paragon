@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'positions/index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   # get 'standalonepages/landing'
@@ -11,4 +12,5 @@ Rails.application.routes.draw do
   resources :players, only: [:index]
   resources :contracts, only: [:index]
   resources :selections, only: [:index]
+  resources :positions, only: [:index]
 end
