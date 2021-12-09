@@ -46,6 +46,7 @@
                         <tr style="background-color:#f3f3f3;text-align:center">
                             <td style="width:150px;">
                                 <%= homeplayer.contract.player.firstname %>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<small><%= homeplayer.note %></small>
                                 <% if !homeplayer.substitute.nil? %>
                                     <br>
                                     <small>&#x1F504; (<%= homeplayer.substitutiontime %>)</small>
@@ -64,6 +65,7 @@
                         <tr style="background-color:#f3f3f3;text-align:center">
                             <td style="width:150px;">
                                 <%= awayplayer.contract.player.firstname %>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<small><%= awayplayer.note %></small>
                                 <% if !awayplayer.substitute.nil? %>
                                     <br>
                                     <small>&#x1F504; (<%= awayplayer.substitutiontime %>)</small>
