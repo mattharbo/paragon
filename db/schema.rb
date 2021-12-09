@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_09_194956) do
+ActiveRecord::Schema.define(version: 2021_12_09_200328) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,8 +87,10 @@ ActiveRecord::Schema.define(version: 2021_12_09_194956) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "substitute_id"
+    t.bigint "position_id"
     t.index ["contract_id"], name: "index_selections_on_contract_id"
     t.index ["fixture_id"], name: "index_selections_on_fixture_id"
+    t.index ["position_id"], name: "index_selections_on_position_id"
     t.index ["substitute_id"], name: "index_selections_on_substitute_id"
   end
 
@@ -109,4 +111,5 @@ ActiveRecord::Schema.define(version: 2021_12_09_194956) do
   add_foreign_key "selections", "contracts"
   add_foreign_key "selections", "fixtures"
   add_foreign_key "selections", "players", column: "substitute_id"
+  add_foreign_key "selections", "positions"
 end

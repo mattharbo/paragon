@@ -7,26 +7,13 @@ class FixturesController < ApplicationController
   end
 
   def show
-    @fixtureselections=Selection.where(fixture:params[:id]).where(starter: true)
-
-    hometeam=Fixture.find(params[:id]).hometeam
-    awayteam=Fixture.find(params[:id]).awayteam
+    fixtureselections=Selection.where(fixture:params[:id]).where(starter: true).order("selections.position_id ASC")
 
     @homeselection={}
     @awayselection={}
-    indexhome=indexaway=0
 
-    @fixtureselections.each do |fixtureselection|
-
-      case fixtureselection.contract.team.id
-      when hometeam.id
-        indexhome+=1
-        @homeselection.store(indexhome,fixtureselection)
-      when awayteam.id
-        indexaway+=1
-        @awayselection.store(indexaway,fixtureselection)
-      end
-    
+    if !fixtureselections.empty?
+      retrieve_players(fixtureselections,@homeselection,@awayselection)
     end
   end
 
@@ -34,6 +21,27 @@ class FixturesController < ApplicationController
 
   def set_fixture
     @fixture=Fixture.find(params[:id])
+  end
+
+  def retrieve_players(sel,outputhome,outputaway)
+
+    hometeam=sel.first.fixture.hometeam
+    awayteam=sel.first.fixture.awayteam
+
+    indexhome=indexaway=0
+
+    sel.each do |player|
+
+      case player.contract.team.id
+      when hometeam.id
+        indexhome+=1
+        outputhome.store(indexhome,player)
+      when awayteam.id
+        indexaway+=1
+        outputaway.store(indexaway,player)
+      end
+    
+    end
   end
 
 end

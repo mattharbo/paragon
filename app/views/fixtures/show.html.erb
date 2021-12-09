@@ -35,24 +35,25 @@
 
     <table>
         <tr style="background-color:#f3f3f3;text-align:center">
-            <td style="width:150px;"><%= @fixture.homeformation %></td>
-            <td style="width:150px;"><%= @fixture.awayformation %></td>
+            <td style="width:150px;"><b><%= @fixture.homeformation %></b></td>
+            <td style="width:150px;"><b><%= @fixture.awayformation %></b></td>
         </tr>
         <tr style="vertical-align: top;">
             <td>
                 <table>
 
-                    <% @homeselection.each do |key, homeplayer| %>
+                    <% @homeselection.each do |key, player| %>
                         <tr style="background-color:#f3f3f3;text-align:center">
-                            <td style="width:150px;">
-                                <%= homeplayer.contract.player.firstname %>
-                                &nbsp;&nbsp;&nbsp;&nbsp;<small><%= homeplayer.note %></small>
-                                <% if !homeplayer.substitute.nil? %>
+                            <td style="width:150px;;text-align:left;padding-left:10px">
+                                <%= player.contract.player.firstname %>
+                                -
+                                <small><%= player.note %></small>
+                                <% if !player.substitute.nil? %>
                                     <br>
-                                    <small>&#x1F504; (<%= homeplayer.substitutiontime %>)</small>
-                                    <%= homeplayer.substitute.player.firstname %>          
+                                    <small>&#x1F504; [<%= player.substitutiontime %>']</small>
+                                    <%= player.substitute.player.firstname %>          
                                 <% end %>
-                             </td>
+                            </td>
                         </tr> 
                     <% end %>
             
@@ -61,15 +62,16 @@
             <td>
                 <table>
         
-                    <% @awayselection.each do |key, awayplayer| %>
+                    <% @awayselection.each do |key, player| %>
                         <tr style="background-color:#f3f3f3;text-align:center">
-                            <td style="width:150px;">
-                                <%= awayplayer.contract.player.firstname %>
-                                &nbsp;&nbsp;&nbsp;&nbsp;<small><%= awayplayer.note %></small>
-                                <% if !awayplayer.substitute.nil? %>
+                            <td style="width:150px;;text-align:left;padding-left:10px">
+                                <%= player.contract.player.firstname %>
+                                -
+                                <small><%= player.note %></small>
+                                <% if !player.substitute.nil? %>
                                     <br>
-                                    <small>&#x1F504; (<%= awayplayer.substitutiontime %>)</small>
-                                    <%= awayplayer.substitute.player.firstname %>          
+                                    <small>&#x1F504; [<%= player.substitutiontime %>']</small>
+                                    <%= player.substitute.player.firstname %>          
                                 <% end %>
                             </td>
                         </tr> 
@@ -80,6 +82,11 @@
         </tr>
     </table>
 
+
+    
+    
+
+    
     
 
 
