@@ -12,8 +12,18 @@
     #<%= selection.fixture.hometeam.shortname %><%= selection.fixture.awayteam.shortname %> | 
     Note: <%= selection.note %>
 
-    <%if !selection.substitute.nil? %>
-        >>>>>> Player in:
+    <%if selection.starter == false && !selection.substitute.nil? %>
+        <b style="color:red;">==> Player out:</b>
+        <%= selection.substitute.player.name%>
+        <b>
+        <%= selection.substitute.player.firstname%> 
+        </b>
+        (#<%= selection.substitute.jerseynumber %>) at 
+        <%= selection.substitutiontime%> min
+    <%end%>
+
+    <%if selection.starter == true && !selection.substitute.nil? %>
+        <b style="color:green;"> <== Player in:</b>
         <%= selection.substitute.player.name%>
         <b>
         <%= selection.substitute.player.firstname%> 
