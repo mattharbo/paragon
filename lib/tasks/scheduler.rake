@@ -1,5 +1,5 @@
-desc "Insert Ligue 1 Game(s) of the day"
-task retrieve_ligue_1_gotd: :environment do
+desc "Insert latest ended Ligue 1 Game(s)"
+task retrieve_latest_ligue_1_results: :environment do
 
 	soccerapicall(61,"#{Time.now.year}"+"-"+"#{Time.now.month}"+"-"+"#{Time.now.day-1}") 
 	# soccerapicall(61,"2021-12-04")
