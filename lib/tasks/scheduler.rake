@@ -2,7 +2,7 @@ desc "Insert Ligue 1 Game(s) of the day"
 task retrieve_ligue_1_gotd: :environment do
 
 	soccerapicall(61,"#{Time.now.year}"+"-"+"#{Time.now.month}"+"-"+"#{Time.now.day-1}") 
-	# soccerapicall(61,"2021-12-12") 
+	# soccerapicall(61,"2021-12-04")
 
 	if @apiresponse["results"]!=0
 
@@ -18,14 +18,16 @@ task retrieve_ligue_1_gotd: :environment do
 				awayteam:awayteam,
 				scorehome:scorehome,
 				scoreaway:scoreaway,
-				# date:fixture["fixture"]["date"],
+				date:fixture["fixture"]["date"],
                 competseason:Competseason.joins(:competition, :season).where("country like ?", "%France%").where("year like ?", "%2021-2022%").take,
                 round:fixtureround
 				)
+
+            print "✅ for #{hometeam.name} vs. #{awayteam.name} \n"
 		end
 	end
 
-	puts "Ligue 1 game results checked on #{Time.now.year}-#{Time.now.month}-#{Time.now.day} @ #{Time.now.hour}:#{Time.now.min}"
+	puts "⚽️ Ligue 1 game results checked on #{Time.now.year}-#{Time.now.month}-#{Time.now.day} @ #{Time.now.hour}:#{Time.now.min}"
 end
 
 def soccerapicall(league, date)
