@@ -3,8 +3,8 @@
 
 <% @contracts.each do |contract| %>
     <%= contract.id %>
-    • <%= contract.player.name %>
-    <b> <%= contract.player.firstname %></b>
+    • <b> <%= contract.player.name %></b>
+    <%= contract.player.firstname %>
     #<%= contract.jerseynumber %>
     | <%= contract.team.shortname %>
     <br>

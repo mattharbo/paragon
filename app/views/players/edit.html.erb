@@ -1,0 +1,26 @@
+
+<br><br><br>
+
+<%= form_for @player do | p | %>
+
+	<b><%= p.label :firstname, "Player firstname"%>: </b>
+	<%= p.text_field :firstname%>
+
+    <br><br>
+    
+    <b><%= p.label :name, "Player name"%>: </b>
+	<%= p.text_field :name %>
+
+    <br><br>
+
+    <b><%= p.label :playerapiref, "Player API reference"%>: </b>
+    <%=@player.playerapiref%>
+
+    <br><br>
+
+	<%= p.submit "Update player" %>
+
+<% end %>
+
+<br>
+<%= link_to "Delete player", player_path(@player), method: :delete, data: {confirm:"Are you sure?"}%>

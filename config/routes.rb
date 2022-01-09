@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :competitions, only: [:index]
   resources :competseasons, only: [:index]
   resources :fixtures, only: [:index, :show]
-  resources :players, only: [:index]
+  resources :players, only: [:index, :edit, :update, :destroy]
   resources :contracts, only: [:index]
   resources :selections, only: [:index]
   resources :positions, only: [:index]

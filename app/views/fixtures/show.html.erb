@@ -45,13 +45,13 @@
                     <% @homeselection.each do |key, player| %>
                         <tr style="background-color:#f3f3f3;text-align:center">
                             <td style="width:150px;;text-align:left;padding-left:10px">
-                                <%= player.contract.player.firstname %>
+                                <%= player.contract.player.name %>
                                 -
                                 <small><%= player.note %></small>
                                 <% if !player.substitute.nil? %>
                                     <br>
                                     <small>&#x1F504; [<%= player.substitutiontime %>']</small>
-                                    <%= player.substitute.player.firstname %>          
+                                    <%= player.substitute.player.name %>          
                                 <% end %>
                             </td>
                         </tr> 
@@ -65,13 +65,13 @@
                     <% @awayselection.each do |key, player| %>
                         <tr style="background-color:#f3f3f3;text-align:center">
                             <td style="width:150px;;text-align:left;padding-left:10px">
-                                <%= player.contract.player.firstname %>
+                                <%= player.contract.player.name %>
                                 -
                                 <small><%= player.note %></small>
                                 <% if !player.substitute.nil? %>
                                     <br>
                                     <small>&#x1F504; [<%= player.substitutiontime %>']</small>
-                                    <%= player.substitute.player.firstname %>          
+                                    <%= player.substitute.player.name %>          
                                 <% end %>
                             </td>
                         </tr> 
