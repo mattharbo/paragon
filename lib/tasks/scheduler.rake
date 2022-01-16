@@ -68,6 +68,24 @@ task retrieve_latest_ligue_1_results: :environment do
 	puts "⚽️ Ligue 1 game results checked on #{Time.now.year}-#{Time.now.month}-#{Time.now.day} @ #{Time.now.hour}:#{Time.now.min}"
 end
 
+########### Private functions ############
+
+
+def apicredentials(targeturl)
+
+    http = Net::HTTP.new(targeturl.host, targeturl.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+    request = Net::HTTP::Get.new(targeturl)
+    request["x-rapidapi-host"] = 'api-football-v1.p.rapidapi.com'
+    request["x-rapidapi-key"] = 'QfDWrtMJ5wmsh1fjUZRYXaKkPpuvp1nv5hUjsnZgUbue0iFVJY'
+
+    return @response = http.request(request)
+    
+  end
+
+
 def soccerapicall_getfixtureslist(league, date)
 
 	# Ligue 1 ===> 61
@@ -80,17 +98,9 @@ def soccerapicall_getfixtureslist(league, date)
 
 	url = URI("https://api-football-v1.p.rapidapi.com/v3/fixtures?league=#{league}&season=2021&date=#{date}")
 
-	http = Net::HTTP.new(url.host, url.port)
-	http.use_ssl = true
-	http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+	apicredentials(url)
 
-	request = Net::HTTP::Get.new(url)
-	request["x-rapidapi-host"] = 'api-football-v1.p.rapidapi.com'
-	request["x-rapidapi-key"] = 'QfDWrtMJ5wmsh1fjUZRYXaKkPpuvp1nv5hUjsnZgUbue0iFVJY'
-
-	response = http.request(request)
-
-	return @apiresponse_fixturelist=JSON.parse(response.body)
+	return @apiresponse_fixturelist=JSON.parse(@response.body)
 end
 
 def checkteamname(apiretrieveteamname)
@@ -116,17 +126,9 @@ def soccerapicall_getfixturelineups(fixtureid)
 
     url = URI("https://api-football-v1.p.rapidapi.com/v3/fixtures/lineups?fixture=#{fixtureid}")
 
-    http = Net::HTTP.new(url.host, url.port)
-    http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-
-    request = Net::HTTP::Get.new(url)
-    request["x-rapidapi-host"] = 'api-football-v1.p.rapidapi.com'
-    request["x-rapidapi-key"] = 'QfDWrtMJ5wmsh1fjUZRYXaKkPpuvp1nv5hUjsnZgUbue0iFVJY'
-
-    response = http.request(request)
+    apicredentials(url)
     
-    return @apiresponse_fixturelineups=JSON.parse(response.body)
+    return @apiresponse_fixturelineups=JSON.parse(@response.body)
 end
 
 def defineteamandcreationformation(fixtureid,teamindex,formation)
@@ -156,13 +158,13 @@ def checkplayer(apiretrievedplayerid,apiretrievedplayername,apiretrievedplayerje
 		#user & contract creation
 		
 		Player.create(
-		name:apiretrievedplayername,
-		playerapiref:apiretrievedplayerid
+			name:apiretrievedplayername,
+			playerapiref:apiretrievedplayerid
 		)
 		Contract.create(
-		team:bddteaminstance,
-		player:Player.last,
-		jerseynumber:apiretrievedplayerjersey
+			team:bddteaminstance,
+			player:Player.last,
+			jerseynumber:apiretrievedplayerjersey
 		)
 		targetcontract=Contract.last
 	end
@@ -176,3 +178,5 @@ def createselection(coontract,fixture,position)
 		starter:true
 	)
 end
+
+############################################

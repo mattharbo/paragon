@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'positions/index'
+  get 'staging' => 'standalonepages#staging'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   # get 'standalonepages/landing'
