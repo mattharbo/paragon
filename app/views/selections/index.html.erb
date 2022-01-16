@@ -3,16 +3,17 @@
 
 <% @selections.each do |selection| %>
     <%= selection.id %> • 
-    <%= selection.contract.player.name %> 
-    <b>
     <%= selection.contract.player.firstname %> 
+    <b>
+    <%= selection.contract.player.name %> 
     </b>
     (#<%= selection.contract.jerseynumber %> - 
     <%if !selection.position.nil? %>
     <%= selection.position.family %><%end%>) for 
     <%= selection.contract.team.name %> during 
     #<%= selection.fixture.hometeam.shortname %><%= selection.fixture.awayteam.shortname %> | 
-    Note: <%= selection.note %>
+    Starter: <%= selection.starter %> |
+    Note: <%= selection.note %> 
 
     <%if selection.starter == false && !selection.substitute.nil? %>
         <b style="color:red;">==> Player out:</b>

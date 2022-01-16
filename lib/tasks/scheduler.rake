@@ -2,7 +2,7 @@ desc "Insert latest ended Ligue 1 Game(s)"
 task retrieve_latest_ligue_1_results: :environment do
 
 	# soccerapicall_getfixtureslist(61,"#{Time.now.year}"+"-"+"#{sprintf('%02i', Time.now.month)}"+"-"+"#{sprintf('%02i', Time.now.day-1)}") 
-	soccerapicall_getfixtureslist(61,"2021-10-22")
+	soccerapicall_getfixtureslist(61,"2022-01-14")
 
 	if @apiresponse_fixturelist["results"]!=0
 
@@ -26,13 +26,10 @@ task retrieve_latest_ligue_1_results: :environment do
 			
 			print "✅ for #{hometeam.name} vs. #{awayteam.name} \n"
 			
-			# RECUPERATION DE LA FORMATION DANS LE 2EME CALL API
-			
-			# RECUPERER LE FIXTURE API ID DE LA RENCONTRE 
-			# ====> Il faudra prendre l'ID de la dernière fixture ajoutée en base
+			# RECUPERER LE FIXTURE ID DE LA RENCONTRE (dernière fixture ajoutée en base)
 			fixturebddid=Fixture.last.id
 
-			# FAIRE LE CALL API AFIN DE RECUPERER LES INFORMATIONS
+			# FAIRE LE CALL API AFIN DE RECUPERER LES LINEUPS
 			# soccerapicall_getfixturelineups(718512) # Lens vs. PSG
 			soccerapicall_getfixturelineups(apifixtureid)
 
@@ -47,21 +44,34 @@ task retrieve_latest_ligue_1_results: :environment do
 		  
 				# RECUPERER LA FORMATION dans response["formation"] 
 				# & UPDATE LA FORMATION DANS LA TABLE FIXTURE (avec le FIXTURE ID de mon app)
-				tt=defineteamandcreationformation(fixturebddid,i,team["formation"])
+				target_team_id=defineteamandcreationformation(fixturebddid,i,team["formation"])
 				
 				# BOUCLER SUR TOUS LES JOEURS de ["startXI"]
 				team["startXI"].each do |player|
 			  
 				  # SI LE JOUEUR EXISTE ALORS RECUPERER L'ID DE SON DERNIER CONTRACT
 				  # SINON ALORS LE CREER, CREERE UN CONTRACT AVEC LA BONNE TEAM ET RECUPERER L'ID DU CONTRACT
-				  #targetcontract:
-				  tc=checkplayer(player["player"]["id"],player["player"]["name"],player["player"]["number"],tt)
+				  target_contract=checkplayer(player["player"]["id"],player["player"]["name"],player["player"]["number"],target_team_id)
 				  
 				  # CREER UNE SELECTION avec FIXTURE, CONTRACT et POSITION
-				  createselection(tc,fixturebddid,player["player"]["pos"])
-		  
+				  createselection(target_contract,fixturebddid,player["player"]["pos"],true)
+				end
+
+				#Boucler sur tous les joueurs sur le banc ["substitutes"]
+				team["substitutes"].each do |benchplayer|
+			  
+				  # SI LE JOUEUR EXISTE ALORS RECUPERER L'ID DE SON DERNIER CONTRACT
+				  # SINON ALORS LE CREER, CREERE UN CONTRACT AVEC LA BONNE TEAM ET RECUPERER L'ID DU CONTRACT
+				  target_contract=checkplayer(benchplayer["player"]["id"],benchplayer["player"]["name"],benchplayer["player"]["number"],target_team_id)
+				  
+				  # CREER UNE SELECTION avec FIXTURE, CONTRACT et POSITION
+				  createselection(target_contract,fixturebddid,benchplayer["player"]["pos"],false)
 				end
 			end
+
+			# FAIRE LE CALL API AFIN DE METTRE A JOUR TOUS LES CHANGEMENTS (& LES BUTS)
+
+			# FAIRE LE CALL API AFIN DE RECUPERER LES NOTES DE CHACUN DES JOEURS
 		end
 	end
 
@@ -69,7 +79,6 @@ task retrieve_latest_ligue_1_results: :environment do
 end
 
 ########### Private functions ############
-
 
 def apicredentials(targeturl)
 
@@ -81,10 +90,8 @@ def apicredentials(targeturl)
     request["x-rapidapi-host"] = 'api-football-v1.p.rapidapi.com'
     request["x-rapidapi-key"] = 'QfDWrtMJ5wmsh1fjUZRYXaKkPpuvp1nv5hUjsnZgUbue0iFVJY'
 
-    return @response = http.request(request)
-    
-  end
-
+    return @response = http.request(request)    
+end
 
 def soccerapicall_getfixtureslist(league, date)
 
@@ -151,7 +158,6 @@ def checkplayer(apiretrievedplayerid,apiretrievedplayername,apiretrievedplayerje
 
 	if check.present?
 		targetplayer=check.take
-		# targetcontract=Contract.where(player:targetplayer)
 		#Faut-il prendre le dernier contract connu? Contract.where(…).last
 		targetcontract=Contract.where(player:targetplayer).last
 	else
@@ -171,11 +177,11 @@ def checkplayer(apiretrievedplayerid,apiretrievedplayername,apiretrievedplayerje
 	return targetcontract
 end
 
-def createselection(coontract,fixture,position)
+def createselection(coontract,fixture,position,status)
 	Selection.create(
 		contract:coontract,
 		fixture:Fixture.find(fixture),
-		starter:true
+		starter:status
 	)
 end
 
