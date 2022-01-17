@@ -2,7 +2,7 @@ desc "Insert latest ended Ligue 1 Game(s)"
 task retrieve_latest_ligue_1_results: :environment do
 
 	# soccerapicall_getfixtureslist(61,"#{Time.now.year}"+"-"+"#{sprintf('%02i', Time.now.month)}"+"-"+"#{sprintf('%02i', Time.now.day-1)}") 
-	soccerapicall_getfixtureslist(61,"2022-01-14")
+	soccerapicall_getfixtureslist(61,"2021-09-10")
 
 	if @apiresponse_fixturelist["results"]!=0
 
@@ -29,16 +29,13 @@ task retrieve_latest_ligue_1_results: :environment do
 			# RECUPERER LE FIXTURE ID DE LA RENCONTRE (dernière fixture ajoutée en base)
 			fixturebddid=Fixture.last.id
 
-			# FAIRE LE CALL API AFIN DE RECUPERER LES LINEUPS
-			# soccerapicall_getfixturelineups(718512) # Lens vs. PSG
+			# CALL API AFIN DE RECUPERER LES LINEUPS
 			soccerapicall_getfixturelineups(apifixtureid)
 
 			i=0
 
-			# POUR CHACUNE DES RESPONSES:
 			@apiresponse_fixturelineups["response"].each do |team|
 
-				# Récupération de l'instance bdd de l'équipe ciblée
 				# Si 1 alors hometeam - Si 2 alors awayteam
 				i+=1
 		  
@@ -69,9 +66,22 @@ task retrieve_latest_ligue_1_results: :environment do
 				end
 			end
 
-			# FAIRE LE CALL API AFIN DE METTRE A JOUR TOUS LES CHANGEMENTS (& LES BUTS)
+			# CALL API AFIN DE METTRE A JOUR TOUS LES CHANGEMENTS (& LES BUTS)
+			soccerapicall_getfixtureevents(apifixtureid)
 
-			# FAIRE LE CALL API AFIN DE RECUPERER LES NOTES DE CHACUN DES JOEURS
+			@apiresponse_fixtureevents["response"].each do |event|
+
+		      if event["type"]=="subst"
+		        create_substitution(fixturebddid,event["player"]["id"],event["assist"]["id"],event["time"]["elapsed"])
+
+		      elsif event["type"]=="Goal"
+		        #insert here code to create goals in a new table
+		      end
+		    end
+
+			# CALL API AFIN DE RECUPERER LES NOTES DE CHACUN DES JOEURS
+			# ...
+
 		end
 	end
 
@@ -161,8 +171,7 @@ def checkplayer(apiretrievedplayerid,apiretrievedplayername,apiretrievedplayerje
 		#Faut-il prendre le dernier contract connu? Contract.where(…).last
 		targetcontract=Contract.where(player:targetplayer).last
 	else
-		#user & contract creation
-		
+		#user & contract creation	
 		Player.create(
 			name:apiretrievedplayername,
 			playerapiref:apiretrievedplayerid
@@ -183,6 +192,68 @@ def createselection(coontract,fixture,position,status)
 		fixture:Fixture.find(fixture),
 		starter:status
 	)
+end
+
+def soccerapicall_getfixtureevents(fixtureid)
+    
+    require 'uri'
+    require 'net/http'
+    require 'openssl'
+
+    url = URI("https://api-football-v1.p.rapidapi.com/v3/fixtures/events?fixture=#{fixtureid}")
+
+    apicredentials(url)
+
+    return @apiresponse_fixtureevents=JSON.parse(@response.body)
+end
+
+def create_substitution(fixturebddid,playeroutid,playerinid,minute)
+
+	# print "Fixture bdd ==> #{fixturebddid}"
+	# print "\n"
+	# print "Ref player out ==> #{playeroutid}"
+	# print "\n"
+	# print "Ref player in ==> #{playerinid}"
+	# print "\n"
+
+	check_out = Player.where("playerapiref like ?","%#{playeroutid}%")
+	check_in = Player.where("playerapiref like ?","%#{playerinid}%")
+
+	if check_out.present? and check_in.present?
+		# Recupération de la selection du player qui sort de jeu player
+	    target_selection_sub_out=Selection.where(fixture_id:fixturebddid).where(contract_id:Contract.where(player_id:Player.where(playerapiref:playeroutid).ids.last).last).last
+	    # print "Sub out: #{target_selection_sub_out}"
+	    # print "\n"
+
+	    # Recupération du contract du player qui sort de jeu "player"
+	    target_contract_sub_out=Contract.where(player_id:Player.where(playerapiref:"#{playeroutid}").ids.last).last
+	    # print "Contract out: #{target_contract_sub_out}"
+	    # print "\n"
+
+	    # Recupération de la selection du player qui entre en jeu "assist"
+	    target_selection_sub_in=Selection.where(fixture_id:"#{fixturebddid}").where(contract_id:Contract.where(player_id:Player.where(playerapiref:"#{playerinid}").ids.last).last).last
+	    # print "Sub in: #{target_selection_sub_in}"
+	    # print "\n"
+
+	    # Recupération du contract du player qui entre en jeu "assist"
+	    target_contract_sub_in=Contract.where(player_id:Player.where(playerapiref:"#{playerinid}").ids.last).last
+	    # print "Contract in: #{target_contract_sub_in}"
+	    # print "\n"
+
+	    # Mise à jour de la selection du player qui sort de jeu avec 
+	    # • la minute du changement
+	    # • le contract du joueur qui le remplace => le joueur entrant
+	    target_selection_sub_out.substitutiontime=minute.to_i
+	    target_selection_sub_out.substitute=target_contract_sub_in
+	    target_selection_sub_out.save
+
+	    # Mise à jour de la selection du player qui entre en jeu avec 
+	    # • la minute du changement
+	    # • le contract du joueur qui le remplace => le joueur entrant
+	    target_selection_sub_in.substitutiontime=minute.to_i
+	    target_selection_sub_in.substitute=target_contract_sub_out
+	    target_selection_sub_in.save
+	end
 end
 
 ############################################

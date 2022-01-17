@@ -4,24 +4,26 @@ class StandalonepagesController < ApplicationController
 
   def staging
 
-    soccerapicall_getfixtureevents(718554) #nice vs. nantes 14 janvier
-    # bdd id => 52
-
-    @subs=0
-    @goals=0
-
-    @apiresponse_fixtureevents["response"].each do |event|
-
-      if event["type"]=="subst"
-        @subs+=1
-
-        create_substitution(52,event["player"]["id"],event["assist"]["id"],event["time"]["elapsed"])
-
-      elsif event["type"]=="Goal"
-        @goals+=1
-      end
-
-    end
+    # St Etienne => 1063
+    # Bordeaux => 78
+    # Lorient => 97
+    # troyes => 110
+    # clermont => 99
+    # metz => 112
+    # Reims => 93
+    # Brest => 106
+    # Lyon => 80
+    # Angers => 77
+    # Lille => 79
+    # Nantes => 83
+    # Montpellier => 82
+    # Strasbourg => 95
+    # Lens => 116
+    # Monaco => 91
+    # Rennes => 94
+    # Marseille => 81
+    # Nice => 84
+    # Paris => 85
 
   end
 
@@ -55,35 +57,6 @@ class StandalonepagesController < ApplicationController
     request["x-rapidapi-key"] = 'QfDWrtMJ5wmsh1fjUZRYXaKkPpuvp1nv5hUjsnZgUbue0iFVJY'
 
     return @response = http.request(request)
-  end
-
-  def create_substitution(fixturebddid,playeroutid,playerinid,minute)
-
-    # Recupération de la selection du player qui sort de jeu "player"
-    target_selection_sub_out=Selection.where(fixture_id:fixturebddid).where(contract_id:Contract.where(player_id:Player.where(playerapiref:playeroutid).ids.last).last).last
-
-    # Recupération du contract du player qui sort de jeu "player"
-    target_contract_sub_out=Contract.where(player_id:Player.where(playerapiref:playeroutid).ids.last).last
-
-    # Recupération de la selection du player qui entre en jeu "assist"
-    target_selection_sub_in=Selection.where(fixture_id:fixturebddid).where(contract_id:Contract.where(player_id:Player.where(playerapiref:playerinid).ids.last).last).last
-
-    # Recupération du contract du player qui entre en jeu "assist"
-    target_contract_sub_in=Contract.where(player_id:Player.where(playerapiref:playerinid).ids.last).last
-
-    # Mise à jour de la selection du player qui sort de jeu avec 
-    # • la minute du changement
-    # • le contract du joueur qui le remplace => le joueur entrant
-    target_selection_sub_out.substitutiontime=minute
-    target_selection_sub_out.substitute=target_contract_sub_in
-    target_selection_sub_out.save
-
-    # Mise à jour de la selection du player qui entre en jeu avec 
-    # • la minute du changement
-    # • le contract du joueur qui le remplace => le joueur entrant
-    target_selection_sub_in.substitutiontime=minute
-    target_selection_sub_in.substitute=target_contract_sub_out
-    target_selection_sub_in.save
   end
 
   ####### FUNCTION ALREADY IN THE RAKE FILE #########

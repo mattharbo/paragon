@@ -1,3 +1,3 @@
 class Position < ApplicationRecord
-    has_many :selection, dependent: :destroy
+    has_many :selections, dependent: :destroy
 end
