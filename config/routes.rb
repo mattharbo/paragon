@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   resources :contracts, only: [:index]
   resources :selections, only: [:index]
   resources :positions, only: [:index]
+  resources :standalonepages, only: [:staging]
 end

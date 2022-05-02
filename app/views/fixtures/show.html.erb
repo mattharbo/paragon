@@ -35,8 +35,8 @@
 
     <table>
         <tr style="background-color:#f3f3f3;text-align:center">
-            <td style="width:150px;"><b><%= @fixture.homeformation %></b></td>
-            <td style="width:150px;"><b><%= @fixture.awayformation %></b></td>
+            <td style="width:170px;"><b><%= @fixture.homeformation %></b></td>
+            <td style="width:170px;"><b><%= @fixture.awayformation %></b></td>
         </tr>
         <tr style="vertical-align: top;">
             <td>
@@ -44,7 +44,8 @@
 
                     <% @homeselection.each do |key, player| %>
                         <tr style="background-color:#f3f3f3;text-align:center">
-                            <td style="width:150px;;text-align:left;padding-left:10px">
+                            <td style="width:160px;;text-align:left;padding-left:10px">
+                                <small><%= player.contract.jerseynumber %> |</small>
                                 <%= player.contract.player.name %>
                                 -
                                 <small><%= player.note %></small>
@@ -64,7 +65,8 @@
         
                     <% @awayselection.each do |key, player| %>
                         <tr style="background-color:#f3f3f3;text-align:center">
-                            <td style="width:150px;;text-align:left;padding-left:10px">
+                            <td style="width:160px;;text-align:left;padding-left:10px">
+                                <small><%= player.contract.jerseynumber %> |</small>
                                 <%= player.contract.player.name %>
                                 -
                                 <small><%= player.note %></small>
