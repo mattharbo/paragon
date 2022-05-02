@@ -1,0 +1,11 @@
+<h2>All events in DB</h2>
+
+<% @events.each do |event| %>
+    <%= event.id %> • 
+    <%= event.eventtype.description %> 
+    by <%= event.selection.contract.player.name %> <%= event.selection.contract.player.firstname %>
+    (playing for <%= event.selection.contract.team.shortname%>)
+    during #<%= event.selection.fixture.hometeam.shortname%><%= event.selection.fixture.awayteam.shortname%>
+    at <%= event.time %>
+    <br>
+<%end%>

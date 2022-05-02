@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'events/index'
   get 'staging' => 'standalonepages#staging'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
@@ -14,4 +15,6 @@ Rails.application.routes.draw do
   resources :selections, only: [:index]
   resources :positions, only: [:index]
   resources :standalonepages, only: [:staging]
+  resources :eventtypes, only: [:index]
+  resources :events, only: [:index]
 end
