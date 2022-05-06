@@ -7,6 +7,8 @@ class FixturesController < ApplicationController
   end
 
   def show
+    @fixture_goals = Event.where(selection:Selection.where(fixture:Fixture.find(params[:id])))
+
     fixtureselections=Selection.where(fixture:params[:id]).where(starter: true).order("selections.position_id ASC")
 
     @homeselection={}

@@ -21,7 +21,13 @@
     <%if !@fixture.scorehome.nil? && !@fixture.scoreaway.nil? %>
 
         <%if @fixture.scorehome+@fixture.scoreaway != 0 %>
-            <i>Goals to be listed</i>
+
+            <% @fixture_goals.each do |goal| %>
+                <%= goal.selection.contract.player.name %>
+                (<%= goal.time %>')
+                <br>
+            <% end %>
+
         <%else%>
             Sorry some actions but no goal during this game!
             <p style="font-size:70px; margin:0">&#x1F972;</p>
