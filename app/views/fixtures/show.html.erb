@@ -4,8 +4,11 @@
 </p>
 
 <center>
+    <%= @fixture.competseason.competition.name %>
+    <%= @fixture.competseason.season.year %> | 
+    Round <%= @fixture.round %>
     <h3>
-        <%= @fixture.hometeam.shortname %> 
+        <%= @fixture.hometeam.name %> 
 
         <%if !@fixture.scorehome.nil? && !@fixture.scoreaway.nil? %>
             <b> <%= @fixture.scorehome%> - <%= @fixture.scoreaway%> </b>
@@ -13,7 +16,7 @@
             vs.
         <%end%>
 
-        <%= @fixture.awayteam.shortname %> 
+        <%= @fixture.awayteam.name %> 
     </h3>
 
     <!-- CHANGER LE CODE SUIVANT EN Y INTEGRANT LE STATUS DE LA RENCONTRE -->
@@ -23,7 +26,9 @@
         <%if @fixture.scorehome+@fixture.scoreaway != 0 %>
 
             <% @fixture_goals.each do |goal| %>
+                <%= goal.selection.contract.player.firstname %>
                 <%= goal.selection.contract.player.name %>
+                for <%= goal.selection.contract.team.name %>
                 (<%= goal.time %>')
                 <br>
             <% end %>

@@ -1,0 +1,13 @@
+<p>
+    <%= link_to "Back to teams list" , teams_path %> 
+</p>
+
+<h3>
+<%= @team.name %>
+</h3>
+
+Nombre de but(s) marqué(s) à domicile : 
+<%= @home_games_goals.count %>
+<br>
+Nombre de but(s) marqué(s) à l'extérieur : 
+<%= @away_games_goals.count %>

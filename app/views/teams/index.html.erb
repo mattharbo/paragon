@@ -1,5 +1,10 @@
 <h2>All teams in DB</h2>
 
 <% @teams.each do |team| %>
-    <%=team.id%> • <%=team.name%> (<%=team.shortname%>) <br>
+    <%=team.id%> • 
+    <%= link_to team_path(team.id) do%>
+        <%=team.name%> (<%=team.shortname%>) 
+    <% end %>
+
+    <br>
 <%end%>
