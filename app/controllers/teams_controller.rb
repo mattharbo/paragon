@@ -8,8 +8,10 @@ class TeamsController < ApplicationController
 
     def show
 
-        @home_games_goals=Event.where(selection:Selection.where(fixture:Fixture.where(hometeam:Team.find(params[:id]))))
-        @away_games_goals=Event.where(selection:Selection.where(fixture:Fixture.where(awayteam:Team.find(params[:id]))))
+        # @home_games_goals=Event.where(selection:Selection.where(fixture:Fixture.where(hometeam:Team.find(params[:id]))))
+        # @away_games_goals=Event.where(selection:Selection.where(fixture:Fixture.where(awayteam:Team.find(params[:id]))))
+
+        @games_goals=Event.where(selection:Selection.where(contract:Contract.where(team:Team.find(params[:id]))))
         
     end
 
