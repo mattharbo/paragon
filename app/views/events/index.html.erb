@@ -2,10 +2,20 @@
 
 <% @events.each do |event| %>
     <%= event.id %> • 
-    <%= event.eventtype.description %> 
-    by <%= event.selection.contract.player.firstname %> <%= event.selection.contract.player.name %>
+    <i> <%= event.eventtype.description %> </i>
+    by <%= event.selection.contract.player.firstname %> 
+    <b><%= event.selection.contract.player.name %></b>
     (playing for <%= event.selection.contract.team.shortname%>)
-    during #<%= event.selection.fixture.hometeam.shortname%><%= event.selection.fixture.awayteam.shortname%>
-    at <%= event.time %>
+    during 
+
+    <%= link_to fixture_path(event.selection.fixture.id) do %>
+        #<%= event.selection.fixture.hometeam.shortname%><%= event.selection.fixture.awayteam.shortname%>
+    <% end %>
+
+    at <%= event.time %> min 
     <br>
 <%end%>
+
+
+
+
