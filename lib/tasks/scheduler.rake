@@ -2,7 +2,7 @@ desc "Insert latest ended Ligue 1 Game(s)"
 task retrieve_latest_ligue_1_results: :environment do
 
 	# soccerapicall_getfixtureslist(61,"#{Time.now.year}"+"-"+"#{sprintf('%02i', Time.now.month)}"+"-"+"#{sprintf('%02i', Time.now.day-1)}") 
-	soccerapicall_getfixtureslist(61,"2022-04-23")
+	soccerapicall_getfixtureslist(61,"2022-04-29")
 
 	if @apiresponse_fixturelist["results"]!=0
 
@@ -75,7 +75,7 @@ task retrieve_latest_ligue_1_results: :environment do
 		        create_substitution(fixturebddid,event["player"]["id"],event["assist"]["id"],event["time"]["elapsed"])
 
 		      elsif event["type"]=="Goal"
-		        #insert here code to create goals in a new table
+		        create_event(fixturebddid,event["player"]["id"],event["type"],event["time"]["elapsed"])
 		      end
 		    end
 
@@ -88,7 +88,7 @@ task retrieve_latest_ligue_1_results: :environment do
 
 		        target_selection_for_rating=Selection.where(fixture_id:fixturebddid).where(contract_id:Contract.where(player_id:Player.where(playerapiref:player["player"]["id"]).ids.last).last).last
 
-		        print "#{player["statistics"][0]["games"]["rating"]}"
+		        print "#️⃣ #{player["statistics"][0]["games"]["rating"]}"
 		        print "\n"
 
 		        target_selection_for_rating.note=player["statistics"][0]["games"]["rating"].to_f
@@ -100,14 +100,14 @@ task retrieve_latest_ligue_1_results: :environment do
 		end
 	end
 
-	puts "⚽️ Ligue 1 game results checked on #{Time.now.year}-#{Time.now.month}-#{Time.now.day} @ #{Time.now.hour}:#{Time.now.min}"
+	puts "🗓 Ligue 1 game results checked on #{Time.now.year}-#{Time.now.month}-#{Time.now.day} @ #{Time.now.hour}:#{Time.now.min}"
 end
 
 desc "Insert latest ended Champions league Game(s)"
 task retrieve_latest_CL_results: :environment do
 
 	# soccerapicall_getfixtureslist(61,"#{Time.now.year}"+"-"+"#{sprintf('%02i', Time.now.month)}"+"-"+"#{sprintf('%02i', Time.now.day-1)}") 
-	soccerapicall_getfixtureslist(2,"2022-04-26")
+	soccerapicall_getfixtureslist(2,"2022-05-04")
 
 	if @apiresponse_fixturelist["results"]!=0
 
@@ -180,7 +180,7 @@ task retrieve_latest_CL_results: :environment do
 		        create_substitution(fixturebddid,event["player"]["id"],event["assist"]["id"],event["time"]["elapsed"])
 
 		      elsif event["type"]=="Goal"
-		        #insert here code to create goals in a new table
+		        create_event(fixturebddid,event["player"]["id"],event["type"],event["time"]["elapsed"])
 		      end
 		    end
 
@@ -193,7 +193,7 @@ task retrieve_latest_CL_results: :environment do
 
 		        target_selection_for_rating=Selection.where(fixture_id:fixturebddid).where(contract_id:Contract.where(player_id:Player.where(playerapiref:player["player"]["id"]).ids.last).last).last
 
-		        print "#{player["statistics"][0]["games"]["rating"]}"
+		        print "#️⃣ #{player["statistics"][0]["games"]["rating"]}"
 		        print "\n"
 
 		        target_selection_for_rating.note=player["statistics"][0]["games"]["rating"].to_f
@@ -363,22 +363,22 @@ def create_substitution(fixturebddid,playeroutid,playerinid,minute)
 	if check_out.present? and check_in.present?
 		# Recupération de la selection du player qui sort de jeu player
 	    target_selection_sub_out=Selection.where(fixture_id:fixturebddid).where(contract_id:Contract.where(player_id:Player.where(playerapiref:playeroutid).ids.last).last).last
-	    print "Sub out: #{target_selection_sub_out}"
+	    print "🔴▶️ Sub out: #{target_selection_sub_out}"
 	    print "\n"
 
 	    # Recupération du contract du player qui sort de jeu "player"
 	    target_contract_sub_out=Contract.where(player_id:Player.where(playerapiref:"#{playeroutid}").ids.last).last
-	    print "Contract out: #{target_contract_sub_out}"
+	    print "🔴📑 Contract out: #{target_contract_sub_out}"
 	    print "\n"
 
 	    # Recupération de la selection du player qui entre en jeu "assist"
 	    target_selection_sub_in=Selection.where(fixture_id:"#{fixturebddid}").where(contract_id:Contract.where(player_id:Player.where(playerapiref:"#{playerinid}").ids.last).last).last
-	    print "Sub in: #{target_selection_sub_in}"
+	    print "🟢◀️ Sub in: #{target_selection_sub_in}"
 	    print "\n"
 
 	    # Recupération du contract du player qui entre en jeu "assist"
 	    target_contract_sub_in=Contract.where(player_id:Player.where(playerapiref:"#{playerinid}").ids.last).last
-	    print "Contract in: #{target_contract_sub_in}"
+	    print "🟢📑 Contract in: #{target_contract_sub_in}"
 	    print "\n"
 
 	    # Mise à jour de la selection du player qui sort de jeu avec 
@@ -394,6 +394,27 @@ def create_substitution(fixturebddid,playeroutid,playerinid,minute)
 	    target_selection_sub_in.substitutiontime=minute.to_i
 	    target_selection_sub_in.substitute=target_contract_sub_out
 	    target_selection_sub_in.save
+	end
+end
+
+def create_event(fixturebddid,player,eventtype,minute)
+
+	main_actor = Player.where(playerapiref:player)
+
+	case eventtype
+	when "Goal"
+		target_type = Eventtype.find(1)
+	end
+
+	if main_actor.present?
+
+		# Recupération de la selection du player
+	    target_selection=Selection.where(fixture_id:fixturebddid).where(contract_id:Contract.where(player_id:Player.where(playerapiref:player).ids.last).last).last
+	    print "⚽️ Main player from event: #{target_selection}"
+	    print "\n"
+
+	    Event.create(selection:target_selection,eventtype:target_type,time:minute.to_i)
+
 	end
 end
 

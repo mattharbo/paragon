@@ -3,7 +3,7 @@
 <% @events.each do |event| %>
     <%= event.id %> • 
     <%= event.eventtype.description %> 
-    by <%= event.selection.contract.player.name %> <%= event.selection.contract.player.firstname %>
+    by <%= event.selection.contract.player.firstname %> <%= event.selection.contract.player.name %>
     (playing for <%= event.selection.contract.team.shortname%>)
     during #<%= event.selection.fixture.hometeam.shortname%><%= event.selection.fixture.awayteam.shortname%>
     at <%= event.time %>
