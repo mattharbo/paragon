@@ -1,0 +1,12 @@
+<br>
+
+<h3>
+	<%= @player.firstname %> <%= @player.name %>
+</h3>
+
+
+<% @player_contracts.each do |player_contract| %>
+
+	playing for <b><%= player_contract.team.name %></b> with number <%= player_contract.jerseynumber %>
+
+<% end %>

@@ -1,12 +1,16 @@
 class PlayersController < ApplicationController
   
-  before_action :set_player, only: [:edit, :update, :destroy]
+  before_action :set_player, only: [:edit, :show, :update, :destroy]
   
   def index
     @players=Player.all.order("id asc")
   end
 
   def edit
+  end
+
+  def show 
+    @player_contracts = Contract.where(player:@player)
   end
 
   def update
