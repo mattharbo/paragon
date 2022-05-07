@@ -28,9 +28,16 @@
             <% @fixture_goals.each do |goal| %>
                 <%= goal.selection.contract.player.firstname %>
                 <%= goal.selection.contract.player.name %>
-                for <%= goal.selection.contract.team.name %>
-                (<%= goal.time %>')
-                <br>
+
+                <% case goal.eventtype.description %>
+                <% when "Goal" %>
+                    for <%= goal.selection.contract.team.name %> (<%= goal.time %>')<br>
+                <% when "Auto goal" %>
+                    <b>[OG]</b> against <%= goal.selection.contract.team.name %> (<%= goal.time %>')<br>
+                <% when "Penalty" %>
+                    <b>[Penalty]</b> for <%= goal.selection.contract.team.name %> (<%= goal.time %>')<br>
+                <% end %>
+
             <% end %>
 
         <%else%>
