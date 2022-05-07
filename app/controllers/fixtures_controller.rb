@@ -7,7 +7,7 @@ class FixturesController < ApplicationController
   end
 
   def show
-    @fixture_goals = Event.where(selection:Selection.where(fixture:Fixture.find(params[:id])))
+    @fixture_goals = Event.where(selection:Selection.where(fixture:Fixture.find(params[:id]))).order("created_at ASC")
 
     fixtureselections=Selection.where(fixture:params[:id]).where(starter: true).order("selections.position_id ASC")
 
