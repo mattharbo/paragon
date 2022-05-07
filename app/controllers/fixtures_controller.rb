@@ -9,6 +9,17 @@ class FixturesController < ApplicationController
   def show
     @fixture_goals = Event.where(selection:Selection.where(fixture:Fixture.find(params[:id]))).order("created_at ASC")
 
+    # fixture_goals.each do |goal|
+
+    #   if goal.selection.contract.team == @fixture.hometeam
+
+    #   elsif goal.selection.contract.team == @fixture.hometeam
+        
+    #   end
+
+    # end
+
+
     fixtureselections=Selection.where(fixture:params[:id]).where(starter: true).order("selections.position_id ASC")
 
     @homeselection={}
