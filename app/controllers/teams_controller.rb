@@ -8,10 +8,8 @@ class TeamsController < ApplicationController
 
     def show
 
-        # @home_games_goals=Event.where(selection:Selection.where(fixture:Fixture.where(hometeam:Team.find(params[:id]))))
-        # @away_games_goals=Event.where(selection:Selection.where(fixture:Fixture.where(awayteam:Team.find(params[:id]))))
-
-        @games_goals=Event.where(selection:Selection.where(contract:Contract.where(team:Team.find(params[:id]))))
+        # A CHANGER CAR NE SONT PAS COMPTABILISER LES AUTO GOAL 
+        # @games_goals=Event.where(eventtype:Eventtype.where("description like ?", "%Goal%")).or(Event.where(eventtype:Eventtype.where("description like ?", "%Penalty%"))).where(selection:Selection.where(contract:Contract.where(team:Team.find(params[:id]))))
         
     end
 

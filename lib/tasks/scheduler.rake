@@ -2,7 +2,7 @@ desc "Insert latest ended Ligue 1 Game(s)"
 task retrieve_latest_ligue_1_results: :environment do
 
 	# soccerapicall_getfixtureslist(61,"#{Time.now.year}"+"-"+"#{sprintf('%02i', Time.now.month)}"+"-"+"#{sprintf('%02i', Time.now.day-1)}") 
-	soccerapicall_getfixtureslist(61,"2021-08-14")
+	soccerapicall_getfixtureslist(61,"2021-08-07")
 
 	if @apiresponse_fixturelist["results"]!=0
 
@@ -189,7 +189,16 @@ task retrieve_latest_CL_results: :environment do
 		        create_substitution(fixturebddid,event["player"]["id"],event["assist"]["id"],event["time"]["elapsed"])
 
 		      elsif event["type"]=="Goal"
-		        create_event(fixturebddid,event["player"]["id"],event["type"],event["time"]["elapsed"])
+		        
+		      	case event["detail"]
+		      	when "Normal Goal"
+		      		create_event(fixturebddid,event["player"]["id"],Eventtype.where("description like ?", "%Goal%").take,event["time"]["elapsed"])
+		      	when "Own Goal"
+		      		create_event(fixturebddid,event["player"]["id"],Eventtype.where("description like ?", "%Auto%").take,event["time"]["elapsed"])
+		      	when "Penalty"
+		      		create_event(fixturebddid,event["player"]["id"],Eventtype.where("description like ?", "%Penalty%").take,event["time"]["elapsed"])
+		      	end
+		        
 		      end
 		    end
 
