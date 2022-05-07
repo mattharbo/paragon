@@ -75,7 +75,16 @@ task retrieve_latest_ligue_1_results: :environment do
 		        create_substitution(fixturebddid,event["player"]["id"],event["assist"]["id"],event["time"]["elapsed"])
 
 		      elsif event["type"]=="Goal"
-		        create_event(fixturebddid,event["player"]["id"],event["type"],event["time"]["elapsed"])
+
+		      	case event["detail"]
+		      	when "Normal Goal"
+		      		create_event(fixturebddid,event["player"]["id"],Eventtype.where("description like ?", "%Goal%").take,event["time"]["elapsed"])
+		      	when "Own Goal"
+		      		create_event(fixturebddid,event["player"]["id"],Eventtype.where("description like ?", "%Auto%").take,event["time"]["elapsed"])
+		      	when "Penalty"
+		      		create_event(fixturebddid,event["player"]["id"],Eventtype.where("description like ?", "%Penalty%").take,event["time"]["elapsed"])
+		      	end
+
 		      end
 		    end
 
@@ -401,11 +410,6 @@ def create_event(fixturebddid,player,eventtype,minute)
 
 	main_actor = Player.where(playerapiref:player)
 
-	case eventtype
-	when "Goal"
-		target_type = Eventtype.find(1)
-	end
-
 	if main_actor.present?
 
 		# Recupération de la selection du player
@@ -413,7 +417,7 @@ def create_event(fixturebddid,player,eventtype,minute)
 	    print "⚽️ Main player from event: #{target_selection}"
 	    print "\n"
 
-	    Event.create(selection:target_selection,eventtype:target_type,time:minute.to_i)
+	    Event.create(selection:target_selection,eventtype:eventtype,time:minute.to_i)
 
 	end
 end
