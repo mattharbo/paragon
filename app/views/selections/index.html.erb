@@ -7,8 +7,8 @@
     <%= selection.contract.player.name %> 
     </b>
     (#<%= selection.contract.jerseynumber %> - 
-    <%if !selection.position.nil? %>
-    <%= selection.position.family %><%end%>) for 
+    <%= selection.grid_pos%>) 
+    for 
     <%= selection.contract.team.name %> during 
     #<%= selection.fixture.hometeam.shortname %><%= selection.fixture.awayteam.shortname %> | 
     Starter: <%= selection.starter %> |

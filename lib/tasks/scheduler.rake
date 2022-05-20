@@ -2,7 +2,7 @@ desc "Insert latest ended Ligue 1 Game(s)"
 task retrieve_latest_ligue_1_results: :environment do
 
 	# soccerapicall_getfixtureslist(61,"#{Time.now.year}"+"-"+"#{sprintf('%02i', Time.now.month)}"+"-"+"#{sprintf('%02i', Time.now.day-1)}") 
-	soccerapicall_getfixtureslist(61,"2021-08-08")
+	soccerapicall_getfixtureslist(61,"2022-04-15")
 
 	if @apiresponse_fixturelist["results"]!=0
 
@@ -51,7 +51,7 @@ task retrieve_latest_ligue_1_results: :environment do
 				  target_contract=checkplayer(player["player"]["id"],player["player"]["name"],player["player"]["number"],target_team_id)
 				  
 				  # CREER UNE SELECTION avec FIXTURE, CONTRACT et POSITION
-				  createselection(target_contract,fixturebddid,player["player"]["pos"],true)
+				  createselection(target_contract,fixturebddid,player["player"]["pos"],true,player["player"]["grid"])
 				end
 
 				#Boucler sur tous les joueurs sur le banc ["substitutes"]
@@ -62,7 +62,7 @@ task retrieve_latest_ligue_1_results: :environment do
 				  target_contract=checkplayer(benchplayer["player"]["id"],benchplayer["player"]["name"],benchplayer["player"]["number"],target_team_id)
 				  
 				  # CREER UNE SELECTION avec FIXTURE, CONTRACT et POSITION
-				  createselection(target_contract,fixturebddid,benchplayer["player"]["pos"],false)
+				  createselection(target_contract,fixturebddid,benchplayer["player"]["pos"],false,benchplayer["player"]["grid"])
 				end
 			end
 
@@ -165,7 +165,7 @@ task retrieve_latest_CL_results: :environment do
 				  target_contract=checkplayer(player["player"]["id"],player["player"]["name"],player["player"]["number"],target_team_id)
 				  
 				  # CREER UNE SELECTION avec FIXTURE, CONTRACT et POSITION
-				  createselection(target_contract,fixturebddid,player["player"]["pos"],true)
+				  createselection(target_contract,fixturebddid,player["player"]["pos"],true,player["player"]["grid"])
 				end
 
 				#Boucler sur tous les joueurs sur le banc ["substitutes"]
@@ -176,7 +176,7 @@ task retrieve_latest_CL_results: :environment do
 				  target_contract=checkplayer(benchplayer["player"]["id"],benchplayer["player"]["name"],benchplayer["player"]["number"],target_team_id)
 				  
 				  # CREER UNE SELECTION avec FIXTURE, CONTRACT et POSITION
-				  createselection(target_contract,fixturebddid,benchplayer["player"]["pos"],false)
+				  createselection(target_contract,fixturebddid,benchplayer["player"]["pos"],false,player["player"]["grid"])
 				end
 			end
 
@@ -343,11 +343,12 @@ def checkplayer(apiretrievedplayerid,apiretrievedplayername,apiretrievedplayerje
 	return targetcontract
 end
 
-def createselection(coontract,fixture,position,status)
+def createselection(coontract,fixture,position,status,grid)
 	Selection.create(
 		contract:coontract,
 		fixture:Fixture.find(fixture),
-		starter:status
+		starter:status,
+		grid_pos:grid
 	)
 end
 
