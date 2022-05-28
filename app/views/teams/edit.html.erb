@@ -1,0 +1,21 @@
+
+<br><br><br>
+
+<%= form_for @team do | t | %>
+
+  <b><%= t.label :name, "Team name"%>: </b>
+  <%= t.text_field :name%>
+
+    <br><br>
+    
+    <b><%= t.label :shortname, "Team shortname"%>: </b>
+  <%= t.text_field :shortname %>
+
+    <br><br>
+
+  <%= t.submit "Update team" %>
+
+<% end %>
+
+<br>
+<%= link_to "Delete team", team_path(@team), method: :delete, data: {confirm:"Are you sure?"}%>

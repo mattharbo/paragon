@@ -21,4 +21,8 @@ Things you may want to cover:
 
 * Deployment instructions
 
+* Important links
+[Soccer API doc](https://www.api-football.com/documentation-v3)
+[DB Schema](https://app.sqldbm.com/PostgreSQL/Edit/p214359/#)
+
 * ...

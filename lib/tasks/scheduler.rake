@@ -1,8 +1,8 @@
 desc "Insert latest ended Ligue 1 Game(s)"
 task retrieve_latest_ligue_1_results: :environment do
 
-	soccerapicall_getfixtureslist(61,"#{Time.now.year}"+"-"+"#{sprintf('%02i', Time.now.month)}"+"-"+"#{sprintf('%02i', Time.now.day-1)}") 
-	# soccerapicall_getfixtureslist(61,"2022-04-15")
+	# soccerapicall_getfixtureslist(61,"#{Time.now.year}"+"-"+"#{sprintf('%02i', Time.now.month)}"+"-"+"#{sprintf('%02i', Time.now.day-1)}") 
+	soccerapicall_getfixtureslist(61,"2022-04-15")
 
 	if @apiresponse_fixturelist["results"]!=0
 
@@ -319,6 +319,7 @@ def checkplayer(apiretrievedplayerid,apiretrievedplayername,apiretrievedplayerje
 
 	check = Player.where(playerapiref:apiretrievedplayerid)
 
+	# Si présent en base [⚠️⚠️ À FAIRE !!!!!⚠️⚠️] ET si le dernier contrat correspond bien à l'équipe de la fixture alors récupérer le contrat
 	if check.present?
 		targetplayer=check.take
 		#Faut-il prendre le dernier contract connu? Contract.where(…).last

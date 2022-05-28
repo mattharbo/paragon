@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   # get 'standalonepages/landing'
   root to: 'standalonepages#landing'
-  resources :teams, only: [:index, :show]
+  resources :teams, only: [:index, :show, :edit, :update, :destroy]
   resources :seasons, only: [:index]
   resources :competitions, only: [:index]
   resources :competseasons, only: [:index]
