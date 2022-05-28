@@ -1,0 +1,50 @@
+
+<br>
+
+<h2>
+<%=@selection.contract.player.firstname%> <b><%=@selection.contract.player.name%></b>
+</h2>
+
+for 
+<b>
+  <%=@selection.contract.team.name%>
+</b>
+
+during 
+#<%=@selection.fixture.hometeam.shortname%><%=@selection.fixture.awayteam.shortname%>
+
+on 
+<%=@selection.fixture.date%>
+
+<br><br>
+
+<%= form_for @selection do | s | %>
+
+  <b><%= s.label :starter, "Starter type"%>: </b>
+  <%= s.text_field :starter%>
+
+    <br><br>
+    
+    <b><%= s.label :substitutiontime, "Substitution time"%>: </b>
+  <%= s.text_field :substitutiontime %>
+
+    <br><br>
+
+    <b><%= s.label :note, "Note"%>: </b>
+  <%= s.text_field :note %>
+
+    <br><br>
+
+    <b><%= s.label :position_id, "Position id"%>: </b>
+  <%= s.text_field :position_id %>
+
+    <br><br>
+
+    <b><%= s.label :grid_pos, "Grid position"%>: </b>
+  <%= s.text_field :grid_pos %>
+
+    <br><br>
+
+  <%= s.submit "Update selection" %>
+
+<% end %>

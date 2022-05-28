@@ -1,6 +1,7 @@
 <h2>All selections in DB</h2>
 
 <% @selections.each do |selection| %>
+    [<%= link_to "edit", edit_selection_path(selection.id)%>]
     <%= selection.id %> • 
     <%= selection.contract.player.firstname %> 
     <b>

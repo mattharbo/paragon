@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :fixtures, only: [:index, :show]
   resources :players, only: [:index, :show, :edit, :update, :destroy]
   resources :contracts, only: [:index]
-  resources :selections, only: [:index]
+  resources :selections, only: [:index, :edit, :update]
   resources :positions, only: [:index]
   resources :standalonepages, only: [:staging]
   resources :eventtypes, only: [:index]
