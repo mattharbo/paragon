@@ -1,0 +1,31 @@
+<br>
+
+<p>
+    <%= link_to "Back to events home page" , events_path %> 
+</p>
+
+<h2>Unregistered events:</h2>
+
+<% @unregistered_events.each do |ue| %>
+	<%= ue.id %> • 
+
+    <% unless ue.registration %>
+        &#x1F534
+    <%else%>
+        &#x1F7E2
+    <%end%>
+
+    <i> <%= ue.eventtype.description %> </i>
+    by <%= ue.selection.contract.player.firstname %> 
+    <b><%= ue.selection.contract.player.name %></b>
+    (playing for <%= ue.selection.contract.team.shortname%>)
+    during 
+
+    <%= link_to fixture_path(ue.selection.fixture.id) do %>
+        #<%= ue.selection.fixture.hometeam.shortname%><%= ue.selection.fixture.awayteam.shortname%>
+    <% end %>
+
+    at <%= ue.time %> min 
+
+    <br>
+<% end %>

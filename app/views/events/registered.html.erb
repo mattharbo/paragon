@@ -1,0 +1,31 @@
+<br>
+
+<p>
+    <%= link_to "Back to events home page" , events_path %> 
+</p>
+
+<h2>Registered events:</h2>
+
+<% @registered_events.each do |re| %>
+	<%= re.id %> • 
+
+    <% unless re.registration %>
+        &#x1F534
+    <%else%>
+        &#x1F7E2
+    <%end%>
+
+    <i> <%= re.eventtype.description %> </i>
+    by <%= re.selection.contract.player.firstname %> 
+    <b><%= re.selection.contract.player.name %></b>
+    (playing for <%= re.selection.contract.team.shortname%>)
+    during 
+
+    <%= link_to fixture_path(re.selection.fixture.id) do %>
+        #<%= re.selection.fixture.hometeam.shortname%><%= re.selection.fixture.awayteam.shortname%>
+    <% end %>
+
+    at <%= re.time %> min 
+
+    <br>
+<% end %>
