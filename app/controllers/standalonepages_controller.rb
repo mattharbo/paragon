@@ -1,6 +1,6 @@
 class StandalonepagesController < ApplicationController
   def landing
-    @all_event = Event.where(eventtype_id:Eventtype.where("description like ?", "%Goal%")).or(Event.where(eventtype_id:Eventtype.where("description like ?", "%Auto%"))).or(Event.where(eventtype_id:Eventtype.where("description like ?", "%Penalty%")))
+    @last_ligue1_games=Fixture.where('date >= ?', 5.day.ago)
   end
 
   def staging

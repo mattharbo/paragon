@@ -1,7 +1,21 @@
+<center>
 
-<h1>Paragon home page</h1>
+	<h2><%= @last_ligue1_games.count > 1 ? 'Game'.pluralize : 'Game' %> in the last 5 days:</h2>
 
-<p>Goals repartition</p>
+	<small>Ligue 1</small> <br>
 
+	<% if @last_ligue1_games.present? %>
 
-<%= @all_event %>
+		<% @last_ligue1_games.each do |lg| %>
+			<small><%= lg.date %></small> | 
+			<%= lg.hometeam.name %>
+			<%= lg.scorehome %> - <%= lg.scoreaway %>
+			<%= lg.awayteam.name %>
+			<br>
+		<% end %>
+
+	<% else %>
+		No fixture in the last 5 days &#x1F343
+	<% end %>
+
+</center>
