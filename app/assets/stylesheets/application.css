@@ -11,7 +11,7 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_tree .
-
+ *= require_self
  */
 
 @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;800&display=swap');
@@ -36,7 +36,7 @@ h2{
 }
 
 /*— Design components—*/
-@import "components/colors";
-@import "components/cards";
-@import "components/buttons";
-@import "components/navbar";
+@import url('components/colors');
+@import url('components/cards');
+@import url('components/buttons');
+@import url('components/navbar');
