@@ -1,0 +1,15 @@
+.temporary_menu{
+	font-size: 10px;
+	background-color: grey;
+	heigh: 10px;
+	margin: 0;
+	color: white;
+	text-align: center;
+}
+.temporary_menu a{
+	text-decoration: none;
+	color: white; 
+}
+.temporary_menu a:hover{
+	color: pink; 
+}

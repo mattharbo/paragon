@@ -1,4 +1,3 @@
-
 <p>
     <%= link_to "Back to fixtures list" , fixtures_path %> 
 </p>
@@ -7,7 +6,9 @@
     <%= @fixture.competseason.competition.name %>
     <%= @fixture.competseason.season.year %> | 
     Round <%= @fixture.round %>
-    <h3>
+
+    <div class="card-fixture-scorebox">
+        <p>
         <%= @fixture.hometeam.name %> 
 
         <%if !@fixture.scorehome.nil? && !@fixture.scoreaway.nil? %>
@@ -17,7 +18,8 @@
         <%end%>
 
         <%= @fixture.awayteam.name %> 
-    </h3>
+        </p>
+    </div>
 
     <!-- CHANGER LE CODE SUIVANT EN Y INTEGRANT LE STATUS DE LA RENCONTRE -->
 

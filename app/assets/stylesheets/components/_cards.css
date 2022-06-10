@@ -1,0 +1,13 @@
+.card-fixture-scorebox{
+	background-color: var(--light-gray);
+	border-radius: 4px;
+	width: 450px;
+	height: 40px;
+	display: flex;
+	justify-content: space-around;
+	align-items : center;
+}
+.card-fixture-scorebox p{
+	font-size: 20px;
+    font-weight: 800;
+}
