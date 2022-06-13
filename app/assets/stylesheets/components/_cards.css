@@ -1,0 +1,32 @@
+.card-fixture-scorebox{
+	background-color: var(--light-gray);
+	border-radius: 4px;
+	width: 460px;
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items : center;
+}
+
+.hometeam, .awayteam{
+	flex: 1 0 100px;
+}
+
+.hometeam{
+	text-align: right;
+}
+
+.fixturescore{
+	margin: 0 10px;
+}
+
+.card-fixture-scorebox p{
+	font-size: 15px;
+    font-weight: 800;
+}
+
+.card-goal-details{
+	background-color: lightblue;
+	height: 300px;
+	margin: 0 0 20px 0;
+}

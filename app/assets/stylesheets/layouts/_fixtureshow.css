@@ -1,0 +1,44 @@
+.fixture-scoreboard-container{
+	background-color: white;
+
+	position:fixed;
+	z-index: 48;
+	top: 15px;
+    left:0;
+    right:0;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	padding: 20px 0; /*/!\ change margin of .fixture-main-container & .fixture-sidepanel-content as well*/
+}
+
+.fixture-main-container{
+	/*background-color: yellow;*/
+
+	width: 1100px;
+	display: flex;
+	justify-content: space-between;
+	align-items : stretch; /*Force items to take all flebox height*/
+	margin: 95px auto; /*/!\ change margin of .fixture-sidepanel-content as well*/
+}
+
+.fixture-left-panel-container, .fixture-right-panel-container{
+	/*background-color: green;*/
+
+	width: 270px;
+}
+
+.fixture-sidepanel-content{
+	background-color: lightsalmon;
+
+	position: sticky;
+	top: 95px; /*/!\ change margin of .fixture-main-container as well*/
+	display: flex;
+	align-items: middle;
+}
+
+.fixture-central-panel{
+	/*background-color: orange;*/
+
+	width: 460px;
+}

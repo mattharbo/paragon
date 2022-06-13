@@ -14,11 +14,11 @@
  *= require_self
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?ffamily=Poppins:wght@400;500;600;800&display=swap');
 
 html{
-    font-family: 'Mukta', sans-serif;
-    font-size: 13px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
     font-weight: 400;
 }
 
@@ -35,8 +35,11 @@ h2{
     font-size: 18px;
 }
 
-/*— Design components—*/
+/*— Design components —*/
 @import url('components/colors');
 @import url('components/cards');
 @import url('components/buttons');
 @import url('components/navbar');
+
+/*— Layouts —*/
+@import url('layouts/fixtureshow');
