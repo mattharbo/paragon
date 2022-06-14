@@ -41,6 +41,9 @@
 
 .event-side-details{
 	/*background-color: purple;*/
+
+	padding-top: 20px;
+	/*padding-left: 20px; *//* ⚠️ to be added eventually */
 }
 
 .event-content-row{
@@ -75,4 +78,8 @@
 	padding: 3px 10px;
 	width: fit-content;
 	margin-right: 10px;
+}
+
+.cage{
+	margin-top: 60px;
 }
