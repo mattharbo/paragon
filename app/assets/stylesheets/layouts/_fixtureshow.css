@@ -1,5 +1,5 @@
 .fixture-scoreboard-container{
-	background-color: white;
+	background-color: var(--white);
 
 	position:fixed;
 	z-index: 48;
@@ -8,7 +8,7 @@
     right:0;
     text-align: center;
 
-	padding: 20px 0 20px 0; /*/!\ change margin of .fixture-main-container & .fixture-sidepanel-content as well*/
+	padding: 20px 0 20px 0; /* ⚠️ change margin of .fixture-main-container & .fixture-sidepanel-content as well*/
 }
 
 .centered{
@@ -25,6 +25,8 @@
 	margin-bottom: 15px;
 }
 
+/* ############################ */
+
 .fixture-main-container{
 	/*background-color: yellow;*/
 
@@ -32,8 +34,10 @@
 	display: flex;
 	justify-content: space-between;
 	align-items : stretch; /*Force items to take all flebox height*/
-	margin: 217px auto; /*/!\ change margin of .fixture-sidepanel-content as well*/
+	margin: 217px auto; /* ⚠️ hange margin of .fixture-sidepanel-content as well*/
 }
+
+/* ############################ */
 
 .fixture-left-panel-container, .fixture-right-panel-container{
 	/*background-color: green;*/
@@ -42,13 +46,15 @@
 }
 
 .fixture-sidepanel-content{
-	background-color: lightsalmon;
+	/*background-color: lightsalmon;*/
 
 	position: sticky;
-	top: 217px; /*/!\ change margin of .fixture-main-container as well*/
-	display: flex;
-	align-items: middle;
+	top: 217px; /* ⚠️ change margin of .fixture-main-container as well*/
+
+	/*padding-left: 20px;*/ /* ⚠️ to be added eventually */
 }
+
+/* ############################ */
 
 .fixture-central-panel{
 	/*background-color: orange;*/

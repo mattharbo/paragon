@@ -1,6 +1,6 @@
 .application-top-line{
     position:fixed;
-    top: 15px; /*To be changed at 0 when the .temporary_menu will be removed*/
+    top: 15px; /* ⚠️ To be changed at 0 when the .temporary_menu will be removed*/
     /*
 	    /!\ Then change 
 	    padding of .fixture-scoreboard-container
@@ -29,7 +29,7 @@
 	font-size: 10px;
 	background-color: grey;
 	heigh: 10px;
-	color: white;
+	color: var(--white);
 	text-align: center;
 }
 

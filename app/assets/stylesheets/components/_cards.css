@@ -8,6 +8,11 @@
 	align-items : center;
 }
 
+.card-fixture-scorebox p{
+	font-size: 15px;
+    font-weight: 800;
+}
+
 .hometeam, .awayteam{
 	flex: 1 0 100px;
 }
@@ -24,13 +29,50 @@
 	margin: 0 10px;
 }
 
-.card-fixture-scorebox p{
-	font-size: 15px;
-    font-weight: 800;
-}
+/* ############################ */
 
 .card-goal-details{
 	background-color: lightblue;
 	height: 300px;
 	margin: 0 0 20px 0;
+}
+
+/* ############################ */
+
+.event-side-details{
+	/*background-color: purple;*/
+}
+
+.event-content-row{
+	/*background-color: yellow;*/
+
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+	margin-bottom: 10px;
+}
+
+.event-detail-type{
+	/*background-color: orange;*/
+
+	font-weight: 600;
+	flex: 1 0;
+	padding-left: 5px;
+}
+
+.event-detail-value{
+	/*background-color: blue;*/
+
+	flex: 1 0 100px;
+	color: var(--gray);
+}
+
+.label-event-type{
+	background-color: #FF2D55;
+	color: var(--white);
+	font-size: 9px;
+	border-radius: 4px;
+	padding: 3px 10px;
+	width: fit-content;
+	margin-right: 10px;
 }
