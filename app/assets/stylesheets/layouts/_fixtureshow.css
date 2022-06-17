@@ -15,7 +15,7 @@
 	margin: 0 auto;
 }
 
-.logo{
+.header-logo-container{
 	margin: 20px 0 50px 0;
 }
 
@@ -35,6 +35,17 @@
 	justify-content: space-between;
 	align-items : stretch; /*Force items to take all flebox height*/
 	margin: 217px auto; /* ⚠️ hange margin of .fixture-sidepanel-content as well*/
+	margin-bottom: 0 !important;
+}
+
+.footer-logo-container{
+	/*background-color: hotpink;*/
+
+	width: 100px;
+	height: 55px;
+	text-align: center;
+	margin: 0 auto;
+	bottom: 0px;
 }
 
 /* ############################ */
@@ -57,5 +68,7 @@
 .fixture-central-panel{
 	/*background-color: orange;*/
 
+	position: relative;
 	width: 460px;
+	margin-bottom: 10px;
 }
