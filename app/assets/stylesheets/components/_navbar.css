@@ -14,7 +14,7 @@
     margin-right:auto;
 	z-index: 50;
     height: 3px;
-    background-color: #FF2D55;
+    background-color: var(--pink);
 }
 
 .temporary_menu{
