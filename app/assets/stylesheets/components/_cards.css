@@ -32,10 +32,75 @@
 /* ############################ */
 
 .card-goal-details{
-	background-color: lightblue;
-	
+	/*background-color: lightblue;*/
+
 	/*height: 300px;*/
 	margin: 0 0 20px 0;
+}
+
+.card-goal-header{
+	/*background-color: palegreen;*/
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 20px;
+}
+
+.card-goal-header-scorer{
+	/*background-color: steelblue;*/
+
+	flex-grow: 1;
+}
+
+.card-goal-header-scorer p{
+	color: var(--gray);
+}
+
+.card-goal-scorer{
+	color: var(--pink) !important;
+	font-weight: 600;
+	font-size: 13px;
+}
+
+.card-goal-detail-pitch{
+	/*background-color: yellowgreen;*/
+
+	position: relative;
+
+	text-align: center;
+	padding-top: 15px;
+}
+
+.half-pitch-grid{
+	/*background-color: lightpink;*/
+
+	position: absolute;
+	width: 440px;
+	height: 285px;
+	top: 18px;
+	left: 10px;
+}
+
+.player-pointer{
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	width: 19px;
+	height: 19px;
+	border-radius: 10px;
+	font-size: 10px;
+	font-weight: 600;
+	-webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.40); 
+	box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.40);
+
+	/* ⚠️ To be added inline in the html.erb instead */
+	background-color: blue;
+	color: white;
+	top: 30%;
+	left: 45%;
 }
 
 /* ############################ */
@@ -44,7 +109,7 @@
 	/*background-color: purple;*/
 
 	padding-top: 20px;
-	/*padding-left: 20px; *//* ⚠️ to be added eventually */
+	/*padding-left: 20px; *//* to be added eventually */
 }
 
 .card-event-row{
