@@ -1,25 +1,235 @@
-<p>
-    <%= link_to "Back to fixtures list" , fixtures_path %> 
-</p>
+<div class="fixture-scoreboard-container">
 
-<center>
-    <%= @fixture.competseason.competition.name %>
-    <%= @fixture.competseason.season.year %> | 
-    Round <%= @fixture.round %>
+    <div class="header-logo-container">
+        <%= svg 'momentum-logo' %>  
+    </div>
 
-    <div class="card-fixture-scorebox">
-        <p>
-        <%= @fixture.hometeam.name %> 
+    <p>
+        <%= @fixture.competseason.competition.name %>
+        <%= @fixture.competseason.season.year %> | 
+        Round <%= @fixture.round %>
+    </p>
 
-        <%if !@fixture.scorehome.nil? && !@fixture.scoreaway.nil? %>
+    <div class="card-fixture-scorebox centered bottom-offset">
+        <p class="hometeam">
+            <%= @fixture.hometeam.name %>
+        </p>
+        <p class="fixturescore">
+            <%if !@fixture.scorehome.nil? && !@fixture.scoreaway.nil? %>
             <b> <%= @fixture.scorehome%> - <%= @fixture.scoreaway%> </b>
-        <%else%>
-            vs.
-        <%end%>
-
-        <%= @fixture.awayteam.name %> 
+            <%else%>
+                vs.
+            <%end%>
+        </p>
+        <p class="awayteam">
+            <%= @fixture.awayteam.name %>
         </p>
     </div>
+    
+    <%= link_to "Lineups", fixtures_path, {class: "btn-secondary" }%>       
+    
+    </div>
+</div>
+
+<div class="fixture-main-container">
+
+    <div class="fixture-left-panel-container">
+
+        <%if !@fixture.scorehome.nil? && !@fixture.scoreaway.nil? %>
+
+            <%if @fixture.scorehome+@fixture.scoreaway != 0 %>
+
+                <div class="fixture-sidepanel-content">
+                
+                <% @fixture_goals.each do |goal| %>
+
+                    <div class="card-goal-listing">
+
+                        <div class="card-goal-listing-scorer">
+                            <p><%= goal.selection.contract.player.firstname %> <l class="surname"><%= goal.selection.contract.player.name %></l></p>
+                            
+                            <div class="card-goal-listing-details">
+                                <% case goal.eventtype.description %>
+                                <% when "Goal" %>
+                                    for <%= goal.selection.contract.team.shortname %> (<%= goal.time %>')
+                                <% when "Auto goal" %>
+                                    <p class="card-goal-label">autogoal</p> against <%= goal.selection.contract.team.shortname %> (<%= goal.time %>')
+                                <% when "Penalty" %>
+                                    <div class="card-goal-label">penalty</div>  for <%= goal.selection.contract.team.shortname %> (<%= goal.time %>')
+                                <% end %>
+                            </div>
+                        </div>
+                        <div class="card-goal-listing-scorebox">0-1</div>
+
+                    </div>
+
+                <% end %>
+
+<!-- ⚠️ AS PART OF THE TEMPLATE -- TO BE REMOVED -->
+<div class="card-goal-listing card-goal-listing-activated">
+<div class="card-goal-listing-scorer">
+<p>Kylian <l class="surname">M'Bappé</l></p>
+</div>
+<div class="card-goal-listing-scorebox card-goal-listing-scorebox-activated">1-2</div>
+</div>
+<!-- ⚠️ ##### -->
+                
+                </div>
+
+            <%else%>
+                Sorry some actions but no goal during this game!
+                <p style="font-size:70px; margin:0">&#x1F972;</p>
+            <%end%>
+        
+        <%else%>
+            Game not played yet
+        <%end%>
+
+
+
+
+
+
+    </div>
+
+    <div class="fixture-central-panel">
+
+        <div class="card-goal-details">
+
+            <div class="card-goal-header">
+                <div class="card-goal-header-scorer">
+                    <p class="card-goal-scorer">Player #1</p>
+                    <p>for Paris Saint-Germain</p>
+                </div>
+            </div>
+
+            <div class="card-goal-detail-pitch">
+
+                <div class="half-pitch-grid">
+                    
+                    <div class="player-pointer" style="background-color:blue;color:white;top:40%;left:47%;">32</div>
+
+                </div>
+
+                <%= svg 'half-pitch' %> 
+            </div>
+
+        </div>
+
+        <div class="card-goal-details">
+
+            <div class="card-goal-header">
+                <div class="card-goal-header-scorer">
+                    <p class="card-goal-scorer">Player #2</p>
+                    <p>for Real Madrid</p>
+                </div>
+            </div>
+
+            <div class="card-goal-detail-pitch">
+
+                <div class="half-pitch-grid">
+                    
+                    <div class="player-pointer" style="background-color:blue;color:white;top:80%;left:20%;">7</div>
+
+                </div>
+
+                <%= svg 'half-pitch' %> 
+            </div>
+
+        </div>
+
+        <div class="card-goal-details">
+
+            <div class="card-goal-header">
+                <div class="card-goal-header-scorer">
+                    <p class="card-goal-scorer">Player #3</p>
+                    <p>for Real Madrid</p>
+                </div>
+            </div>
+
+            <div class="card-goal-detail-pitch">
+
+                <div class="half-pitch-grid">
+                    
+                    <div class="player-pointer" style="background-color:blue;color:white;top:34%;left:74%;">10</div>
+
+                </div>
+
+                <%= svg 'half-pitch' %> 
+            </div>
+
+        </div>
+        
+
+
+        <div class="footer-logo-container">
+            <%= svg 'momentum-footer-logo'%>
+        </div>
+    </div>
+
+    <div class="fixture-right-panel-container">
+        <div class="fixture-sidepanel-content">
+
+            <div class="card-event-details">
+
+                <div class="card-event-row">
+                    <p class="card-event-detail-type">Time</p>
+                    <p class="card-event-detail-value">29'</p>
+                </div>
+
+                <div class="card-event-row">
+                    <p class="card-event-detail-type">Distance</p>
+                    <p class="card-event-detail-value">10 meters</p>
+                </div>
+
+                <div class="card-event-row">
+                    <p class="card-event-detail-type">Assitance</p>
+                    <div class="card-event-detail-value">
+                        <p>@Neymar Jr.</p>
+                        <p>@Di Maria</p>
+                    </div>
+                </div>
+
+                <div class="card-event-row last-row">
+                    <div class="card-event-label">Counter attack</div>
+                    <div class="card-event-label">Right foot</div>
+                </div>
+
+                <div class="card-event-cage">
+                    <%= svg 'fixture-cage' %>   
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<!-- #################################################### -->
+<!-- #################################################### -->
+<!-- #################################################### -->
+<!-- #################################################### -->
+<!-- #################################################### -->
+
+
+
+
+
+
+
+<center>
+
 
     <!-- CHANGER LE CODE SUIVANT EN Y INTEGRANT LE STATUS DE LA RENCONTRE -->
 

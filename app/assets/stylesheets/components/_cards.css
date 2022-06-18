@@ -178,7 +178,7 @@
 
 .card-goal-listing:first-child{
 	/*background-color: yellow;*/
-	
+
 	margin-top: 10px;
 }
 
@@ -210,11 +210,15 @@
 	color: var(--white);
 }
 
+/* ############################ */
 
-
-
-
-
-
-
-
+.card-goal-label{
+	background-color: var(--light-gray);
+	color: var(--pink);
+	font-size: 9px;
+	border-radius: 4px;
+	padding: 3px 10px;
+	width: fit-content;
+	display: inline;
+	font-weight: 500;
+}

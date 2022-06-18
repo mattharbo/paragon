@@ -67,7 +67,7 @@
 	/*background-color: lightsalmon;*/
 
 	position: sticky;
-	padding-top: 100px;
+	padding-top: 50px;
 	top: 217px; /* ⚠️ change margin of .fixture-main-container as well*/
 }
 
