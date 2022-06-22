@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   root to: 'standalonepages#landing'
   get 'staging' => 'standalonepages#staging'
   get 'layout' => 'standalonepages#layout'
+  get 'admin' => 'standalonepages#admin'
   resources :teams, only: [:index, :show, :edit, :update, :destroy]
   resources :seasons, only: [:index]
   resources :competitions, only: [:index]

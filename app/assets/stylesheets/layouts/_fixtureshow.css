@@ -39,7 +39,7 @@
 	width: 1100px;
 	display: flex;
 	justify-content: space-between;
-	align-items : stretch; /*Force items to take all flebox height*/
+	align-items : stretch; /*Force items to take all flexbox height*/
 	margin: 217px auto; /* ⚠️ Change margin of .fixture-sidepanel-content as well*/
 	margin-bottom: 0 !important;
 

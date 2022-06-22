@@ -1,0 +1,46 @@
+.admin-main-container{
+	/*background-color: yellow;*/
+
+	display: flex;
+	justify-content: space-between;
+	align-items: stretch;
+	height: 100vh;
+}
+
+.admin-left-frame{
+	background-color: var(--light-gray);
+
+	flex: 0 0 250px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+
+.admin-logo-menu{
+	margin: 20px auto 50px auto;
+}
+
+.admin-right-frame{
+	/*background-color: cadetblue;*/
+
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+	align-content: flex-start;
+	justify-content: flex-start;
+}
+
+.admin-right-frame-header{
+	/*background-color: springgreen;*/
+
+	display: flex;
+	flex-direction: row-reverse;
+	align-content: center;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 35px;
+}
+
+.admin-right-frame-content{
+	overflow: scroll;
+}

@@ -43,3 +43,4 @@ h2{
 
 /*— Layouts —*/
 @import url('layouts/fixtureshow');
+@import url('layouts/admin');
