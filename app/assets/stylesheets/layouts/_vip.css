@@ -50,9 +50,10 @@
 	align-content: center;
 	justify-content: space-between;
 	align-items: center;
-	padding: 25px 35px;
+	padding: 25px 35px 0 35px;
 }
 
 .admin-right-frame-content{
 	overflow: scroll;
+	padding: 0px 30px;
 }

@@ -23,7 +23,7 @@
 			<%= link_to teams_path do%>
 				<p class="admin-menu-item">🎽 &nbsp; Teams</p>
 			<%end%>
-			<%= link_to players_path do%>
+			<%= link_to vip_players_path do%>
 				<p class="admin-menu-item">🏃🏻 &nbsp; Players</p>
 			<%end%>
 			<%= link_to contracts_path do%>
@@ -62,6 +62,15 @@
 		</div>
 
 		<div class="admin-right-frame-content">
+
+
+
+<h2>All competitions in DB</h2>
+
+<% @competitions.each do |compet| %>
+    • <%= compet.name %> (<%= compet.country %>) <br>
+<%end%>
+
 			
 
 		</div>

@@ -8,10 +8,17 @@ Rails.application.routes.draw do
   get 'staging' => 'standalonepages#staging'
   get 'layout' => 'standalonepages#layout'
   get 'vip' => 'standalonepages#vip'
+  get 'vip/competitions' => 'standalonepages#vipcompetitions'
+  get 'vip/seasons' => 'standalonepages#vipseasons'
+  get 'vip/exercises' => 'standalonepages#vipcompetseasons'
+
+  get 'vip/players' => 'standalonepages#vipplayers'
+
+
   resources :teams, only: [:index, :show, :edit, :update, :destroy]
-  resources :seasons, only: [:index]
-  resources :competitions, only: [:index]
-  resources :competseasons, only: [:index]
+  # resources :seasons, only: [:index]
+  # resources :competitions, only: [:index]
+  # resources :competseasons, only: [:index]
   resources :fixtures, only: [:index, :show]
   resources :players, only: [:index, :show, :edit, :update, :destroy]
   resources :contracts, only: [:index]

@@ -34,6 +34,22 @@ class StandalonepagesController < ApplicationController
   def vip
   end
 
+  def vipcompetitions
+    @competitions=Competition.all
+  end
+
+  def vipseasons
+    @seasons=Season.all
+  end
+
+  def vipcompetseasons
+    @exercices=Competseason.all
+  end
+
+  def vipplayers
+    @players=Player.all.order("id asc")
+  end
+
 # ##################################################################################################
 # ##################################################################################################
 # ##################################################################################################
