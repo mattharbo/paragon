@@ -30,6 +30,20 @@
 	background-color: var(--medium-gray);
 }
 
+.btn-test{
+	cursor: pointer;
+	background-color: var(--white);
+	padding: 7px 20px;
+	border-radius: 4px;
+	font-weight: 600;
+	color: var(--gray);
+	border: 1px solid var(--medium-gray);
+}
+
+.btn-test:hover{
+	opacity: 0.8;
+}
+
 .admin-menu-item{
 	/*background-color: rebeccapurple;*/
 
@@ -38,10 +52,17 @@
 	border-radius: 4px;
 	transition: 0.2s;
 	font-weight: 600;
+	text-align: left;
+	text-decoration: none !important;
+	color: var(--black);
 }
 
 .admin-menu-item:hover{
 	background-color: var(--medium-gray);
 	cursor: pointer;
 	
+}
+
+.admin-menu-item:visited{
+	text-decoration: none !important;
 }

@@ -10,7 +10,7 @@
     -webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.40); 
 	box-shadow: 0px 0px 25px 8px white;
 
-	padding: 20px 0 20px 0; /* ⚠️ change margin of .fixture-main-container & .fixture-sidepanel-content as well*/
+	padding: 0px 0 20px 0; /* ⚠️ change margin of .fixture-main-container & .fixture-sidepanel-content as well*/
 }
 
 .centered{
@@ -40,7 +40,7 @@
 	display: flex;
 	justify-content: space-between;
 	align-items : stretch; /*Force items to take all flexbox height*/
-	margin: 217px auto; /* ⚠️ Change margin of .fixture-sidepanel-content as well*/
+	margin: 187px auto; /* ⚠️ Change margin of .fixture-sidepanel-content as well*/
 	margin-bottom: 0 !important;
 
 }
@@ -68,7 +68,7 @@
 
 	position: sticky;
 	padding-top: 50px;
-	top: 217px; /* ⚠️ change margin of .fixture-main-container as well*/
+	top: 190px; /* ⚠️ change margin of .fixture-main-container as well*/
 }
 
 /* ############################ */

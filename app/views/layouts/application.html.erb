@@ -12,25 +12,6 @@
 
   <body>
 
-    <p class="temporary_menu"> 
-      <%= link_to "Home" , root_path %> |
-      <%= link_to "Competitions" , competitions_path %> |
-      <%= link_to "Seasons" , seasons_path %> (|
-      <%= link_to "Exercices" , competseasons_path %> |)
-      <%= link_to "Teams" , teams_path %> |
-      <%= link_to "Fixtures" , fixtures_path %> |
-      <%= link_to "Players" , players_path %> |
-      <%= link_to "Contracts" , contracts_path %> | 
-      <%= link_to "Selections" , selections_path %> |
-      
-      <%= link_to "Events" , events_path %> ---
-      [ 
-      <%= link_to "Positions" , positions_path %> | 
-      <%= link_to "Event types" , eventtypes_path %> 
-      ]  ---
-      <%= link_to "Layout" , layout_path %> 
-    </p>
-
     <div class="application-top-line"></div>
 
     <%= yield %>

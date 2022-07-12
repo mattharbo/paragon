@@ -1,6 +1,6 @@
 .application-top-line{
     position:fixed;
-    top: 15px; /* ⚠️ To be changed at 0 when the .temporary_menu will be removed*/
+    top: 0px; /* ⚠️ To be changed at 0 when the .temporary_menu will be removed*/
     /*
 	    /!\ Then change 
 	    padding of .fixture-scoreboard-container
@@ -15,29 +15,4 @@
 	z-index: 50;
     height: 3px;
     background-color: var(--pink);
-}
-
-.temporary_menu{
-	position:fixed;
-    left:0;
-    right:0;
-    margin-left:auto;
-    margin-right:auto;
-
-	top: 0px; /*this is the first item on the page*/
-	z-index: 49;
-	font-size: 10px;
-	background-color: grey;
-	heigh: 10px;
-	color: var(--white);
-	text-align: center;
-}
-
-.temporary_menu a{
-	text-decoration: none;
-	color: white; 
-}
-
-.temporary_menu a:hover{
-	color: pink; 
 }

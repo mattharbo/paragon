@@ -29,11 +29,9 @@ class StandalonepagesController < ApplicationController
   end
 
   def layout
-    
   end
 
-  def admin
-    
+  def vip
   end
 
 # ##################################################################################################

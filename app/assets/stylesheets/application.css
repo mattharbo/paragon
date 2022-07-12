@@ -35,6 +35,10 @@ h2{
     font-size: 18px;
 }
 
+a{
+    text-decoration: none;
+}
+
 /*— Design components —*/
 @import url('components/colors');
 @import url('components/cards');
@@ -43,4 +47,4 @@ h2{
 
 /*— Layouts —*/
 @import url('layouts/fixtureshow');
-@import url('layouts/admin');
+@import url('layouts/vip');
