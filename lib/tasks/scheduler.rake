@@ -1,8 +1,8 @@
 desc "Insert latest ended Ligue 1 Game(s)"
 task retrieve_latest_ligue_1_results: :environment do
 
-	# soccerapicall_getfixtureslist(61,"#{Time.now.year}"+"-"+"#{sprintf('%02i', Time.now.month)}"+"-"+"#{sprintf('%02i', Time.now.day-1)}") 
-	soccerapicall_getfixtureslist(61,"2022-04-08")
+	soccerapicall_getfixtureslist(61,"#{Time.now.year}"+"-"+"#{sprintf('%02i', Time.now.month)}"+"-"+"#{sprintf('%02i', Time.now.day-1)}") 
+	# soccerapicall_getfixtureslist(61,"2022-04-08")
 
 	if @apiresponse_fixturelist["results"]!=0
 
@@ -20,7 +20,7 @@ task retrieve_latest_ligue_1_results: :environment do
 				scorehome:scorehome,
 				scoreaway:scoreaway,
 				date:fixture["fixture"]["date"],
-                competseason:Competseason.joins(:competition, :season).where("country like ?", "%France%").where("year like ?", "%2021-2022%").take,
+                competseason:Competseason.joins(:competition, :season).where("country like ?", "%France%").where("year like ?", "%2022-2023%").take,
                 round:fixtureround
 				)
 			
@@ -115,8 +115,8 @@ end
 desc "Insert latest ended Champions league Game(s)"
 task retrieve_latest_CL_results: :environment do
 
-	# soccerapicall_getfixtureslist(61,"#{Time.now.year}"+"-"+"#{sprintf('%02i', Time.now.month)}"+"-"+"#{sprintf('%02i', Time.now.day-1)}") 
-	soccerapicall_getfixtureslist(2,"2022-05-04")
+	soccerapicall_getfixtureslist(2,"#{Time.now.year}"+"-"+"#{sprintf('%02i', Time.now.month)}"+"-"+"#{sprintf('%02i', Time.now.day-1)}") 
+	# soccerapicall_getfixtureslist(2,"2022-05-04")
 
 	if @apiresponse_fixturelist["results"]!=0
 
@@ -134,7 +134,7 @@ task retrieve_latest_CL_results: :environment do
 				scorehome:scorehome,
 				scoreaway:scoreaway,
 				date:fixture["fixture"]["date"],
-                competseason:Competseason.joins(:competition, :season).where("country like ?", "%Europe%").where("year like ?", "%2021-2022%").take,
+                competseason:Competseason.joins(:competition, :season).where("country like ?", "%Europe%").where("year like ?", "%2022-2023%").take,
                 round:fixtureround
 				)
 			
