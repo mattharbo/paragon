@@ -1,4 +1,4 @@
-<h2>All selections in DB</h2>
+<h2>Last 50 selections in DB:</h2>
 
 <% @selections.each do |selection| %>
     [<%= link_to "edit", edit_selection_path(selection.id)%>]
@@ -7,9 +7,9 @@
     <b>
     <%= selection.contract.player.name %> 
     </b>
-    (#<%= selection.contract.jerseynumber %> - 
-    <%= selection.grid_pos%>) 
-    for 
+    (#<%= selection.contract.jerseynumber %><%unless selection.grid_pos.nil? %>
+         - Position on pitch = <%= selection.grid_pos%>
+    <%end%>) for 
     <%= selection.contract.team.name %> during 
     #<%= selection.fixture.hometeam.shortname %><%= selection.fixture.awayteam.shortname %> | 
     Starter: <%= selection.starter %> |
