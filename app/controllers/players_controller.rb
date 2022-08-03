@@ -15,12 +15,12 @@ class PlayersController < ApplicationController
 
   def update
     player = @player.update(player_params)
-	  redirect_to players_path 
+	  redirect_to vip_players_path
   end
 
   def destroy
     @player.destroy
-    redirect_to players_path
+    redirect_to vip_players_path
   end
 
   private

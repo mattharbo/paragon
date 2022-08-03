@@ -11,20 +11,29 @@ Rails.application.routes.draw do
   get 'vip/competitions' => 'standalonepages#vipcompetitions'
   get 'vip/seasons' => 'standalonepages#vipseasons'
   get 'vip/exercises' => 'standalonepages#vipcompetseasons'
-
+  get 'vip/teams' => 'standalonepages#vipteams'
   get 'vip/players' => 'standalonepages#vipplayers'
+  get 'vip/contracts' => 'standalonepages#vipcontracts'
+  get 'vip/fixtures' => 'standalonepages#vipfixtures'
+  get 'vip/selections' => 'standalonepages#vipselections'
+  get 'vip/events' => 'standalonepages#vipevents'
+  get 'vip/positions' => 'standalonepages#vippositions'
+  get 'vip/eventtypes' => 'standalonepages#vipeventtypes'
 
 
   resources :teams, only: [:index, :show, :edit, :update, :destroy]
   # resources :seasons, only: [:index]
   # resources :competitions, only: [:index]
   # resources :competseasons, only: [:index]
-  resources :fixtures, only: [:index, :show]
-  resources :players, only: [:index, :show, :edit, :update, :destroy]
-  resources :contracts, only: [:index]
-  resources :selections, only: [:index, :edit, :update]
-  resources :positions, only: [:index]
-  resources :eventtypes, only: [:index]
+  # resources :fixtures, only: [:index, :show]
+  resources :fixtures, only: [:show]
+  # resources :players, only: [:index, :show, :edit, :update, :destroy]
+  resources :players, only: [:show, :edit, :update, :destroy]
+  # resources :contracts, only: [:index]
+  # resources :selections, only: [:index, :edit, :update]
+  resources :selections, only: [:edit, :update]
+  # resources :positions, only: [:index]
+  # resources :eventtypes, only: [:index]
 
   # resources :events, only: [:index]
   resources :events do

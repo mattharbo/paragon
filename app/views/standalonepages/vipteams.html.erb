@@ -65,21 +65,17 @@
 
 
 
-<h2>All players in DB</h2>
 
-<% @players.each do |player| %>
-    [<%= link_to "edit", edit_player_path(player.id)%>] 
-    <%= player.id %>
-    • 
-    <%= link_to player_path(player.id) do %>
-        <%= player.firstname %> <b> <%=  player.name %> </b>
-    <%end%>
-    => API ref: <%= player.playerapiref %>
+<h2>All teams in DB</h2>
+
+<% @teams.each do |team| %>
+    [<%= link_to "edit", edit_team_path(team.id)%>] 
+    <%=team.id%> • 
+    <b><%=team.name%></b> (<%=team.shortname%>) • 
+    <%= link_to "show", team_path(team.id)%>
     <br>
 <%end%>
 
-
-			
 
 		</div>
 	</div>

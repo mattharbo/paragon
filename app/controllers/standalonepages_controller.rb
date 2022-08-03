@@ -47,7 +47,35 @@ class StandalonepagesController < ApplicationController
   end
 
   def vipplayers
-        @players=Player.all.order("id asc")
+    @players=Player.all.order("id asc")
+  end
+
+  def vipteams
+    @teams=Team.all.order("id ASC")
+  end
+
+  def vipcontracts
+    @contracts=Contract.all
+  end
+
+  def vipfixtures
+    @fixtures=Fixture.all.order("round DESC, date DESC")
+  end
+
+  def vipselections
+    @selections=Selection.last(50).reverse
+  end
+
+  def vipevents
+    @events=Event.all.order("id asc")
+  end
+
+  def vippositions
+    @positions=Position.all.order("id asc")
+  end
+
+  def vipeventtypes
+    @eventtypes=Eventtype.all.order("id asc")
   end
 
 # ##################################################################################################

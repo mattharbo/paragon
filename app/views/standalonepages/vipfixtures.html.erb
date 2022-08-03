@@ -65,21 +65,35 @@
 
 
 
-<h2>All players in DB</h2>
 
-<% @players.each do |player| %>
-    [<%= link_to "edit", edit_player_path(player.id)%>] 
-    <%= player.id %>
-    • 
-    <%= link_to player_path(player.id) do %>
-        <%= player.firstname %> <b> <%=  player.name %> </b>
-    <%end%>
-    => API ref: <%= player.playerapiref %>
-    <br>
+
+
+<h2>All fixtures in DB</h2>
+
+<% @fixtures.each do |fixture| %>
+    <%= fixture.id %>
+    • <b> <%= fixture.competseason.competition.name %> Round <%= fixture.round %> </b> 
+    <small>(<%= fixture.date %>)</small> |
+    <%= link_to fixture_path(fixture.id) do %>
+        
+        <%= fixture.hometeam.name %>
+        
+        <%if !fixture.scorehome.nil? && !fixture.scoreaway.nil? %>
+            <b> <%= fixture.scorehome%> - <%= fixture.scoreaway%> </b>
+        <%else%>
+            vs.
+        <%end%>
+
+        <%= fixture.awayteam.name %>
+
+    <%end%> <br>
 <%end%>
 
 
-			
+
+
+
+
 
 		</div>
 	</div>

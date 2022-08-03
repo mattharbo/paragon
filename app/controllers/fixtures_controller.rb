@@ -3,7 +3,8 @@ class FixturesController < ApplicationController
   before_action :set_fixture, only: [:show, :edit, :update, :destroy]
 
   def index
-    @fixtures=Fixture.all.order("round ASC, date ASC")
+    @fixtures=Fixture.all.order("round DESC, date DESC")
+    # @fixtures=Fixture.all.order("round ASC, date ASC")
   end
 
   def show

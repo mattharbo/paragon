@@ -20,28 +20,28 @@
 			<%= link_to vip_exercises_path do%>
 				<p class="admin-menu-item">📗 &nbsp; Exercices</p>
 			<%end%>
-			<%= link_to teams_path do%>
+			<%= link_to vip_teams_path do%>
 				<p class="admin-menu-item">🎽 &nbsp; Teams</p>
 			<%end%>
 			<%= link_to vip_players_path do%>
 				<p class="admin-menu-item">🏃🏻 &nbsp; Players</p>
 			<%end%>
-			<%= link_to contracts_path do%>
+			<%= link_to vip_contracts_path do%>
 				<p class="admin-menu-item">📝 &nbsp; Contracts</p>
 			<%end%>
-			<%= link_to fixtures_path do%>
+			<%= link_to vip_fixtures_path do%>
 				<p class="admin-menu-item">👊 &nbsp; Fixtures</p>
 			<%end%>
-			<%= link_to selections_path do%>
+			<%= link_to vip_selections_path do%>
 				<p class="admin-menu-item">✅ &nbsp; Selections</p>
 			<%end%>
-			<%= link_to events_path do%>
+			<%= link_to vip_events_path do%>
 				<p class="admin-menu-item">💫 &nbsp; Events</p>
 			<%end%>
-			<%= link_to positions_path do%>
+			<%= link_to vip_positions_path do%>
 				<p class="admin-menu-item">📍 &nbsp; Positions</p>
 			<%end%>
-			<%= link_to eventtypes_path do%>
+			<%= link_to vip_eventtypes_path do%>
 				<p class="admin-menu-item">🎪 &nbsp; Event types</p>
 			<%end%>
 			<%= link_to layout_path do%>
@@ -68,7 +68,7 @@
 <h2>All exercices in DB</h2>
 
 <% @exercices.each do |exercice| %>
-    • <%= exercice.competition.name %> (<%= exercice.season.year %>) <br>
+	<%= exercice.id %> • <%= exercice.competition.name %> (<%= exercice.season.year %>) <br>
 <%end%>
 
 

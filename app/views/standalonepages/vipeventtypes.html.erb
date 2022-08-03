@@ -65,21 +65,15 @@
 
 
 
-<h2>All players in DB</h2>
+<h2>All eventtypes in DB</h2>
 
-<% @players.each do |player| %>
-    [<%= link_to "edit", edit_player_path(player.id)%>] 
-    <%= player.id %>
-    • 
-    <%= link_to player_path(player.id) do %>
-        <%= player.firstname %> <b> <%=  player.name %> </b>
-    <%end%>
-    => API ref: <%= player.playerapiref %>
+<% @eventtypes.each do |eventtype| %>
+    <%= eventtype.id %>
+    •
+    <%= eventtype.description %>
     <br>
 <%end%>
 
-
-			
 
 		</div>
 	</div>

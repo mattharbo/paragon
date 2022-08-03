@@ -65,21 +65,38 @@
 
 
 
-<h2>All players in DB</h2>
+<h2>All events in DB</h2>
 
-<% @players.each do |player| %>
-    [<%= link_to "edit", edit_player_path(player.id)%>] 
-    <%= player.id %>
-    • 
-    <%= link_to player_path(player.id) do %>
-        <%= player.firstname %> <b> <%=  player.name %> </b>
+<%unregistered=registered=0%>
+
+<% @events.each do |event| %>
+
+    <% unless event.registration %>
+        <%unregistered+=1%>
+    <%else%>
+        <%registered+=1%>
     <%end%>
-    => API ref: <%= player.playerapiref %>
-    <br>
+
 <%end%>
 
+<center>
 
-			
+    <b>Unregistered:</b>  
+    <%= link_to unregistered_events_path do %>
+      <%= pluralize(unregistered, 'event') %>
+    <% end %> 
+    &#x1F534
+
+    <br>
+
+    <b>Registered:</b>  
+    <%= link_to registered_events_path do %>
+      <%= pluralize(registered, 'event') %>
+    <% end %> 
+    &#x1F7E2
+
+</center>
+
 
 		</div>
 	</div>

@@ -65,21 +65,47 @@
 
 
 
-<h2>All players in DB</h2>
 
-<% @players.each do |player| %>
-    [<%= link_to "edit", edit_player_path(player.id)%>] 
-    <%= player.id %>
-    • 
-    <%= link_to player_path(player.id) do %>
-        <%= player.firstname %> <b> <%=  player.name %> </b>
+<h2>Last 50 selections in DB</h2>
+
+<% @selections.each do |selection| %>
+    [<%= link_to "edit", edit_selection_path(selection.id)%>]
+    <%= selection.id %> • 
+    <%= selection.contract.player.firstname %> 
+    <b>
+    <%= selection.contract.player.name %> 
+    </b>
+    (#<%= selection.contract.jerseynumber %><%unless selection.grid_pos.nil? %>
+         - Position on pitch = <%= selection.grid_pos%>
+    <%end%>) for 
+    <%= selection.contract.team.name %> during 
+    #<%= selection.fixture.hometeam.shortname %><%= selection.fixture.awayteam.shortname %> | 
+    Starter: <%= selection.starter %> |
+    Note: <%= selection.note %> 
+
+    <%if selection.starter == false && !selection.substitute.nil? %>
+        <b style="color:red;">==> Player out:</b>
+        <%= selection.substitute.player.name%>
+        <b>
+        <%= selection.substitute.player.firstname%> 
+        </b>
+        (#<%= selection.substitute.jerseynumber %>) at 
+        <%= selection.substitutiontime%> min
     <%end%>
-    => API ref: <%= player.playerapiref %>
+
+    <%if selection.starter == true && !selection.substitute.nil? %>
+        <b style="color:green;"> <== Player in:</b>
+        <%= selection.substitute.player.name%>
+        <b>
+        <%= selection.substitute.player.firstname%> 
+        </b>
+        (#<%= selection.substitute.jerseynumber %>) at 
+        <%= selection.substitutiontime%> min
+    <%end%>
+
     <br>
 <%end%>
 
-
-			
 
 		</div>
 	</div>

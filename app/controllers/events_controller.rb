@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   end
 
   def registered
-    @registered_events=Event.where(registration: true)
+    @registered_events=Event.where(registration: true).last(50).reverse
   end
 
   def unregistered

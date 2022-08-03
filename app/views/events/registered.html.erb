@@ -4,10 +4,12 @@
     <%= link_to "Back to events home page" , events_path %> 
 </p>
 
-<h2>Registered events:</h2>
+<h2>Last 50 registered events:</h2>
 
 <% @registered_events.each do |re| %>
-	<%= re.id %> • 
+	
+    [<%= re.updated_at%>]
+    <%= re.id %> • 
 
     <% unless re.registration %>
         &#x1F534
