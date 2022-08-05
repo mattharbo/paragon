@@ -223,3 +223,29 @@
 	display: inline;
 	font-weight: 500;
 }
+
+/* ############################ */
+
+.card-vip-stat{
+	background-color: var(--light-gray);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    width: 100px;
+    border-radius: 5px;
+    margin-right: 40px;
+}
+
+.card-vip-stat-title{
+	color: var(--pink);
+	font-weight: 600;
+}
+
+.card-vip-stat-content{
+	font-weight: 500;
+	font-size: 30px;
+}

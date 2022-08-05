@@ -35,7 +35,8 @@
 
     <div class="fixture-left-panel-container">
 
-        <%if !@fixture.scorehome.nil? && !@fixture.scoreaway.nil? %>
+        <!-- To be replaced by the future submission status of the game!!!!!! -->
+        <%if !@fixture.scorehome.nil? && !@fixture.scoreaway.nil? %> 
 
             <%if @fixture.scorehome+@fixture.scoreaway != 0 %>
 
@@ -77,8 +78,8 @@
                 </div>
 
             <%else%>
-                Sorry some actions but no goal during this game!
-                <p style="font-size:70px; margin:0">&#x1F972;</p>
+                <br><br><br><br><br> No goal scored in this game
+                <p style="font-size:40px; margin:0">&#x1F972;</p>
             <%end%>
         
         <%else%>
@@ -229,38 +230,6 @@
 
 
 <center>
-
-
-    <!-- CHANGER LE CODE SUIVANT EN Y INTEGRANT LE STATUS DE LA RENCONTRE -->
-
-    <%if !@fixture.scorehome.nil? && !@fixture.scoreaway.nil? %>
-
-        <%if @fixture.scorehome+@fixture.scoreaway != 0 %>
-
-            <% @fixture_goals.each do |goal| %>
-                <%= goal.selection.contract.player.name %>
-
-                <% case goal.eventtype.description %>
-                <% when "Goal" %>
-                    for <%= goal.selection.contract.team.shortname %> (<%= goal.time %>')<br>
-                <% when "Auto goal" %>
-                    <b>[OG]</b> against <%= goal.selection.contract.team.shortname %> (<%= goal.time %>')<br>
-                <% when "Penalty" %>
-                    <b>[Penalty]</b> for <%= goal.selection.contract.team.shortname %> (<%= goal.time %>')<br>
-                <% end %>
-
-            <% end %>
-
-        <%else%>
-            Sorry some actions but no goal during this game!
-            <p style="font-size:70px; margin:0">&#x1F972;</p>
-        <%end%>
-    
-    <%else%>
-        Game not played yet
-    <%end%>
-
-    <br><br>
 
     <table>
         <tr style="background-color:#f3f3f3;text-align:center">

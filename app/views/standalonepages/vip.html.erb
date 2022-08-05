@@ -8,8 +8,92 @@
 		<%= render 'shared/viprightframeheader'%>
 
 		<div class="admin-right-frame-content">
-			
+			<p>(1) created in the past 5 days</p>
 
+			<div class="cards-stat-container">
+				
+				<div class="card-vip-stat">
+					<p class="card-vip-stat-title">Fixtures</p>
+					<p class="card-vip-stat-content">
+						<%=@fixturescount%>
+					</p>
+				</div>
+
+				<div class="card-vip-stat">
+					<p class="card-vip-stat-title">Players</p>
+					<p class="card-vip-stat-content">
+						<%=@playerscount%>
+					</p>
+				</div>
+
+				<div class="card-vip-stat">
+					<p class="card-vip-stat-title">Contracts</p>
+					<p class="card-vip-stat-content">
+						<%=@contractscount%>
+					</p>
+				</div>
+
+				<div class="card-vip-stat">
+					<p class="card-vip-stat-title">Selections</p>
+					<p class="card-vip-stat-content">
+						<%=@selectionscount%>
+					</p>
+				</div>
+
+				<div class="card-vip-stat">
+					<p class="card-vip-stat-title">Events</p>
+					<p class="card-vip-stat-content">
+						<%=@eventscount%>
+					</p>
+				</div>
+
+			</div>
+
+			<div class="cards-stat-container">
+				
+				<div class="card-vip-stat">
+					<p class="card-vip-stat-title">New <%= @newfixturescount > 1 ? 'fixture'.pluralize : 'fixture' %><sup>(1)</sup></p>
+					<p class="card-vip-stat-content">
+						<%=@newfixturescount%>
+					</p>
+				</div>
+
+				<div class="card-vip-stat">
+					<p class="card-vip-stat-title">New <%= @newteamscount > 1 ? 'team'.pluralize : 'team' %><sup>(1)</sup></p>
+					<p class="card-vip-stat-content">
+						<%=@newteamscount%>
+					</p>
+				</div>
+
+				<div class="card-vip-stat">
+					<p class="card-vip-stat-title">New <%= @newplayerscount > 1 ? 'player'.pluralize : 'player' %><sup>(1)</sup></p>
+					<p class="card-vip-stat-content">
+						<%=@newplayerscount%>
+					</p>
+				</div>
+
+				<div class="card-vip-stat">
+					<p class="card-vip-stat-title">Unedited <%= @uneditedplayerscount > 1 ? 'player'.pluralize : 'player' %></p>
+					<p class="card-vip-stat-content">
+						<%=@uneditedplayerscount%>
+					</p>
+				</div>
+
+				<div class="card-vip-stat">
+					<p class="card-vip-stat-title">Unsub. <%= @unsubmittedfixtures > 1 ? 'fixture'.pluralize : 'fixture' %></p>
+					<p class="card-vip-stat-content">
+						x
+					</p>
+				</div>
+
+				<div class="card-vip-stat">
+					<p class="card-vip-stat-title">Unreg. <%= @enregisteredevents > 1 ? 'event'.pluralize : 'event' %></p>
+					<p class="card-vip-stat-content">
+						<%=@enregisteredevents%>
+					</p>
+				</div>
+
+			</div>			
 		</div>
 	</div>
 

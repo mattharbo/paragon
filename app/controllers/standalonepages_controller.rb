@@ -36,6 +36,17 @@ class StandalonepagesController < ApplicationController
   end
 
   def vip
+    @fixturescount=Fixture.count
+    @playerscount=Player.count
+    @contractscount=Contract.count
+    @selectionscount=Selection.count
+    @eventscount=Event.count
+    @newfixturescount=Fixture.where('created_at >= ?', 5.day.ago).count
+    @newteamscount=Team.where('created_at >= ?', 5.day.ago).count
+    @newplayerscount=Player.where('created_at >= ?', 5.day.ago).count
+    @uneditedplayerscount=Player.where('updated_at = created_at').where('firstname': nil).count
+    @unsubmittedfixtures=0
+    @enregisteredevents=Event.where(registration:[false,nil]).count
   end
 
   def vipcompetitions
