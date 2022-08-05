@@ -1,0 +1,49 @@
+.devise-container{
+	background-color: var(--light-gray);
+	width: 230px;
+	margin: 70px auto;
+	padding: 5px 30px 25px 30px;
+	border-radius: 15px;
+}
+
+.field{
+	display: flex;
+	flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.input-field-devise{
+    font-size: 8px;
+}
+
+.devise-below-links{
+	display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+}
+
+.banner-override{
+    display: block;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 10px 15px;
+    margin: 20px 20px;
+    border-radius: 7px;
+    font-weight: 800;
+}
+
+.notice-override{
+	color: var(--device-green-notice);
+}
+
+.alert-override{
+	color: var(--device-red-alert);
+}

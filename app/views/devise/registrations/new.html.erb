@@ -1,3 +1,5 @@
+<div class="devise-container">
+
 <h2>Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -11,7 +13,6 @@
   <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
@@ -21,9 +22,11 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+  <div class="btn-primary devise-primary-margin">
+    <%= f.submit "Sign up", :class => 'remove-devise-submit-btn-design'%>
   </div>
 <% end %>
 
 <%= render "devise/shared/links" %>
+
+</div>

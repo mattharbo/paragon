@@ -48,3 +48,4 @@ a{
 /*— Layouts —*/
 @import url('layouts/fixtureshow');
 @import url('layouts/vip');
+@import url('layouts/devise');
