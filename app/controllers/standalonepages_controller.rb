@@ -45,7 +45,7 @@ class StandalonepagesController < ApplicationController
     @newteamscount=Team.where('created_at >= ?', 5.day.ago).count
     @newplayerscount=Player.where('created_at >= ?', 5.day.ago).count
     @uneditedplayerscount=Player.where('updated_at = created_at').where('firstname': nil).count
-    @unsubmittedfixtures=0
+    @unsubmittedfixtures=Fixture.where(submitted:[false,nil]).count
     @enregisteredevents=Event.where(registration:[false,nil]).count
   end
 

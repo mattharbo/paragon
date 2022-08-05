@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_05_123937) do
+ActiveRecord::Schema.define(version: 2022_08_05_142734) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 2022_08_05_123937) do
     t.string "homeformation"
     t.string "awayformation"
     t.date "date"
+    t.boolean "submitted"
     t.index ["awayteam_id"], name: "index_fixtures_on_awayteam_id"
     t.index ["competseason_id"], name: "index_fixtures_on_competseason_id"
     t.index ["hometeam_id"], name: "index_fixtures_on_hometeam_id"
