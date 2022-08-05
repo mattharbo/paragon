@@ -1,0 +1,7 @@
+<div class="admin-right-frame-header">	
+	<%if user_signed_in? or !current_user.firstname.nil? %>
+		<p>hey <%= current_user.firstname %>, how is it going today? 🤙🏻</p>
+	<% else %>
+		<b>Please ask the admin to set your firstname</b>
+	<% end %>
+</div>
