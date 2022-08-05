@@ -38,6 +38,7 @@
 	font-weight: 600;
 	color: var(--gray);
 	border: 1px solid var(--medium-gray);
+	display: block; /*To make it work with logout helper link*/
 }
 
 .btn-test:hover{

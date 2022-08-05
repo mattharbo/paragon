@@ -1,5 +1,9 @@
 class StandalonepagesController < ApplicationController
-  def landing
+  
+  # To by-pass Devise authentication on some specific actions
+    skip_before_action :authenticate_user!, only: [:landing]
+
+  def landing    
     @last_ligue1_games=Fixture.where('date >= ?', 5.day.ago)
   end
 

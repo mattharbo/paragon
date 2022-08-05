@@ -1,5 +1,7 @@
 class FixturesController < ApplicationController
 
+  # To by-pass Devise authentication on some specific actions
+  skip_before_action :authenticate_user!, only: [:show]
   before_action :set_fixture, only: [:show, :edit, :update, :destroy]
 
   def index

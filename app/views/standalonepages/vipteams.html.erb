@@ -1,59 +1,7 @@
 <div class="admin-main-container">
 
 
-	<div class="admin-left-frame">
-
-		<div class="admin-left-top-content">
-			<div class="admin-logo-menu">
-				<%= svg 'momentum-logo' %>	
-			</div>
-
-			<%= link_to vip_path do%>
-				
-			<%end%>
-			<%= link_to vip_competitions_path do%>
-				<p class="admin-menu-item">🏆 &nbsp; Competitions</p>
-			<%end%>
-			<%= link_to vip_seasons_path do%>
-				<p class="admin-menu-item">🗓 &nbsp; Seasons</p>
-			<%end%>
-			<%= link_to vip_exercises_path do%>
-				<p class="admin-menu-item">📗 &nbsp; Exercices</p>
-			<%end%>
-			<%= link_to vip_teams_path do%>
-				<p class="admin-menu-item">🎽 &nbsp; Teams</p>
-			<%end%>
-			<%= link_to vip_players_path do%>
-				<p class="admin-menu-item">🏃🏻 &nbsp; Players</p>
-			<%end%>
-			<%= link_to vip_contracts_path do%>
-				<p class="admin-menu-item">📝 &nbsp; Contracts</p>
-			<%end%>
-			<%= link_to vip_fixtures_path do%>
-				<p class="admin-menu-item">👊 &nbsp; Fixtures</p>
-			<%end%>
-			<%= link_to vip_selections_path do%>
-				<p class="admin-menu-item">✅ &nbsp; Selections</p>
-			<%end%>
-			<%= link_to vip_events_path do%>
-				<p class="admin-menu-item">💫 &nbsp; Events</p>
-			<%end%>
-			<%= link_to vip_positions_path do%>
-				<p class="admin-menu-item">📍 &nbsp; Positions</p>
-			<%end%>
-			<%= link_to vip_eventtypes_path do%>
-				<p class="admin-menu-item">🎪 &nbsp; Event types</p>
-			<%end%>
-			<%= link_to layout_path do%>
-				<p class="admin-menu-item">📐 &nbsp; Layouts</p>
-			<%end%>
-
-		</div>
-
-		<div class="admin-left-bottom-content">
-			<p class="btn-test">Logout</p>
-		</div>
-	</div>
+	<%= render 'shared/vipnavbar'%>
 
 	<div class="admin-right-frame">
 		
