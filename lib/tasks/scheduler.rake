@@ -1,8 +1,8 @@
 desc "Insert latest ended Ligue 1 Game(s)"
 task retrieve_latest_ligue_1_results: :environment do
 
-	soccerapicall_getfixtureslist(61,"#{Time.now.year}"+"-"+"#{sprintf('%02i', Time.now.month)}"+"-"+"#{sprintf('%02i', Time.now.day-1)}") 
-	# soccerapicall_getfixtureslist(61,"2022-04-08")
+	# soccerapicall_getfixtureslist(61,"#{Time.now.year}"+"-"+"#{sprintf('%02i', Time.now.month)}"+"-"+"#{sprintf('%02i', Time.now.day-1)}") 
+	soccerapicall_getfixtureslist(61,"2022-08-06")
 
 	if @apiresponse_fixturelist["results"]!=0
 
@@ -255,7 +255,7 @@ def soccerapicall_getfixtureslist(league, date)
 	require 'net/http'
 	require 'openssl'
 
-	url = URI("https://api-football-v1.p.rapidapi.com/v3/fixtures?league=#{league}&season=2021&date=#{date}")
+	url = URI("https://api-football-v1.p.rapidapi.com/v3/fixtures?league=#{league}&season=2022&date=#{date}")
 
 	apicredentials(url)
 
