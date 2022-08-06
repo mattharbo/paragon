@@ -2,7 +2,7 @@ desc "Insert latest ended Ligue 1 Game(s)"
 task retrieve_latest_ligue_1_results: :environment do
 
 	# soccerapicall_getfixtureslist(61,"#{Time.now.year}"+"-"+"#{sprintf('%02i', Time.now.month)}"+"-"+"#{sprintf('%02i', Time.now.day-1)}") 
-	soccerapicall_getfixtureslist(61,"2022-08-06")
+	soccerapicall_getfixtureslist(61,"2022-08-05")
 
 	if @apiresponse_fixturelist["results"]!=0
 
