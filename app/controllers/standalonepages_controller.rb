@@ -62,7 +62,7 @@ class StandalonepagesController < ApplicationController
   end
 
   def vipplayers
-    @players=Player.all.order("id asc")
+    @players=Player.all.order("id desc")
   end
 
   def vipteams
