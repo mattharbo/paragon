@@ -10,9 +10,9 @@
 
 		<% @last_ligue1_games.each do |lg| %>
 			<small><%= lg.date %></small> | 
-			<%= lg.hometeam.name %>
+			<%= lg.hometeam.display_name %>
 			<%= lg.scorehome %> - <%= lg.scoreaway %>
-			<%= lg.awayteam.name %>
+			<%= lg.awayteam.display_name %>
 			<br>
 		<% end %>
 
