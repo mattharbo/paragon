@@ -12,7 +12,7 @@
 
     <div class="card-fixture-scorebox centered bottom-offset">
         <p class="hometeam">
-            <%= @fixture.hometeam.name %>
+            <%= @fixture.hometeam.display_name %>
         </p>
         <p class="fixturescore">
             <%if !@fixture.scorehome.nil? && !@fixture.scoreaway.nil? %>
@@ -22,7 +22,7 @@
             <%end%>
         </p>
         <p class="awayteam">
-            <%= @fixture.awayteam.name %>
+            <%= @fixture.awayteam.display_name %>
         </p>
     </div>
     

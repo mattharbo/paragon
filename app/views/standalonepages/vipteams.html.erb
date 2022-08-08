@@ -10,18 +10,15 @@
 		<div class="admin-right-frame-content">
 
 
-
-
 <h2>All teams in DB</h2>
 
 <% @teams.each do |team| %>
     [<%= link_to "edit", edit_team_path(team.id)%>] 
     <%=team.id%> • 
-    <b><%=team.name%></b> (<%=team.shortname%>) • 
+    <b><%=team.display_name%></b> (<%=team.shortname%>) | <%=team.name%> • 
     <%= link_to "show", team_path(team.id)%>
     <br>
 <%end%>
-
 
 		</div>
 	</div>
