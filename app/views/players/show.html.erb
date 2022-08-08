@@ -4,9 +4,32 @@
 	<%= @player.firstname %> <%= @player.name %>
 </h3>
 
+<% counter=-1 %>
 
 <% @player_contracts.each do |player_contract| %>
 
-	playing for <b><%= player_contract.team.name %></b> with number <%= player_contract.jerseynumber %>
+	<% counter+=1 %>
+
+	playing for <b><%= player_contract.team.display_name %></b> with the jersey number <%= player_contract.jerseynumber %> <br>
+	<br>
+
+	<b>Stats</b> <i>(out of <%= @stats_of_arrays[counter][0] %> <%= @stats_of_arrays[0][0] > 1 ? 'game'.pluralize : 'game' %> played by <%= player_contract.team.name %> this season)</i>
+
+	<ul>
+		<li>Played games: <%= @stats_of_arrays[counter][1] %></li>
+		<li>%age of appearance for the team: <%= @stats_of_arrays[counter][2]%>%</li>
+		<li>Pourcentage of games started: <%= @stats_of_arrays[counter][3]%>%</li>
+		<li>Minutes played per played games: <%= @stats_of_arrays[counter][4]%> minutes</li>
+	</ul>
+
+
+	---------
 
 <% end %>
+
+<br><br>
+
+
+
+
+
