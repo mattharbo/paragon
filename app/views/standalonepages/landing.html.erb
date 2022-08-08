@@ -10,10 +10,14 @@
 
 		<% @last_ligue1_games.each do |lg| %>
 			<small><%= lg.date %></small> | 
-			<%= lg.hometeam.display_name %>
-			<%= lg.scorehome %> - <%= lg.scoreaway %>
-			<%= lg.awayteam.display_name %>
-			<br>
+
+			<%= link_to fixture_path(lg.id), target: :_blank do %>
+
+				<%= lg.hometeam.display_name %>
+				<%= lg.scorehome %> - <%= lg.scoreaway %>
+				<%= lg.awayteam.display_name %>
+			
+			<%end%> <br>
 		<% end %>
 
 	<% else %>
