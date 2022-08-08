@@ -22,7 +22,7 @@
     <small>(<%= fixture.date %>)</small> |
     <%= link_to fixture_path(fixture.id), target: :_blank do %>
         
-        <%= fixture.hometeam.name %>
+        <%= fixture.hometeam.display_name %>
         
         <%if !fixture.scorehome.nil? && !fixture.scoreaway.nil? %>
             <b> <%= fixture.scorehome%> - <%= fixture.scoreaway%> </b>
@@ -30,7 +30,7 @@
             vs.
         <%end%>
 
-        <%= fixture.awayteam.name %>
+        <%= fixture.awayteam.display_name %>
 
     <%end%> <br>
 <%end%>
