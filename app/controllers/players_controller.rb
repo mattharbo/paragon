@@ -27,7 +27,7 @@ class PlayersController < ApplicationController
 
     end
 
-    @average_note=(total_notes/number_notes).round(1)
+    number_notes > 0 ? @average_note=(total_notes/number_notes).round(1) : @average_note="n/a"
 
     @player_contracts.each do |player_contract|
 
