@@ -12,7 +12,7 @@ class PlayersController < ApplicationController
   def show 
     
     @player_contracts = Contract.where(player:@player)
-    @latest_jersey_number = Contract.where(player:Player.find(1024)).last.jerseynumber
+    @latest_jersey_number = Contract.where(player:@player).last.jerseynumber
     all_player_selections = Selection.where(contract:Contract.where(player:@player))
     total_notes = 0
     number_notes = 0
