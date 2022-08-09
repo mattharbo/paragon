@@ -10,18 +10,19 @@
 
 	<% counter+=1 %>
 
-	playing for <b><%= player_contract.team.display_name %></b> with the jersey number <%= player_contract.jerseynumber %> <br>
+	Played for <b><%= player_contract.team.display_name %></b> (#<%= player_contract.jerseynumber %>) <br>
 	<br>
 
-	<b>Stats</b> <i>(out of <%= @stats_of_arrays[counter][0] %> <%= @stats_of_arrays[0][0] > 1 ? 'game'.pluralize : 'game' %> played by <%= player_contract.team.name %> this season)</i>
+	<b>Stats</b> <i>(out of <%= @stats_of_arrays[counter][0] %> <%= @stats_of_arrays[0][0] > 1 ? 'game'.pluralize : 'game' %> played by <%= player_contract.team.name %>)</i>
 
 	<ul>
-		<li>Played games: <%= @stats_of_arrays[counter][1] %></li>
-		<li>%age of appearance for the team: <%= @stats_of_arrays[counter][2]%>%</li>
-		<li>Pourcentage of games started: <%= @stats_of_arrays[counter][3]%>%</li>
-		<li>Minutes played per played games: <%= @stats_of_arrays[counter][4]%> minutes</li>
+		<li><%= @stats_of_arrays[counter][1] > 1 ? 'Appearance'.pluralize : 'Appearance' %>:
+			<%= @stats_of_arrays[counter][1] %> 
+			(<%= @stats_of_arrays[counter][2]%>% of all team's games)
+		</li>
+		<li>%age of games started: <%= @stats_of_arrays[counter][3]%>%</li>
+		<li>Average minutes per played games: <%= @stats_of_arrays[counter][4]%> <%= @stats_of_arrays[counter][4] > 1 ? 'minute'.pluralize : 'minute' %></li>
 	</ul>
-
 
 	---------
 

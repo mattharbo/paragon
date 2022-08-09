@@ -32,42 +32,45 @@ class PlayersController < ApplicationController
 
       player_selections.each do |player_selection|
 
-      if player_selection.starter?
-          involved_games+=1
-          starter_games+=1
+        if player_selection.starter?
+            involved_games+=1
+            starter_games+=1
 
-          # Did starter play entirely the game or not? (90mn vs. until replacement)
-          if player_selection.substitutiontime.nil?
-            minutes_of_play+=90
-          else
-            minutes_of_play+=player_selection.substitutiontime          
-          end
+            # Did starter play entirely the game or not? (90mn vs. until replacement)
+            if player_selection.substitutiontime.nil?
+              minutes_of_play+=90
+            else
+              minutes_of_play+=player_selection.substitutiontime          
+            end
+        end
 
-        else
-          # When did the substitute came in?
-          if player_selection.substitutiontime > 0
+        if !player_selection.substitutiontime.nil? and player_selection.substitutiontime > 0
             involved_games+=1
             minutes_of_play+=(90-player_selection.substitutiontime)  
-          end
-        end 
+        end
+
+        if involved_games > 0 
+          pourcentage_of_games_started_when_involved=(starter_games/involved_games)*100
+        else
+          pourcentage_of_games_started_when_involved=0
+        end
+
+
+        pourcentage_of_games_involved_for_the_team_this_season=(involved_games/number_of_team_games)*100
+
+        player_contract_array = [
+          number_of_team_games, 
+          involved_games, 
+          pourcentage_of_games_involved_for_the_team_this_season,
+          pourcentage_of_games_started_when_involved,
+          minutes_of_play]
+
+        @stats_of_arrays << player_contract_array
+
       end
-
-      pourcentage_of_games_started_when_involved=(starter_games/involved_games)*100
-
-      pourcentage_of_games_involved_for_the_team_this_season=(involved_games/number_of_team_games)*100
-
-      player_contract_array = [
-        number_of_team_games, 
-        involved_games, 
-        pourcentage_of_games_involved_for_the_team_this_season,
-        pourcentage_of_games_started_when_involved,
-        minutes_of_play]
-
-      @stats_of_arrays << player_contract_array
 
     end
     
-
   end
 
   def update
