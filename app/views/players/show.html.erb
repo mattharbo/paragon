@@ -1,33 +1,33 @@
-<br>
+<div class="player-show-container">
 
-<h3>
-	<%= @player.firstname %> <%= @player.name %>
-</h3>
+	<div class="card-player-show">
 
-<% counter=-1 %>
+		<div class="card-player-show-detail">
+			<p class="name"><%= @player.firstname %> <b><%= @player.name %></b></p>
+			<p class="number">#<%= @latest_jersey_number %></p>
+		</div>
 
-<% @player_contracts.each do |player_contract| %>
+		<p class="note">
+			<%= @average_note %>			
+		</p>
 
-	<% counter+=1 %>
+	</div>
 
-	Played for <b><%= player_contract.team.display_name %></b> (#<%= player_contract.jerseynumber %>) <br>
-	<br>
+	<br><br>
 
-	<b>Stats</b> <i>(out of <%= @stats_of_arrays[counter][0] %> <%= @stats_of_arrays[0][0] > 1 ? 'game'.pluralize : 'game' %> played by <%= player_contract.team.name %>)</i>
+	<% counter=-1 %>
+	<% @player_contracts.each do |player_contract| %>
 
-	<ul>
-		<li>Appearances: <%= @stats_of_arrays[counter][1] %> (<%= @stats_of_arrays[counter][2]%>%)</li>
-		<li>%age of games started: <%= @stats_of_arrays[counter][3]%>%</li>
-		<li>Average minutes per appearance: <%= @stats_of_arrays[counter][4]%> <%= @stats_of_arrays[counter][4] > 1 ? 'minute'.pluralize : 'minute' %></li>
-	</ul>
+		<% counter+=1 %>
 
-	---------
+		<b>Statistics with <%= player_contract.team.display_name %></b>
 
-<% end %>
+		<ul>
+			<li>Appearances: <%= @stats_of_arrays[counter][1] %> / <%= @stats_of_arrays[counter][0]%> (<%= @stats_of_arrays[counter][2]%>%)</li>
+			<li>%age of games started: <%= @stats_of_arrays[counter][3]%>%</li>
+			<li>Average minutes per appearance: <%= @stats_of_arrays[counter][4]%> <%= @stats_of_arrays[counter][4] > 1 ? 'minute'.pluralize : 'minute' %></li>
+		</ul>
 
-<br><br>
+	<% end %>
 
-
-
-
-
+</div>

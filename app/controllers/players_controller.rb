@@ -12,8 +12,22 @@ class PlayersController < ApplicationController
   def show 
     
     @player_contracts = Contract.where(player:@player)
-
+    @latest_jersey_number = Contract.where(player:Player.find(1024)).last.jerseynumber
+    all_player_selections = Selection.where(contract:Contract.where(player:@player))
+    total_notes = 0
+    number_notes = 0
     @stats_of_arrays=[]
+
+    all_player_selections.each do |player_sel|
+
+      if player_sel.note > 0
+        number_notes+=1
+        total_notes+=player_sel.note
+      end
+
+    end
+
+    @average_note=(total_notes/number_notes).round(1)
 
     @player_contracts.each do |player_contract|
 
@@ -28,7 +42,6 @@ class PlayersController < ApplicationController
       minutes_of_play=0
 
       player_contract_array = []
-
 
       player_selections.each do |player_selection|
 
@@ -65,9 +78,7 @@ class PlayersController < ApplicationController
         @stats_of_arrays << player_contract_array
 
       end
-
     end
-    
   end
 
   def update

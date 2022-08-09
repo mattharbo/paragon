@@ -249,3 +249,38 @@
 	font-weight: 500;
 	font-size: 30px;
 }
+
+/* ############################ */
+
+.card-player-show{
+	background-color: var(--light-gray);
+	width: 240px;
+	margin: 0 auto;
+	padding: 10px 20px;
+	border-radius: 10px;
+	font-size: 16px;
+	font-weight: 600;
+
+	display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-player-show > .note{
+	background-color: var(--pink);
+	border-radius: 50px;
+	padding: 7px;
+	color: var(--white);
+}
+
+.card-player-show-detail{
+	line-height: 1.3;
+}
+
+.card-player-show-detail > .number{
+	color: var(--gray);
+	font-size: 12px;
+	font-weight: 500;
+}
