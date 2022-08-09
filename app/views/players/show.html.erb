@@ -4,7 +4,8 @@
 
 		<div class="card-player-show-detail">
 			<p class="name"><%= @player.firstname %> <b><%= @player.name %></b></p>
-			<p class="number">#<%= @latest_jersey_number %></p>
+			<p class="number">#<%= @latest_contract.jerseynumber %> - 
+				<%= @latest_contract.team.display_name %></p>
 		</div>
 
 		<p class="note">
