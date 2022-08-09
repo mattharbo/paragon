@@ -42,11 +42,9 @@ class PlayersController < ApplicationController
             else
               minutes_of_play+=player_selection.substitutiontime          
             end
-        end
-
-        if !player_selection.substitutiontime.nil? and player_selection.substitutiontime > 0
+        elsif !player_selection.substitutiontime.nil? and player_selection.substitutiontime > 0
             involved_games+=1
-            minutes_of_play+=(90-player_selection.substitutiontime)  
+            minutes_of_play+=(90-player_selection.substitutiontime) 
         end
 
         if involved_games > 0 
@@ -54,7 +52,6 @@ class PlayersController < ApplicationController
         else
           pourcentage_of_games_started_when_involved=0
         end
-
 
         pourcentage_of_games_involved_for_the_team_this_season=(involved_games/number_of_team_games)*100
 

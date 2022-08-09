@@ -16,12 +16,9 @@
 	<b>Stats</b> <i>(out of <%= @stats_of_arrays[counter][0] %> <%= @stats_of_arrays[0][0] > 1 ? 'game'.pluralize : 'game' %> played by <%= player_contract.team.name %>)</i>
 
 	<ul>
-		<li><%= @stats_of_arrays[counter][1] > 1 ? 'Appearance'.pluralize : 'Appearance' %>:
-			<%= @stats_of_arrays[counter][1] %> 
-			(<%= @stats_of_arrays[counter][2]%>% of all team's games)
-		</li>
+		<li>Appearances: <%= @stats_of_arrays[counter][1] %> (<%= @stats_of_arrays[counter][2]%>%)</li>
 		<li>%age of games started: <%= @stats_of_arrays[counter][3]%>%</li>
-		<li>Average minutes per played games: <%= @stats_of_arrays[counter][4]%> <%= @stats_of_arrays[counter][4] > 1 ? 'minute'.pluralize : 'minute' %></li>
+		<li>Average minutes per appearance: <%= @stats_of_arrays[counter][4]%> <%= @stats_of_arrays[counter][4] > 1 ? 'minute'.pluralize : 'minute' %></li>
 	</ul>
 
 	---------
