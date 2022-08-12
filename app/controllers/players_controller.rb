@@ -28,23 +28,26 @@ class PlayersController < ApplicationController
     number_notes > 0 ? @average_note=(total_notes/number_notes).round(1) : @average_note='🙅🏻‍♂️'
 
     @all_player_roles = {
-      GK: 0,
-      LWB: 0,
-      LB: 0,
-      CB: 0,
-      RB: 0,
-      RWB: 0,
-      LW: 0,
-      LM: 0,
-      DM: 0,
-      CM: 0,
-      AM: 0,
-      RM: 0,
-      RW: 0,
-      LS: 0,
-      CF: 0,
-      RS: 0,
-      ST: 0}
+      GK: {total: 0, top:5, left:225},
+      LWB: {total: 0, top:100, left:400},
+      LB: {total: 0, top:80, left:290},
+      CB: {total: 0, top:80, left:225},
+      RB: {total: 0, top:80, left:160},
+      RWB: {total: 0, top:100, left:50},
+      LDM: {total: 0, top:140, left:290},
+      DM: {total: 0, top:140, left:225},
+      RDM: {total: 0, top:140, left:160},
+      LW: {total: 0, top:230, left:400},
+      LM: {total: 0, top:210, left:300},
+      CM: {total: 0, top:180, left:225},
+      RM: {total: 0, top:210, left:150},
+      RW: {total: 0, top:230, left:50},
+      AM: {total: 0, top:240, left:225},
+      LS: {total: 0, top:280, left:320},
+      CF: {total: 0, top:280, left:225},
+      RS: {total: 0, top:280, left:130},
+      ST: {total: 0, top:320, left:225}
+    }
 
     @player_contracts.each do |player_contract|
 
@@ -110,6 +113,12 @@ class PlayersController < ApplicationController
         @stats_of_arrays << player_contract_array
 
       end
+    end
+
+    @distinct_role_tot = 0
+
+    @all_player_roles.each do |distinct_role|
+      @distinct_role_tot+=distinct_role[1][:total]
     end
 
   end
@@ -239,7 +248,7 @@ class PlayersController < ApplicationController
   end
 
   def role_counter(thehash,role)
-    thehash[role]+=1
+    thehash[role][:total]+=1
     return thehash
   end
 
