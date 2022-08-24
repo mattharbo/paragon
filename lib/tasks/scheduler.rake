@@ -6,7 +6,7 @@ task retrieve_L1_fixture_details_by_id: :environment do
 	# SR vs. ACA => 871498
 	# LOSC vs. PSG => 871493
 
-	soccerapicall_getfixturedetails(871499)
+	soccerapicall_getfixturedetails(871493)
 
 	# Loop but should be an array of 1 (and only) 1 item
 
