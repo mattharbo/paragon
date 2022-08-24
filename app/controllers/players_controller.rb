@@ -14,8 +14,7 @@ class PlayersController < ApplicationController
     @player_contracts = Contract.where(player:@player)
     @latest_contract = Contract.where(player:@player).last
     all_player_selections = Selection.where(contract:Contract.where(player:@player))
-    total_notes = 0
-    number_notes = 0
+    total_notes = number_notes = @distinct_role_tot = 0
     @stats_of_arrays=[]
 
     all_player_selections.each do |player_sel|
@@ -114,8 +113,6 @@ class PlayersController < ApplicationController
 
       end
     end
-
-    @distinct_role_tot = 0
 
     @all_player_roles.each do |distinct_role|
       @distinct_role_tot+=distinct_role[1][:total]

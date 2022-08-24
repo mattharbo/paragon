@@ -1,8 +1,126 @@
+desc "Retrieve Ligue 1 game with the API fixture ID"
+task retrieve_L1_fixture_details_by_id: :environment do
+
+	# MHSC vs. AJA => 871494
+	# TFC vs. FCL => 871499
+	# SR vs. ACA => 871498
+	# LOSC vs. PSG => 871493
+
+	soccerapicall_getfixturedetails(871494)
+
+	# Loop but should be an array of 1 (and only) 1 item
+
+	@apiresponse_fixture_details["response"].each do |fixture|
+
+			apifixtureid=fixture["fixture"]["id"]
+			hometeam=checkteamname(fixture["teams"]["home"]["name"])
+			awayteam=checkteamname(fixture["teams"]["away"]["name"])
+			scorehome=fixture["goals"]["home"]
+			scoreaway=fixture["goals"]["away"]
+            fixtureround=fixture["league"]["round"].split.last
+			Fixture.create(
+				hometeam:hometeam,
+				awayteam:awayteam,
+				scorehome:scorehome,
+				scoreaway:scoreaway,
+				date:fixture["fixture"]["date"],
+                competseason:Competseason.joins(:competition, :season).where("country like ?", "%France%").where("year like ?", "%2022-2023%").take,
+                round:fixtureround
+				)
+			
+			# RECUPERER LE FIXTURE ID DE LA RENCONTRE (dernière fixture ajoutée en base)
+			fixturebddid=Fixture.last.id
+
+			# CALL API AFIN DE RECUPERER LES LINEUPS
+			soccerapicall_getfixturelineups(apifixtureid)
+
+			i=0
+
+			@apiresponse_fixturelineups["response"].each do |team|
+
+				# Si 1 alors hometeam - Si 2 alors awayteam
+				i+=1
+		  
+				# RECUPERER LA FORMATION dans response["formation"] 
+				# & UPDATE LA FORMATION DANS LA TABLE FIXTURE (avec le FIXTURE ID de mon app)
+				target_team_id=defineteamandcreationformation(fixturebddid,i,team["formation"])
+				
+				# BOUCLER SUR TOUS LES JOEURS de ["startXI"]
+				team["startXI"].each do |player|
+			  
+				  # SI LE JOUEUR EXISTE ALORS RECUPERER L'ID DE SON DERNIER CONTRACT
+				  # SINON ALORS LE CREER, CREER UN CONTRACT AVEC LA BONNE TEAM ET RECUPERER L'ID DU CONTRACT
+				  target_contract=checkplayer(player["player"]["id"],player["player"]["name"],player["player"]["number"],target_team_id)
+				  
+				  # CREER UNE SELECTION avec FIXTURE, CONTRACT et POSITION
+				  createselection(target_contract,fixturebddid,player["player"]["pos"],true,player["player"]["grid"])
+				end
+
+				#Boucler sur tous les joueurs sur le banc ["substitutes"]
+				team["substitutes"].each do |benchplayer|
+			  
+				  # SI LE JOUEUR EXISTE ALORS RECUPERER L'ID DE SON DERNIER CONTRACT
+				  # SINON ALORS LE CREER, CREERE UN CONTRACT AVEC LA BONNE TEAM ET RECUPERER L'ID DU CONTRACT
+				  target_contract=checkplayer(benchplayer["player"]["id"],benchplayer["player"]["name"],benchplayer["player"]["number"],target_team_id)
+				  
+				  # CREER UNE SELECTION avec FIXTURE, CONTRACT et POSITION
+				  createselection(target_contract,fixturebddid,benchplayer["player"]["pos"],false,benchplayer["player"]["grid"])
+				end
+			end
+
+			# CALL API AFIN DE METTRE A JOUR TOUS LES CHANGEMENTS (& LES BUTS)
+			soccerapicall_getfixtureevents(apifixtureid)
+
+			@apiresponse_fixtureevents["response"].each do |event|
+
+		      if event["type"]=="subst"
+		        create_substitution(fixturebddid,event["player"]["id"],event["assist"]["id"],event["time"]["elapsed"])
+
+		      elsif event["type"]=="Goal"
+
+		      	case event["detail"]
+		      	when "Normal Goal"
+		      		create_event(fixturebddid,event["player"]["id"],Eventtype.where("description like ?", "%Goal%").take,event["time"]["elapsed"])
+		      	when "Own Goal"
+		      		create_event(fixturebddid,event["player"]["id"],Eventtype.where("description like ?", "%Auto%").take,event["time"]["elapsed"])
+		      	when "Penalty"
+		      		create_event(fixturebddid,event["player"]["id"],Eventtype.where("description like ?", "%Penalty%").take,event["time"]["elapsed"])
+		      	end
+
+		      end
+		    end
+
+			# CALL API AFIN DE RECUPERER LES NOTES DE CHACUN DES JOEURS
+			soccerapicall_getfixtureplayersstats(apifixtureid)
+
+			@apiresponse_fixtureplayersstats["response"].each do |team|
+
+		      team["players"].each do |player|
+
+		        target_selection_for_rating=Selection.where(fixture_id:fixturebddid).where(contract_id:Contract.where(player_id:Player.where(playerapiref:player["player"]["id"]).ids.last).last).last
+
+		        print "#️⃣ #{player["statistics"][0]["games"]["rating"]}"
+		        print "\n"
+
+		        target_selection_for_rating.note=player["statistics"][0]["games"]["rating"].to_f
+		        target_selection_for_rating.save
+
+		      end
+		    end
+
+	
+	print "Ligue 1 fixture details retrieved ✅ for #{hometeam.name} vs. #{awayteam.name} \n"
+	end
+
+	puts "on #{Time.now.year}-#{Time.now.month}-#{Time.now.day} @ #{Time.now.hour}:#{Time.now.min}"
+
+end
+
 desc "Insert latest ended Ligue 1 Game(s)"
 task retrieve_latest_ligue_1_results: :environment do
 
-	soccerapicall_getfixtureslist(61,"#{Time.now.year}"+"-"+"#{sprintf('%02i', Time.now.month)}"+"-"+"#{sprintf('%02i', Time.now.day-1)}") 
-	# soccerapicall_getfixtureslist(61,"2022-08-05")
+	# soccerapicall_getfixtureslist(61,"#{Time.now.year}"+"-"+"#{sprintf('%02i', Time.now.month)}"+"-"+"#{sprintf('%02i', Time.now.day-1)}") 
+	soccerapicall_getfixtureslist(61,"2022-08-21")
 
 	if @apiresponse_fixturelist["results"]!=0
 
@@ -239,6 +357,20 @@ def apicredentials(targeturl)
     request["x-rapidapi-key"] = 'QfDWrtMJ5wmsh1fjUZRYXaKkPpuvp1nv5hUjsnZgUbue0iFVJY'
 
     return @response = http.request(request)    
+end
+
+def soccerapicall_getfixturedetails(fixtureapiid)
+
+	require 'uri'
+	require 'net/http'
+	require 'openssl'
+
+	url = URI("https://api-football-v1.p.rapidapi.com/v3/fixtures?id=#{fixtureapiid}")
+
+	apicredentials(url)
+
+	return @apiresponse_fixture_details=JSON.parse(@response.body)
+	
 end
 
 def soccerapicall_getfixtureslist(league, date)
