@@ -6,7 +6,7 @@ task retrieve_L1_fixture_details_by_id: :environment do
 	# SR vs. ACA => 871498
 	# LOSC vs. PSG => 871493
 
-	soccerapicall_getfixturedetails(871498)
+	soccerapicall_getfixturedetails(871499)
 
 	# Loop but should be an array of 1 (and only) 1 item
 
@@ -458,7 +458,7 @@ def checkplayer(apiretrievedplayerid,apiretrievedplayername,apiretrievedplayerje
 		targetplayer=check.take
 		#Faut-il prendre le dernier contract connu? Contract.where(…).last
 		targetcontract=Contract.where(player:targetplayer).last
-		print "Contract for #{targetcontract} retrieved from DB (with #{apiretrievedplayerid} player API id)"
+		print "Contract retrieved from DB (with #{apiretrievedplayerid} player API id)"
 		print "\n"
 	else
 		#user & contract creation	
@@ -466,7 +466,7 @@ def checkplayer(apiretrievedplayerid,apiretrievedplayername,apiretrievedplayerje
 			name:apiretrievedplayername,
 			playerapiref:apiretrievedplayerid
 		)
-		print "Player created in DB with #{apiretrievedplayername} and #{apiretrievedplayerid} player API id"
+		print "#{apiretrievedplayername} player created in DB with the player API id => #{apiretrievedplayerid}"
 		print "\n"
 		Contract.create(
 			team:bddteaminstance,
@@ -560,11 +560,10 @@ def create_event(fixturebddid,player,eventtype,minute)
 		# Recupération de la selection du player
 	    target_selection=Selection.where(fixture_id:fixturebddid).where(contract_id:Contract.where(player_id:Player.where(playerapiref:player).ids.last).last).last
 	    print "Selection of the scorer: #{target_selection}"
-	    print "\n"
 
 	    Event.create(selection:target_selection,eventtype:eventtype,time:minute.to_i,registration:false)
-	    
-	    print "⚽️ Creation of the goal even for the selection"
+
+	    print "⚽️ and creation of the goal event for the selection"
 	    print "\n"
 
 	end
