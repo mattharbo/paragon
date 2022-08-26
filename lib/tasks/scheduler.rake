@@ -119,8 +119,8 @@ end
 desc "Insert latest ended Ligue 1 Game(s)"
 task retrieve_latest_ligue_1_results: :environment do
 
-	# soccerapicall_getfixtureslist(61,"#{Time.now.year}"+"-"+"#{sprintf('%02i', Time.now.month)}"+"-"+"#{sprintf('%02i', Time.now.day-1)}") 
-	soccerapicall_getfixtureslist(61,"2022-08-21")
+	soccerapicall_getfixtureslist(61,"#{Time.now.year}"+"-"+"#{sprintf('%02i', Time.now.month)}"+"-"+"#{sprintf('%02i', Time.now.day-1)}") 
+	# soccerapicall_getfixtureslist(61,"2022-08-21")
 
 	if @apiresponse_fixturelist["results"]!=0
 
@@ -559,11 +559,11 @@ def create_event(fixturebddid,player,eventtype,minute)
 
 		# Recupération de la selection du player
 	    target_selection=Selection.where(fixture_id:fixturebddid).where(contract_id:Contract.where(player_id:Player.where(playerapiref:player).ids.last).last).last
-	    print "Selection of the scorer: #{target_selection}"
+	    print "⚽️ Selection of the scorer: #{target_selection} "
 
 	    Event.create(selection:target_selection,eventtype:eventtype,time:minute.to_i,registration:false)
 
-	    print "⚽️ and creation of the goal event for the selection"
+	    print " and creation of the goal event for the selection"
 	    print "\n"
 
 	end
