@@ -18,7 +18,7 @@ class PlayersController < ApplicationController
     @stats_of_arrays=[]
 
     all_player_selections.each do |player_sel|
-      if player_sel.note > 0
+      if !player_sel.note.nil? and player_sel.note > 0
         number_notes+=1
         total_notes+=player_sel.note
       end
@@ -50,69 +50,74 @@ class PlayersController < ApplicationController
 
     @player_contracts.each do |player_contract|
 
-      # 🚧🚧🚧🚧🚧 Competseason added manually!!!! 😳 🚧🚧🚧🚧🚧
+      # 🚧🚧🚧🚧🚧 Competseason added manually!!!! 😳🚧🚧🚧🚧🚧
 
       number_of_team_games = team_fixtures_in_season(player_contract.team,Competseason.last).count
 
-      player_selections = Selection.where(contract:player_contract)
+      # Retrieve all selections of the player with a given contract
+      player_selections = Selection.where(contract:player_contract) # 😳🚧🚧 Should be player's selection within a season! => group_by season is needed here
       
       involved_games = starter_games = minutes_of_play = 0
 
-      player_contract_array = []
+      @player_contract_array = []
 
       player_selections.each do |player_selection|
 
         if player_selection.starter?
-            involved_games+=1
-            starter_games+=1
+          involved_games+=1
+          starter_games+=1
 
-            # Did starter play entirely the game or not? (90mn vs. until replacement)
-            if player_selection.substitutiontime.nil?
-              minutes_of_play+=90
-            else
-              minutes_of_play+=player_selection.substitutiontime          
-            end
+          # Did starter play entirely the game or not? (90mn vs. until replacement)
+          if player_selection.substitutiontime.nil?
+            minutes_of_play+=90
+          else
+            minutes_of_play+=player_selection.substitutiontime          
+          end
 
-            # Mise à jour du hash qui comptabilise toutes les positions du joueur 
-            # d'après un scanne de toutes les "selections" sous tous ses "contracts"
-            
-            # 1. Récupération de la position par rapport à la selection dans laquelle on est => easy! .grid_pos
-            player_position = player_selection.grid_pos
+          # Mise à jour du hash qui comptabilise toutes les positions du joueur 
+          # d'après un scanne de toutes les "selections" sous tous ses "contracts"
+          
+          # 1. Récupération de la position par rapport à la selection dans laquelle on est => easy! .grid_pos
+          player_position = player_selection.grid_pos
 
-            # 2. Récupération de la formation de la team
-            team_fixture_formation = get_formation(player_selection)
+          # 2. Récupération de la formation de la team
+          team_fixture_formation = get_formation(player_selection)
 
-            # 3. Récupération du role du joeur dans le "fixture"
-            player_fixture_role = player_role(player_position,team_fixture_formation)
+          # 3. Récupération du role du joeur dans le "fixture"
+          player_fixture_role = player_role(player_position,team_fixture_formation)
 
-            # 4. Mise à jour du hash qui cumule toutes les positions occupées en tant que titulaire par le joueur
-            # prenant en paramètre les informations récupérées en 3.
-            role_counter(@all_player_roles,player_fixture_role)
+          # 4. Mise à jour du hash qui cumule toutes les positions occupées en tant que titulaire par le joueur
+          # prenant en paramètre les informations récupérées en 3.
+          role_counter(@all_player_roles,player_fixture_role)
 
         elsif !player_selection.substitutiontime.nil? and player_selection.substitutiontime > 0
-            involved_games+=1
-            minutes_of_play+=(90-player_selection.substitutiontime) 
+          involved_games+=1
+          minutes_of_play+=(90-player_selection.substitutiontime) 
         end
 
-        if involved_games > 0 
-          pourcentage_of_games_started_when_involved=(starter_games/involved_games)*100
-        else
-          pourcentage_of_games_started_when_involved=0
-        end
+      end ## end of each player_selections
 
-        pourcentage_of_games_involved_for_the_team_this_season=(involved_games/number_of_team_games)*100
-
-        player_contract_array = [
-          number_of_team_games, 
-          involved_games, 
-          pourcentage_of_games_involved_for_the_team_this_season,
-          pourcentage_of_games_started_when_involved,
-          minutes_of_play]
-
-        @stats_of_arrays << player_contract_array
-
+      if involved_games > 0 
+        pourcentage_of_games_started_when_involved=(starter_games/involved_games)*100
+        average_minutes_by_appearance = minutes_of_play/involved_games
+      else
+        pourcentage_of_games_started_when_involved = 0
+        average_minutes_by_appearance = 0
       end
-    end
+
+      pourcentage_of_games_involved_for_the_team_this_season = (involved_games/number_of_team_games)*100
+
+      @player_contract_array = [
+        number_of_team_games, 
+        involved_games, 
+        pourcentage_of_games_involved_for_the_team_this_season,
+        pourcentage_of_games_started_when_involved,
+        average_minutes_by_appearance]
+
+      @stats_of_arrays << @player_contract_array
+
+    end ## end of each player_contracts
+
 
     @all_player_roles.each do |distinct_role|
       @distinct_role_tot+=distinct_role[1][:total]
@@ -142,7 +147,7 @@ class PlayersController < ApplicationController
 
   def team_fixtures_in_season(team,competseason)
     # Total number of games for a given team in a given season
-    @team_season_games = Fixture.where(competseason:competseason).where(hometeam:team).or(Fixture.where(awayteam:team))
+    @team_season_games =Fixture.where(competseason:competseason).and(Fixture.where(awayteam:team).or(Fixture.where(hometeam:team)))
     return @team_season_games
   end
 

@@ -10,6 +10,8 @@ class TeamsController < ApplicationController
 
         # A CHANGER CAR NE SONT PAS COMPTABILISER LES AUTO GOAL 
         # @games_goals=Event.where(eventtype:Eventtype.where("description like ?", "%Goal%")).or(Event.where(eventtype:Eventtype.where("description like ?", "%Penalty%"))).where(selection:Selection.where(contract:Contract.where(team:Team.find(params[:id]))))
+
+        @team_color = "#FFE2EB"
         
     end
 
