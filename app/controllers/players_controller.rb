@@ -105,7 +105,7 @@ class PlayersController < ApplicationController
         average_minutes_by_appearance = 0
       end
 
-      pourcentage_of_games_involved_for_the_team_this_season = (involved_games/number_of_team_games)*100
+      pourcentage_of_games_involved_for_the_team_this_season = ((involved_games.to_f/number_of_team_games.to_f)*100).round(2)
 
       @player_contract_array = [
         number_of_team_games, 
