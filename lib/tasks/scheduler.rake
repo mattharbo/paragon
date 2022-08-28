@@ -540,14 +540,21 @@ def create_substitution(fixturebddid,playeroutid,playerinid,minute)
 	    # • le contract du joueur qui le remplace => le joueur entrant
 	    target_selection_sub_out.substitutiontime=minute.to_i
 	    target_selection_sub_out.substitute=target_contract_sub_in
+	    print "➡️ Set sub out replacement"
+	    print "\n"
 	    target_selection_sub_out.save
+	    print "💾 Save sub out replacement"
+	    print "\n"
 
 	    # Mise à jour de la selection du player qui entre en jeu avec 
 	    # • la minute du changement
 	    # • le contract du joueur qui le remplace => le joueur entrant
 	    target_selection_sub_in.substitutiontime=minute.to_i
 	    target_selection_sub_in.substitute=target_contract_sub_out
+	    print "⬅️ Set sub in replacement"
 	    target_selection_sub_in.save
+	    print "💾 Save sub in replacement"
+	    print "\n"
 	end
 end
 
