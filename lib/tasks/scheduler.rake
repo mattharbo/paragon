@@ -1,12 +1,15 @@
 desc "Retrieve Ligue 1 game with the API fixture ID"
 task retrieve_L1_fixture_details_by_id: :environment do
 
-	# MHSC vs. AJA => 871494
-	# TFC vs. FCL => 871499
-	# SR vs. ACA => 871498
-	# LOSC vs. PSG => 871493
+	# AJA vs. LOSC (26.08) => 871500
+	# RCL vs. SR (27.08) => 871506
+	# OGCN vs. OM (28.08) => 871504
+	# SB29 vs. MHFC (28.08) => 871507
+	# ESTAC vs. SCO (28.08) => 871509
+	# SdR vs. OL (28.08) => 871508
+	# PSG vs. ASM (28.08) => 871505
 
-	soccerapicall_getfixturedetails(871494)
+	soccerapicall_getfixturedetails(871500)
 
 	# Loop but should be an array of 1 (and only) 1 item
 
@@ -502,6 +505,7 @@ end
 
 def create_substitution(fixturebddid,playeroutid,playerinid,minute)
 
+	print "------------------"
 	print "Fixture bdd ==> #{fixturebddid}"
 	print "\n"
 	print "Ref player out ==> #{playeroutid}"
@@ -552,6 +556,7 @@ def create_substitution(fixturebddid,playeroutid,playerinid,minute)
 	    target_selection_sub_in.substitutiontime=minute.to_i
 	    target_selection_sub_in.substitute=target_contract_sub_out
 	    print "⬅️ Set sub in replacement"
+	    print "\n"
 	    target_selection_sub_in.save
 	    print "💾 Save sub in replacement"
 	    print "\n"
