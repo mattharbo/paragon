@@ -1,0 +1,73 @@
+.pitch-full-container{
+	/*background-color: yellow;*/
+	position: relative;
+	text-align: center;
+}
+
+.full-pitch-grid{
+	/*background-color: lightpink;*/
+	position: absolute;
+	width: 440px;
+	height: 683px;
+	top: 7px;
+	left: 10px;
+}
+
+.player-container{
+	position: absolute;
+	text-align: center;
+	width: 120px;
+}
+
+.player-number{
+	background-color: orange;
+	width: 20px;
+	padding-top: 2px;
+	height: 18px;
+	border-radius: 100%;
+	margin: 0 auto;
+	font-size: 10px;
+	font-weight: 700;
+
+	/*top & left to be added in the html*/
+	background-color: #1A3054;
+	color: white;
+}
+
+.player-name{
+	font-size: 12px;
+	font-weight: 700;
+}
+
+.player-details{
+	/*background-color: paleturquoise;*/
+	position: relative;
+	font-size: 9px;
+	padding-top: 3px;
+}
+
+.player-game-note{
+	width: 26px;
+	font-weight: 600;
+	border-radius: 3px;
+	font-size: 10px;
+	position: absolute;
+	left: 47px;
+	/*background-color to be added in the html*/
+	background-color: #B1D80E;
+}
+
+.player-game-goals{
+	width: 30px;
+	text-align: right;
+	margin-right: 5px;
+	position: absolute;
+	left: 10px;
+}
+
+
+.player-game-sub{
+	position: absolute;
+	text-align: left;
+	left: 80px;
+}

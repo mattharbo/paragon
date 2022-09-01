@@ -44,6 +44,7 @@ a{
 @import url('components/cards');
 @import url('components/buttons');
 @import url('components/navbar');
+@import url('components/pitch');
 
 /*— Layouts —*/
 @import url('layouts/fixtureshow');
