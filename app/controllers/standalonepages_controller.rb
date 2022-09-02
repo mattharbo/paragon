@@ -78,7 +78,7 @@ class StandalonepagesController < ApplicationController
   end
 
   def vipselections
-    @selections=Selection.last(50).reverse
+    @selections=Selection.last(150).reverse
   end
 
   def vipevents
