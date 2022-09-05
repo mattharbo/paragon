@@ -12,16 +12,23 @@ class FixturesController < ApplicationController
   def show
     @fixture_goals = Event.where(selection:Selection.where(fixture:Fixture.find(params[:id]))).order("created_at ASC")
 
-    # fixture_goals.each do |goal|
+    # --------------------------
+    # UNDER DEVELOPEMENT
+    
+    # Récupération des teams id home & away
+    hometeamid = Fixture.find(params[:id]).hometeam.id
+    awayteamid = Fixture.find(params[:id]).awayteam.id
 
-    #   if goal.selection.contract.team == @fixture.hometeam
+    # Récupération de toutes selections des starters de la fixture pour les deux teams
+    starters=Selection.where(fixture:params[:id]).where(starter: true)
 
-    #   elsif goal.selection.contract.team == @fixture.hometeam
-        
-    #   end
+    # Récupération de toutes selections des starters de la fixture pour la team away
+    substitutes=Selection.where(fixture:params[:id]).where(starter: false)
 
-    # end
 
+    # raise
+
+    # --------------------------
 
     fixtureselections=Selection.where(fixture:params[:id]).where(starter: true).order("selections.position_id ASC")
 
