@@ -14,6 +14,15 @@ class FixturesController < ApplicationController
 
     # --------------------------
     # UNDER DEVELOPEMENT
+
+    # Pour chaque joueur il faut mettre dans un hash exploitation par le front-end :
+    # - le numéro
+    # - le nom
+    # - la couleur de la note
+    # - la note
+    # - le nombre de but
+    # - la minute de remplacement
+    # - le numéro du joeur qui entre en jeu
     
     # Récupération des teams id home & away
     hometeamid = Fixture.find(params[:id]).hometeam.id

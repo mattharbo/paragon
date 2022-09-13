@@ -1,9 +1,9 @@
 desc "Retrieve Ligue 1 game with the API fixture ID"
 task retrieve_L1_fixture_details_by_id: :environment do
 
-	# OGCN vs. ASM (04.09) => 871525
+	# TFC vs. SdR (04.09) => 871539
 
-	soccerapicall_getfixturedetails(871525)
+	soccerapicall_getfixturedetails(871539)
 
 	# Loop but should be an array of 1 (and only) 1 item
 
