@@ -17,6 +17,7 @@
 <h2>All fixtures in DB</h2>
 
 <% @fixtures.each do |fixture| %>
+    [<%= link_to "destroy", fixture_path(fixture.id), method: :delete%>] 
     <%= fixture.id %>
     • <b> <%= fixture.competseason.competition.name %> Round <%= fixture.round %> </b> 
     <small>(<%= fixture.date %>)</small> |

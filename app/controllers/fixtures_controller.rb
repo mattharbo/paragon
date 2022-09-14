@@ -1,7 +1,7 @@
 class FixturesController < ApplicationController
 
   # To by-pass Devise authentication on some specific actions
-  skip_before_action :authenticate_user!, only: [:show]
+  skip_before_action :authenticate_user!, only: [:show, :destroy]
   before_action :set_fixture, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -47,6 +47,12 @@ class FixturesController < ApplicationController
     if !fixtureselections.empty?
       retrieve_players(fixtureselections,@homeselection,@awayselection)
     end
+  end
+
+  def destroy
+    fixtodestroy = Fixture.find(params[:id])
+    fixtodestroy.destroy
+    redirect_to vip_fixtures_path
   end
 
   private 
