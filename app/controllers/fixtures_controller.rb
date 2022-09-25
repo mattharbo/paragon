@@ -15,7 +15,7 @@ class FixturesController < ApplicationController
     # --------------------------
     # UNDER DEVELOPEMENT
 
-    # Pour chaque joueur il faut mettre dans un hash exploitation par le front-end :
+    # Pour chaque joueur il faut mettre dans un hash pour exploitation par le front-end :
     # - le numéro
     # - le nom
     # - la couleur de la note
@@ -31,9 +31,15 @@ class FixturesController < ApplicationController
     # Récupération de toutes selections des starters de la fixture pour les deux teams
     starters=Selection.where(fixture:params[:id]).where(starter: true)
 
-    # Récupération de toutes selections des starters de la fixture pour la team away
+    # Récupération de toutes selections des remplaçants de la fixture pour la team away
     substitutes=Selection.where(fixture:params[:id]).where(starter: false)
 
+    @one = retrieve_note_color(9.1)
+    @two = retrieve_note_color(8.1)
+    @three = retrieve_note_color(7.1)
+    @four = retrieve_note_color(6.6)
+    @five = retrieve_note_color(6.1)
+    @six = retrieve_note_color(5.4)
 
     # raise
 
@@ -79,6 +85,22 @@ class FixturesController < ApplicationController
         outputaway.store(indexaway,player)
       end
     
+    end
+  end
+
+  def retrieve_note_color(note)
+    if note >= 9
+      return "#00A19F"
+    elsif note >= 8.0 && note <= 8.9
+      return "#2FB700"
+    elsif note >= 7.0 && note <= 7.9
+      return "#B1D80E"
+    elsif note >= 6.5 && note <= 6.9
+      return "#FFB800"
+    elsif note >= 6.0 && note <= 6.4
+      return "#FF7100"
+    else note <= 5.9
+      return "#FF0004"
     end
   end
 
