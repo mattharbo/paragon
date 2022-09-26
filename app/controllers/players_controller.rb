@@ -48,6 +48,7 @@ class PlayersController < ApplicationController
       ST: {total: 0, top:320, left:225}
     }
 
+    # To refactor 😇
     @player_contracts.each do |player_contract|
 
       # 🚧🚧🚧🚧🚧 Competseason added manually!!!! 😳🚧🚧🚧🚧🚧
@@ -121,6 +122,16 @@ class PlayersController < ApplicationController
 
     @all_player_roles.each do |distinct_role|
       @distinct_role_tot+=distinct_role[1][:total]
+    end
+
+    @playerselections={}
+
+    @player_contracts.each do |contract|
+      @playerselections.store(contract,Array.new)
+      sellisting=Selection.where(contract:Contract.find(contract.id))
+      sellisting.each do |sel|
+        @playerselections.values[0] << sel
+      end
     end
 
   end
@@ -264,6 +275,22 @@ class PlayersController < ApplicationController
       return formation = theselection.fixture.homeformation
     else
       return formation = theselection.fixture.awayformation
+    end
+  end
+
+  def retrieve_note_color(note)
+    if note >= 9
+      return "#00A19F"
+    elsif note >= 8.0 && note <= 8.9
+      return "#2FB700"
+    elsif note >= 7.0 && note <= 7.9
+      return "#B1D80E"
+    elsif note >= 6.5 && note <= 6.9
+      return "#FFB800"
+    elsif note >= 6.0 && note <= 6.4
+      return "#FF7100"
+    else note <= 5.9
+      return "#FF0004"
     end
   end
 
