@@ -43,8 +43,8 @@
 			<%= selection.fixture.scorehome %> - <%= selection.fixture.scoreaway %> 
 			<%= selection.fixture.awayteam.shortname %>
 			</td>
-			<td style="width: 100px;text-align: right;">
-			<%= selection.starter? ? "" : "(from the bench)" %>
+			<td style="width: 120px;text-align: right;">
+			<%= selection.starter? ? "out @ " : "in @ " %>
 			<% if !selection.substitutiontime.nil? and selection.substitutiontime > 0 %>
 				<%= "🔄 #{selection.substitutiontime}'" %>
 			<% end %>
