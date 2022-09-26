@@ -128,7 +128,7 @@ class PlayersController < ApplicationController
 
     @player_contracts.each do |contract|
       @playerselections.store(contract,Array.new)
-      sellisting=Selection.where(contract:Contract.find(contract.id))
+      sellisting=Selection.where(contract:Contract.find(contract.id)).order(created_at: :desc)
       sellisting.each do |sel|
         @playerselections.values[0] << sel
       end

@@ -148,20 +148,24 @@
 
 	<% @playerselections.each do |chapter| %>
 
-		<b><%= chapter[0].team.name %></b> 
-		<%= !chapter[0].enddate.nil? ? "(#{chapter[0].enddate})" : "" %>
+		<b>With <%= chapter[0].team.name %></b> 
+		<%= !chapter[0].enddate.nil? ? "(end of contact #{chapter[0].enddate})" : "" %>
 
-		<ul>
+		<table>
 		<% chapter[1].each do |selection| %>
 
-			<li>
-				<%= selection.fixture.date %> | 
-				<%= selection.fixture.hometeam.shortname %> 
+			<tr style="height: 25px;">
+				<td style="width: 80px;"><%= selection.fixture.date %></td>
+				<td style="width: 100px;"><%= selection.fixture.hometeam.shortname %>
 				<%= selection.fixture.scorehome %> - <%= selection.fixture.scoreaway %> 
-				<%= selection.fixture.awayteam.shortname %> 
+				<%= selection.fixture.awayteam.shortname %>
+				</td>
+				<td style="width: 100px;text-align: right;">
 				<% if !selection.substitutiontime.nil? and selection.substitutiontime > 0 %>
 					<%= "🔄 #{selection.substitutiontime}" %>
 				<% end %>
+				</td>
+				<td style="width: 50px;text-align: center;">
 				<% if !selection.note.nil? %>
 					<span style="font-weight: 700; padding: 2px 5px; border-radius: 3px;background-color:lightgrey">
 						<%= selection.note %>
@@ -171,10 +175,11 @@
 						-
 					</span> 
 				<% end %>
-			</li>
+				</td>
+			</tr>
 
 		<% end %>
-		</ul>
+		</table>
 
 	<% end %>
 
