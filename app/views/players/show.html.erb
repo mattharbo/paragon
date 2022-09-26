@@ -45,8 +45,8 @@
 			</td>
 			<td style="width: 120px;text-align: right;">
 			<small>
-				<%= selection.starter? ? "▶️ out at " : "◀️ in at " %>
 				<% if !selection.substitutiontime.nil? and selection.substitutiontime > 0 %>
+					<%= selection.starter? ? "🔴 out at " : "🟢 in at " %>
 					<%= "#{selection.substitutiontime}'" %>
 				<% end %>
 			</small>
