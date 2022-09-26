@@ -159,7 +159,9 @@
 				<%= selection.fixture.hometeam.shortname %> 
 				<%= selection.fixture.scorehome %> - <%= selection.fixture.scoreaway %> 
 				<%= selection.fixture.awayteam.shortname %> 
-				<%= selection.substitutiontime > 0 ? "🔄 #{selection.substitutiontime}" : "" %>
+				<% if !selection.substitutiontime.nil? and selection.substitutiontime > 0 %>
+					<%= "🔄 #{selection.substitutiontime}" %>
+				<% end %>
 				<% if !selection.note.nil? %>
 					<span style="font-weight: 700; padding: 2px 5px; border-radius: 3px;background-color:lightgrey">
 						<%= selection.note %>
