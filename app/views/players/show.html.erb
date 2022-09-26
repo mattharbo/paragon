@@ -44,10 +44,12 @@
 			<%= selection.fixture.awayteam.shortname %>
 			</td>
 			<td style="width: 120px;text-align: right;">
-			<%= selection.starter? ? "out @ " : "in @ " %>
-			<% if !selection.substitutiontime.nil? and selection.substitutiontime > 0 %>
-				<%= "🔄 #{selection.substitutiontime}'" %>
-			<% end %>
+			<small>
+				<%= selection.starter? ? "▶️ out at " : "◀️ in at " %>
+				<% if !selection.substitutiontime.nil? and selection.substitutiontime > 0 %>
+					<%= "#{selection.substitutiontime}'" %>
+				<% end %>
+			</small>
 			</td>
 			<td style="width: 50px;text-align: center;">
 			<% if selection.note > 0 %>
