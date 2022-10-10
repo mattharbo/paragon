@@ -38,10 +38,11 @@
 
 	<% @playerselections.each do |selection| %>
 		<tr style="height: 25px;">
-			<td style="width: 80px;"><%= selection.fixture.date %></td>
-			<td style="width: 100px;"><%= selection.fixture.hometeam.shortname %>
-			<%= selection.fixture.scorehome %> - <%= selection.fixture.scoreaway %> 
-			<%= selection.fixture.awayteam.shortname %>
+			<td style="width: 80px;text-align: right;"><b><%= selection.fixture.date %></b></td>
+			<td style="width: 100px;">
+				<%= selection.fixture.hometeam.shortname %>
+				<%= selection.fixture.scorehome %> - <%= selection.fixture.scoreaway %> 
+				<%= selection.fixture.awayteam.shortname %>
 			</td>
 			<td style="width: 120px;text-align: right;">
 			<small>
