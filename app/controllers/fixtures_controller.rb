@@ -215,6 +215,18 @@ class FixturesController < ApplicationController
                 '4:3': {top:230, left:20},
                 '5:1': {top:280, left:160},
                 },
+      '4-3-1-2': {'1:1': {top:10, left:160},
+                  '2:1': {top:95, left:320},
+                  '2:2': {top:95, left:212},
+                  '2:3': {top:95, left:106},
+                  '2:4': {top:95, left:0},
+                  '3:1': {top:170, left:280},
+                  '3:2': {top:160, left:160},
+                  '3:3': {top:170, left:40},
+                  '4:1': {top:240, left:160},
+                  '5:1': {top:270, left:240},
+                  '5:2': {top:270, left:80},
+                  },
       '4-3-3': {'1:1': {top:10, left:160},
                 '2:1': {top:95, left:320},
                 '2:2': {top:95, left:212},
@@ -350,6 +362,18 @@ class FixturesController < ApplicationController
                 '4:4': {top:200, left:0},
                 '5:1': {top:280, left:160},
                 },
+      '4-3-1-2': {'1:1': {top:10, left:160},
+                  '2:1': {top:95, left:320},
+                  '2:2': {top:95, left:212},
+                  '2:3': {top:95, left:106},
+                  '2:4': {top:95, left:0},
+                  '3:1': {top:170, left:280},
+                  '3:2': {top:160, left:160},
+                  '3:3': {top:170, left:40},
+                  '4:1': {top:240, left:160},
+                  '5:1': {top:270, left:240},
+                  '5:2': {top:270, left:80},
+                  },
       '4-3-3': {'1:1': {top:10, left:160},
                 '2:1': {top:95, left:320},
                 '2:2': {top:95, left:212},
@@ -400,8 +424,6 @@ class FixturesController < ApplicationController
                 },
     }
 
-    # pour appele des éléments de la matrice
-    # par exemple
     # toppitchcoordpositionformationmatrix[:'3-4-3'][:'1:1'][:top]
 
     if side == "home"
