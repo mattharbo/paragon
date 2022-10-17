@@ -11,18 +11,6 @@ class FixturesController < ApplicationController
 
   def show
     @fixture_goals = Event.where(selection:Selection.where(fixture:Fixture.find(params[:id]))).order("created_at ASC")
-
-    # --------------------------
-    # UNDER DEVELOPEMENT
-
-    # Pour chaque joueur il faut mettre dans un hash pour exploitation par le front-end :
-    # - ✅ le numéro (selection.contract.jerseynumber)
-    # - ✅ le nom (selection.contract.player.name)
-    # - ✅ la couleur de la note 
-    # - ✅ la note (selection.note)
-    # - ✅ le nombre de but
-    # - ✅ la minute de remplacement (selection.substitutiontime)
-    # - ✅ le numéro du joueur qui entre en jeu (selection.substitute_id.contract.name)
     
     # Récupération des teams id home & away
     hometeamid = Fixture.find(params[:id]).hometeam.id
@@ -65,9 +53,6 @@ class FixturesController < ApplicationController
       
       $i += 1 
     end
-
-
-    # --------------------------
 
     fixtureselections=Selection.where(fixture:params[:id]).where(starter: true).order("selections.position_id ASC")
 

@@ -90,6 +90,49 @@
 
     <div class="fixture-central-panel">
 
+        <!-- -------------------------- -->
+        <!-- -------------------------- -->
+        <!-- -------------------------- -->
+
+        <div class="pitch-full-container">
+
+            <div class="full-pitch-grid">
+
+                <div class="formationonpitch homeformation">
+                    <%= @fixture.homeformation %>
+                </div>
+
+                <div class="formationonpitch awayformation">
+                    <%= @fixture.awayformation %>
+                </div>
+
+                <% @allstartingplayers.each do |p| %>
+                    <div class="player-container" style="top:<%= p[1][:pitchcoord][0] %>px;left:<%= p[1][:pitchcoord][1] %>px;">
+                        <div class="player-number"><%= p[1][:number] %></div>
+                        <div class="player-name"><%= p[1][:name] %></div>
+                        <div class="player-details">
+                            <% if p[1][:goals] > 0 %>
+                                <div class="player-game-goals">⚽️ <%= p[1][:goals] %></div>
+                            <% end %>
+                            <div class="player-game-note" style="background-color:<%= p[1][:notecolor] %>"><%= p[1][:note] %></div>
+                            <% if !p[1][:subtime].nil? %>
+                                <div class="player-game-sub">🔁 <%= p[1][:subtime] %>'</div>
+                            <% end %>
+                            
+                        </div>
+                    </div>
+                <% end %>
+
+            </div>
+            
+            <%= svg 'full-pitch' %>
+
+        </div>
+
+        <!-- -------------------------- -->
+        <!-- -------------------------- -->
+        <!-- -------------------------- -->
+
         <div class="card-goal-details">
 
             <div class="card-goal-header">
@@ -159,47 +202,6 @@
         <div class="footer-logo-container">
             <%= svg 'momentum-footer-logo'%>
         </div>
-
-        <!-- For test -->
-
-        <div class="pitch-full-container">
-
-            <div class="full-pitch-grid">
-
-                <div class="formationonpitch homeformation">
-                    <%= @fixture.homeformation %>
-                </div>
-
-                <div class="formationonpitch awayformation">
-                    <%= @fixture.awayformation %>
-                </div>
-
-                <% @allstartingplayers.each do |p| %>
-
-        <div class="player-container" style="top:<%= p[1][:pitchcoord][0] %>px;left:<%= p[1][:pitchcoord][1] %>px;">
-            <div class="player-number"><%= p[1][:number] %></div>
-            <div class="player-name"><%= p[1][:name] %></div>
-            <div class="player-details">
-                <% if p[1][:goals] > 0 %>
-                    <div class="player-game-goals">⚽️ <%= p[1][:goals] %></div>
-                <% end %>
-                <div class="player-game-note" style="background-color:<%= p[1][:notecolor] %>"><%= p[1][:note] %></div>
-                <% if !p[1][:subtime].nil? %>
-                    <div class="player-game-sub">🔁 <%= p[1][:subtime] %>'</div>
-                <% end %>
-                
-            </div>
-        </div>
-    
-
-    <% end %>
-
-            </div>
-            
-            <%= svg 'full-pitch' %>
-
-        </div>
-
 
         <!-- above this line to be deleted -->
     </div>
@@ -304,17 +306,4 @@
 
 </center>
 
-<br><br>
-
-<% @starters.each do |s| %>
-    <%= s.contract.player.name %> - 
-    team: <%= s.contract.team.id %> - 
-    out at: <%= s.substitutiontime %> - 
-    note: <%= s.note %> - 
-    position: <%= s.grid_pos %>
-    <br>
-<%end%>
-
-<br>
-
-<%= @allstartingplayers %>
+<!-- <%= @allstartingplayers %> -->
