@@ -19,6 +19,22 @@
 	width: 120px;
 }
 
+.formationonpitch{
+	position: absolute;
+	text-align: left;
+	font-weight: 700;
+	left: 10px;
+	color: var(--dark-green);
+}
+
+.homeformation{
+	top: 5px;
+}
+
+.awayformation{
+	bottom: 5px;
+}
+
 .player-number{
 	background-color: orange;
 	width: 20px;
@@ -30,7 +46,7 @@
 	font-weight: 700;
 
 	/*top & left to be added in the html*/
-	background-color: #1A3054;
+	background-color: var(--pink);
 	color: white;
 }
 
@@ -48,13 +64,11 @@
 
 .player-game-note{
 	width: 26px;
-	font-weight: 600;
+	font-weight: 700;
 	border-radius: 3px;
 	font-size: 10px;
 	position: absolute;
 	left: 47px;
-	/*background-color to be added in the html*/
-	background-color: #B1D80E;
 }
 
 .player-game-goals{

@@ -16,32 +16,56 @@ class FixturesController < ApplicationController
     # UNDER DEVELOPEMENT
 
     # Pour chaque joueur il faut mettre dans un hash pour exploitation par le front-end :
-    # - le numéro
-    # - le nom
-    # - la couleur de la note
-    # - la note
-    # - le nombre de but
-    # - la minute de remplacement
-    # - le numéro du joeur qui entre en jeu
+    # - ✅ le numéro (selection.contract.jerseynumber)
+    # - ✅ le nom (selection.contract.player.name)
+    # - ✅ la couleur de la note 
+    # - ✅ la note (selection.note)
+    # - ✅ le nombre de but
+    # - ✅ la minute de remplacement (selection.substitutiontime)
+    # - ✅ le numéro du joueur qui entre en jeu (selection.substitute_id.contract.name)
     
     # Récupération des teams id home & away
     hometeamid = Fixture.find(params[:id]).hometeam.id
     awayteamid = Fixture.find(params[:id]).awayteam.id
 
     # Récupération de toutes selections des starters de la fixture pour les deux teams
-    starters=Selection.where(fixture:params[:id]).where(starter: true)
+    @starters=Selection.where(fixture:params[:id]).where(starter: true)
 
-    # Récupération de toutes selections des remplaçants de la fixture pour la team away
+    # Récupération de toutes selections des remplaçants de la fixture pour les deux teams
     substitutes=Selection.where(fixture:params[:id]).where(starter: false)
 
-    @one = retrieve_note_color(9.1)
-    @two = retrieve_note_color(8.1)
-    @three = retrieve_note_color(7.1)
-    @four = retrieve_note_color(6.6)
-    @five = retrieve_note_color(6.1)
-    @six = retrieve_note_color(5.4)
+    @allstartingplayers = Hash.new { |hash, key| hash[key] = {} }
+    
+    $i = 0
+    while $i < @starters.count do
+      
+      @allstartingplayers[$i][:sel] = @starters[$i].id
 
-    # raise
+      case @starters[$i].contract.team.id
+      when hometeamid
+        @allstartingplayers[$i][:team] = "home"
+      when awayteamid
+        @allstartingplayers[$i][:team] = "away"
+      end
+
+      @allstartingplayers[$i][:pitchcoord] = get_fullpitch_coords(@allstartingplayers[$i][:team],@starters[$i].grid_pos)
+
+      # To be deleled once the function is okay
+      @allstartingplayers[$i][:position] = @starters[$i].grid_pos
+
+      @allstartingplayers[$i][:number] = @starters[$i].contract.jerseynumber
+      @allstartingplayers[$i][:name] = @starters[$i].contract.player.name
+      @allstartingplayers[$i][:note] = @starters[$i].note
+      @allstartingplayers[$i][:notecolor] = retrieve_note_color(@starters[$i].note)
+      @allstartingplayers[$i][:goals] = Event.where(selection:@starters[$i]).count
+      if !@starters[$i].substitute.nil? 
+        @allstartingplayers[$i][:subtime] = @starters[$i].substitutiontime
+        @allstartingplayers[$i][:playerin] = @starters[$i].substitute.player.name
+      end
+      
+      $i += 1 
+    end
+
 
     # --------------------------
 
@@ -102,6 +126,296 @@ class FixturesController < ApplicationController
     else note <= 5.9
       return "#FF0004"
     end
+  end
+
+  def get_fullpitch_coords(side,playergridposition)
+    
+    homepitchcoordpositionformationmatrix = {
+      '3-2-4-1': {'1:1': {top:10, left:160},
+                '2:1': {top:95, left:300},
+                '2:2': {top:95, left:160},
+                '2:3': {top:95, left:20},
+                '3:1': {top:150, left:90},
+                '3:2': {top:150, left:230},
+                '4:1': {top:220, left:320},
+                '4:2': {top:230, left:220},
+                '4:3': {top:230, left:96},
+                '4:4': {top:220, left:0},
+                '5:1': {top:280, left:160},
+                },
+      '3-4-3': {'1:1': {top:10, left:160},
+                '2:1': {top:95, left:300},
+                '2:2': {top:95, left:160},
+                '2:3': {top:95, left:20},
+                '3:1': {top:185, left:320},
+                '3:2': {top:185, left:212},
+                '3:3': {top:185, left:106},
+                '3:4': {top:185, left:0},
+                '4:1': {top:280, left:280},
+                '4:2': {top:270, left:160},
+                '4:3': {top:280, left:40}
+                },
+      '3-4-1-2': {'1:1': {top:10, left:160},
+                '2:1': {top:95, left:300},
+                '2:2': {top:95, left:160},
+                '2:3': {top:95, left:20},
+                '3:1': {top:175, left:320},
+                '3:2': {top:175, left:212},
+                '3:3': {top:175, left:106},
+                '3:4': {top:175, left:0},
+                '4:1': {top:240, left:160},
+                '5:1': {top:280, left:250},
+                '5:2': {top:280, left:270},
+                },
+      '3-4-2-1': {'1:1': {top:10, left:160},
+                '2:1': {top:95, left:300},
+                '2:2': {top:95, left:160},
+                '2:3': {top:95, left:20},
+                '3:1': {top:175, left:320},
+                '3:2': {top:175, left:212},
+                '3:3': {top:175, left:106},
+                '3:4': {top:175, left:0},
+                '4:1': {top:250, left:60},
+                '4:2': {top:250, left:260},
+                '5:1': {top:280, left:160},
+                },
+      '3-5-2': {'1:1': {top:10, left:160},
+                '2:1': {top:95, left:300},
+                '2:2': {top:95, left:160},
+                '2:3': {top:95, left:20},
+                '3:1': {top:190, left:320},
+                '3:2': {top:180, left:240},
+                '3:3': {top:180, left:160},
+                '3:4': {top:180, left:80},
+                '3:5': {top:190, left:0},
+                '4:1': {top:270, left:220},
+                '4:2': {top:270, left:100}
+                },
+      '4-1-4-1': {'1:1': {top:10, left:160},
+                '2:1': {top:95, left:300},
+                '2:2': {top:95, left:160},
+                '2:3': {top:95, left:20},
+                '2:4': {top:95, left:0},
+                '3:1': {top:160, left:160},
+                '4:1': {top:200, left:320},
+                '4:2': {top:200, left:220},
+                '4:3': {top:200, left:96},
+                '4:4': {top:200, left:0},
+                '5:1': {top:280, left:160},
+                },
+      '4-2-3-1': {'1:1': {top:10, left:160},
+                '2:1': {top:95, left:320},
+                '2:2': {top:95, left:212},
+                '2:3': {top:95, left:106},
+                '2:4': {top:95, left:0},
+                '3:1': {top:170, left:90},
+                '3:2': {top:170, left:230},
+                '4:1': {top:230, left:300},
+                '4:2': {top:210, left:160},
+                '4:3': {top:230, left:20},
+                '5:1': {top:280, left:160},
+                },
+      '4-3-3': {'1:1': {top:10, left:160},
+                '2:1': {top:95, left:320},
+                '2:2': {top:95, left:212},
+                '2:3': {top:95, left:106},
+                '2:4': {top:95, left:0},
+                '3:1': {top:190, left:280},
+                '3:2': {top:180, left:160},
+                '3:3': {top:190, left:40},
+                '4:1': {top:280, left:280},
+                '4:2': {top:270, left:160},
+                '4:3': {top:280, left:40},
+                },
+      '4-4-1-1': {'1:1': {top:10, left:160},
+                '2:1': {top:95, left:320},
+                '2:2': {top:95, left:212},
+                '2:3': {top:95, left:106},
+                '2:4': {top:95, left:0},
+                '3:1': {top:185, left:320},
+                '3:2': {top:175, left:232},
+                '3:3': {top:175, left:86},
+                '3:4': {top:185, left:0},
+                '4:1': {top:210, left:160},
+                '5:1': {top:280, left:160},
+                },
+      '4-4-2': {'1:1': {top:10, left:160},
+                '2:1': {top:95, left:320},
+                '2:2': {top:95, left:212},
+                '2:3': {top:95, left:106},
+                '2:4': {top:95, left:0},
+                '3:1': {top:185, left:320},
+                '3:2': {top:185, left:212},
+                '3:3': {top:185, left:106},
+                '3:4': {top:185, left:0},
+                '4:1': {top:270, left:220},
+                '4:2': {top:270, left:100},
+                },
+      '3-5-2': {'1:1': {top:10, left:160},
+                '2:1': {top:105, left:320},
+                '2:2': {top:95, left:240},
+                '2:3': {top:95, left:160},
+                '2:4': {top:95, left:80},
+                '2:5': {top:105, left:0},
+                '3:1': {top:190, left:280},
+                '3:2': {top:180, left:160},
+                '3:3': {top:190, left:40},
+                '4:1': {top:270, left:220},
+                '4:2': {top:270, left:100}
+                },
+    }
+
+    awaypitchcoordpositionformationmatrix = {
+      '4-2-3-1': {'1:1': {top:617, left:160},
+                '2:1': {top:542, left:320},
+                '2:2': {top:542, left:212},
+                '2:3': {top:542, left:106},
+                '2:4': {top:542, left:0},
+                '3:1': {top:467, left:90},
+                '3:2': {top:467, left:230},
+                '4:1': {top:387, left:300},
+                '4:2': {top:427, left:160},
+                '4:3': {top:387, left:20},
+                '5:1': {top:357, left:160},
+                },
+      '3-2-4-1': {'1:1': {top:10, left:160},
+                '2:1': {top:95, left:300},
+                '2:2': {top:95, left:160},
+                '2:3': {top:95, left:20},
+                '3:1': {top:150, left:90},
+                '3:2': {top:150, left:230},
+                '4:1': {top:220, left:320},
+                '4:2': {top:230, left:220},
+                '4:3': {top:230, left:96},
+                '4:4': {top:220, left:0},
+                '5:1': {top:280, left:160},
+                },
+      '3-4-3': {'1:1': {top:10, left:160},
+                '2:1': {top:95, left:300},
+                '2:2': {top:95, left:160},
+                '2:3': {top:95, left:20},
+                '3:1': {top:185, left:320},
+                '3:2': {top:185, left:212},
+                '3:3': {top:185, left:106},
+                '3:4': {top:185, left:0},
+                '4:1': {top:280, left:280},
+                '4:2': {top:270, left:160},
+                '4:3': {top:280, left:40}
+                },
+      '3-4-1-2': {'1:1': {top:10, left:160},
+                '2:1': {top:95, left:300},
+                '2:2': {top:95, left:160},
+                '2:3': {top:95, left:20},
+                '3:1': {top:175, left:320},
+                '3:2': {top:175, left:212},
+                '3:3': {top:175, left:106},
+                '3:4': {top:175, left:0},
+                '4:1': {top:240, left:160},
+                '5:1': {top:280, left:250},
+                '5:2': {top:280, left:270},
+                },
+      '3-4-2-1': {'1:1': {top:10, left:160},
+                '2:1': {top:95, left:300},
+                '2:2': {top:95, left:160},
+                '2:3': {top:95, left:20},
+                '3:1': {top:175, left:320},
+                '3:2': {top:175, left:212},
+                '3:3': {top:175, left:106},
+                '3:4': {top:175, left:0},
+                '4:1': {top:250, left:60},
+                '4:2': {top:250, left:260},
+                '5:1': {top:280, left:160},
+                },
+      '3-5-2': {'1:1': {top:10, left:160},
+                '2:1': {top:95, left:300},
+                '2:2': {top:95, left:160},
+                '2:3': {top:95, left:20},
+                '3:1': {top:190, left:320},
+                '3:2': {top:180, left:240},
+                '3:3': {top:180, left:160},
+                '3:4': {top:180, left:80},
+                '3:5': {top:190, left:0},
+                '4:1': {top:270, left:220},
+                '4:2': {top:270, left:100}
+                },
+      '4-1-4-1': {'1:1': {top:10, left:160},
+                '2:1': {top:95, left:300},
+                '2:2': {top:95, left:160},
+                '2:3': {top:95, left:20},
+                '2:4': {top:95, left:0},
+                '3:1': {top:160, left:160},
+                '4:1': {top:200, left:320},
+                '4:2': {top:200, left:220},
+                '4:3': {top:200, left:96},
+                '4:4': {top:200, left:0},
+                '5:1': {top:280, left:160},
+                },
+      '4-3-3': {'1:1': {top:10, left:160},
+                '2:1': {top:95, left:320},
+                '2:2': {top:95, left:212},
+                '2:3': {top:95, left:106},
+                '2:4': {top:95, left:0},
+                '3:1': {top:190, left:280},
+                '3:2': {top:180, left:160},
+                '3:3': {top:190, left:40},
+                '4:1': {top:280, left:280},
+                '4:2': {top:270, left:160},
+                '4:3': {top:280, left:40},
+                },
+      '4-4-1-1': {'1:1': {top:10, left:160},
+                '2:1': {top:95, left:320},
+                '2:2': {top:95, left:212},
+                '2:3': {top:95, left:106},
+                '2:4': {top:95, left:0},
+                '3:1': {top:185, left:320},
+                '3:2': {top:175, left:232},
+                '3:3': {top:175, left:86},
+                '3:4': {top:185, left:0},
+                '4:1': {top:210, left:160},
+                '5:1': {top:280, left:160},
+                },
+      '4-4-2': {'1:1': {top:10, left:160},
+                '2:1': {top:95, left:320},
+                '2:2': {top:95, left:212},
+                '2:3': {top:95, left:106},
+                '2:4': {top:95, left:0},
+                '3:1': {top:185, left:320},
+                '3:2': {top:185, left:212},
+                '3:3': {top:185, left:106},
+                '3:4': {top:185, left:0},
+                '4:1': {top:270, left:220},
+                '4:2': {top:270, left:100},
+                },
+      '3-5-2': {'1:1': {top:10, left:160},
+                '2:1': {top:105, left:320},
+                '2:2': {top:95, left:240},
+                '2:3': {top:95, left:160},
+                '2:4': {top:95, left:80},
+                '2:5': {top:105, left:0},
+                '3:1': {top:190, left:280},
+                '3:2': {top:180, left:160},
+                '3:3': {top:190, left:40},
+                '4:1': {top:270, left:220},
+                '4:2': {top:270, left:100}
+                },
+    }
+
+    # pour appele des éléments de la matrice
+    # par exemple
+    # toppitchcoordpositionformationmatrix[:'3-4-3'][:'1:1'][:top]
+
+    if side == "home"
+      targetteamformation = @fixture.homeformation
+      topcoord = homepitchcoordpositionformationmatrix[targetteamformation.to_sym][playergridposition.to_sym][:top]
+      leftcoord = homepitchcoordpositionformationmatrix[targetteamformation.to_sym][playergridposition.to_sym][:left]
+    elsif side == "away"
+      targetteamformation = @fixture.awayformation
+      topcoord = awaypitchcoordpositionformationmatrix[targetteamformation.to_sym][playergridposition.to_sym][:top]
+      leftcoord = awaypitchcoordpositionformationmatrix[targetteamformation.to_sym][playergridposition.to_sym][:left]
+    end
+
+    return topcoord, leftcoord
+
   end
 
 end
