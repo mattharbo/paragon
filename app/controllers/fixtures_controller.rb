@@ -56,7 +56,7 @@ class FixturesController < ApplicationController
       @allstartingplayers[$i][:number] = @starters[$i].contract.jerseynumber
       @allstartingplayers[$i][:name] = @starters[$i].contract.player.name
       @allstartingplayers[$i][:note] = @starters[$i].note
-      # @allstartingplayers[$i][:notecolor] = retrieve_note_color(@starters[$i].note)
+      @allstartingplayers[$i][:notecolor] = retrieve_note_color(@starters[$i].note)
       @allstartingplayers[$i][:goals] = Event.where(selection:@starters[$i]).count
       if !@starters[$i].substitute.nil? 
         @allstartingplayers[$i][:subtime] = @starters[$i].substitutiontime
