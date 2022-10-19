@@ -48,7 +48,7 @@ class FixturesController < ApplicationController
       @allstartingplayers[$i][:goals] = Event.where(selection:@starters[$i]).count
       if !@starters[$i].substitute.nil? 
         @allstartingplayers[$i][:subtime] = @starters[$i].substitutiontime
-        @allstartingplayers[$i][:playerin] = @starters[$i].substitute.player.name
+        @allstartingplayers[$i][:playerin] = @starters[$i].substitute.jerseynumber
       end
       
       $i += 1 

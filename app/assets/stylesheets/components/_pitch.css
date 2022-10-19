@@ -17,6 +17,8 @@
 	position: absolute;
 	text-align: center;
 	width: 120px;
+
+	/*background-color: yellow;*/
 }
 
 .formationonpitch{
@@ -35,19 +37,24 @@
 	bottom: 5px;
 }
 
+.player-jersey-line{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
 .player-number{
-	background-color: orange;
+	/*background-color: orange;*/
 	width: 20px;
 	padding-top: 2px;
 	height: 18px;
 	border-radius: 100%;
-	margin: 0 auto;
 	font-size: 10px;
 	font-weight: 700;
 
 	/*top & left to be added in the html*/
-	background-color: var(--pink);
-	color: white;
+	background-color: var(--medium-gray);
+	color: black;
 }
 
 .player-name{
@@ -79,9 +86,14 @@
 	left: 10px;
 }
 
-
 .player-game-sub{
-	position: absolute;
-	text-align: left;
-	left: 80px;
+	display: flex;
+	flex-direction: column;
+	margin: 0 4px;
+	font-size: 8px;
+}
+
+.player-in{
+	background-color: var(--light-plus-gray) !important;
+	color: #cccccc;
 }

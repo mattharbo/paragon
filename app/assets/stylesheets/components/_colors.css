@@ -1,5 +1,6 @@
 :root {
   --light-gray: #f7f7f7;
+  --light-plus-gray: #EAEAEA; /*only used in sub pitch badge*/
   --medium-gray: #d7d7d7;
   --gray: #737577;
   --white: #ffffff;
