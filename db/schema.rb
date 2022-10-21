@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_08_084635) do
+ActiveRecord::Schema.define(version: 2022_10_20_124141) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,21 @@ ActiveRecord::Schema.define(version: 2022_08_08_084635) do
     t.index ["awayteam_id"], name: "index_fixtures_on_awayteam_id"
     t.index ["competseason_id"], name: "index_fixtures_on_competseason_id"
     t.index ["hometeam_id"], name: "index_fixtures_on_hometeam_id"
+  end
+
+  create_table "kits", force: :cascade do |t|
+    t.bigint "team_id", null: false
+    t.bigint "season_id", null: false
+    t.string "home_primary_color"
+    t.string "home_secondary_color"
+    t.string "away_primary_color"
+    t.string "away_secondary_color"
+    t.string "third_primary_color"
+    t.string "third_secondary_color"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["season_id"], name: "index_kits_on_season_id"
+    t.index ["team_id"], name: "index_kits_on_team_id"
   end
 
   create_table "players", force: :cascade do |t|
@@ -146,6 +161,8 @@ ActiveRecord::Schema.define(version: 2022_08_08_084635) do
   add_foreign_key "fixtures", "competseasons"
   add_foreign_key "fixtures", "teams", column: "awayteam_id"
   add_foreign_key "fixtures", "teams", column: "hometeam_id"
+  add_foreign_key "kits", "seasons"
+  add_foreign_key "kits", "teams"
   add_foreign_key "selections", "contracts"
   add_foreign_key "selections", "fixtures"
   add_foreign_key "selections", "players", column: "substitute_id"

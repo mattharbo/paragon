@@ -1,0 +1,39 @@
+
+
+<h2><%= @kit.team.name %> <%= @kit.season.year %> kits:</h2>
+
+<%= form_for @kit do | p | %>
+
+    <b><%= p.label :home_primary_color, "Home primary color"%>: </b>
+    <%= p.text_field :home_primary_color %>
+
+    <br><br>
+
+    <b><%= p.label :home_secondary_color, "Home secondary color"%>: </b>
+    <%= p.text_field :home_secondary_color %>
+
+    <br><br>
+
+    <b><%= p.label :away_primary_color, "Away primary color"%>: </b>
+    <%= p.text_field :away_primary_color %>
+
+    <br><br>
+
+    <b><%= p.label :away_secondary_color, "Away secondary color"%>: </b>
+    <%= p.text_field :away_secondary_color %>
+
+    <br><br>
+
+    <b><%= p.label :third_primary_color, "Third primary color"%>: </b>
+    <%= p.text_field :third_primary_color %>
+
+    <br><br>
+
+    <b><%= p.label :third_secondary_color, "Third secondary color"%>: </b>
+    <%= p.text_field :third_secondary_color %>
+
+    <br><br>
+
+	<%= p.submit "Update kit" %>
+
+<% end %>

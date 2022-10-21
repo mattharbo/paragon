@@ -1,0 +1,41 @@
+<div class="admin-main-container">
+
+
+    <%= render 'shared/vipnavbar'%>
+
+    <div class="admin-right-frame">
+        
+        <%= render 'shared/viprightframeheader'%>
+
+        <div class="admin-right-frame-content">
+
+            <h2>All kits in DB</h2>
+
+            <table>
+                            
+                <% @kits.each do |kit| %>
+
+                    <tr>
+                        <td>[<%= link_to "edit", edit_kit_path(kit.id)%>]</td>
+                        <td><%= kit.id %> • </td>
+                        <td style="width: 150px;"><b><%= kit.team.name %></b></td>
+                        <td style="width: 80px;">(<%= kit.season.year %>)</td>
+                        <td><b>Home</b></td>
+                        <td style="border: 1px solid #e4e4e4;width:20px;background-color: <%= kit.home_primary_color %>;"></td>
+                        <td style="border: 1px solid #e4e4e4;width:20px;background-color: <%= kit.home_secondary_color %>;"></td>
+                        <td><b> • Away</b></td>
+                        <td style="border: 1px solid #e4e4e4;width:20px;background-color: <%= kit.away_primary_color %>;"></td>
+                        <td style="border: 1px solid #e4e4e4;width:20px;background-color: <%= kit.away_secondary_color %>;"></td>
+                        <td><b> • Third</b></td>
+                        <td style="border: 1px solid #e4e4e4;width:20px;background-color: <%= kit.third_primary_color %>;"></td>
+                        <td style="border: 1px solid #e4e4e4;width:20px;background-color: <%= kit.third_secondary_color %>;"></td>
+                    </tr>
+
+                <% end %>
+
+            </table>
+
+        </div>
+    </div>
+
+</div>

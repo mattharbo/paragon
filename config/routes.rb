@@ -20,11 +20,13 @@ Rails.application.routes.draw do
   get 'vip/events' => 'standalonepages#vipevents'
   get 'vip/positions' => 'standalonepages#vippositions'
   get 'vip/eventtypes' => 'standalonepages#vipeventtypes'
+  get 'vip/kits' => 'standalonepages#vipkits'
 
   resources :teams, only: [:index, :show, :edit, :update, :destroy]
   resources :fixtures, only: [:show, :destroy]
   resources :players, only: [:show, :edit, :update, :destroy]
   resources :selections, only: [:edit, :update]
+  resources :kits, only: [:edit, :update]
 
   resources :events do
     get 'events' => 'events#index'
