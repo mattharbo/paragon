@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   get 'vip/kits' => 'standalonepages#vipkits'
 
   resources :teams, only: [:index, :show, :edit, :update, :destroy]
-  resources :fixtures, only: [:show, :destroy]
+  resources :fixtures, only: [:show, :destroy, :update, :edit]
   resources :players, only: [:show, :edit, :update, :destroy]
   resources :selections, only: [:edit, :update]
   resources :kits, only: [:edit, :update]

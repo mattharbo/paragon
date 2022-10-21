@@ -1,0 +1,54 @@
+<h2>
+  <%= @fixture.hometeam.name %>
+  <%= @fixture.scorehome %> - <%= @fixture.scoreaway %>
+  <%= @fixture.awayteam.name %>
+</h2>
+
+<b>Date:</b> <%= @fixture.date %>
+<br>
+<b>Competition:</b> <%= @fixture.competseason.competition.name %> (<%= @fixture.competseason.season.year %>)
+<br>
+<b>Round:</b> <%= @fixture.round %>
+<br><br>
+
+<%= form_for @fixture do | t | %>
+
+  <b><%= t.label :homeformation, "Home formation"%>: </b>
+  <%= t.text_field :homeformation%>
+
+  <br><br>
+
+  <b><%= t.label :awayformation, "Away formation"%>: </b>
+  <%= t.text_field :awayformation%>
+
+  <br><br>
+    
+  <b><%= t.label :homekit, @fixture.hometeam.name+" kit" %>: </b>
+  <%= t.select :homekit, options_for_select([['Home', 'home'], ['Away', 'away'], ['Third', 'third']])%>
+
+  <br><br>
+
+  <div style="display: flex;flex-direction: row;font-weight: 600;">
+    <div style="margin-right: 10px;border-radius: 5px; padding: 0 6px;background-color:<%=@homekitoptions.home_primary_color%>; color:<%=@homekitoptions.home_secondary_color%>">Home</div>
+    <div style="margin-right: 10px;border-radius: 5px; padding: 0 6px;background-color:<%=@homekitoptions.away_primary_color%>; color:<%=@homekitoptions.away_secondary_color%>">Away</div>
+    <div style="margin-right: 10px;border-radius: 5px; padding: 0 6px;background-color:<%=@homekitoptions.third_primary_color%>; color:<%=@homekitoptions.third_secondary_color%>">Third</div>
+  </div>
+
+  <br>
+
+  <b><%= t.label :awaykit, @fixture.awayteam.name+" kit" %>: </b>
+  <%= t.select :awaykit, options_for_select([['Home', 'home'], ['Away', 'away'], ['Third', 'third']])%>
+
+  <br><br>
+
+  <div style="display: flex;flex-direction: row;font-weight: 600;">
+    <div style="margin-right: 10px;border-radius: 5px; padding: 0 6px;background-color:<%=@awaykitoptions.home_primary_color%>; color:<%=@awaykitoptions.home_secondary_color%>">Home</div>
+    <div style="margin-right: 10px;border-radius: 5px; padding: 0 6px;background-color:<%=@awaykitoptions.away_primary_color%>; color:<%=@awaykitoptions.away_secondary_color%>">Away</div>
+    <div style="margin-right: 10px;border-radius: 5px; padding: 0 6px;background-color:<%=@awaykitoptions.third_primary_color%>; color:<%=@awaykitoptions.third_secondary_color%>">Third</div>
+  </div>
+
+  <br>
+
+  <%= t.submit "Update fixture" %>
+
+<% end %>

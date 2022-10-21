@@ -64,6 +64,16 @@ class FixturesController < ApplicationController
     end
   end
 
+  def edit
+    @homekitoptions=Kit.where(team:Team.find(@fixture.hometeam.id)).take
+    @awaykitoptions=Kit.where(team:Team.find(@fixture.awayteam.id)).take
+  end
+
+  def update
+    kit = @fixture.update(fixture_params)
+    redirect_to vip_fixtures_path
+  end
+
   def destroy
     fixtodestroy = Fixture.find(params[:id])
     fixtodestroy.destroy
@@ -74,6 +84,14 @@ class FixturesController < ApplicationController
 
   def set_fixture
     @fixture=Fixture.find(params[:id])
+  end
+
+  def fixture_params
+    params.require(:fixture).permit(
+      :homeformation, 
+      :awayformation,
+      :homekit,
+      :awaykit)
   end
 
   def retrieve_players(sel,outputhome,outputaway)
@@ -422,7 +440,8 @@ class FixturesController < ApplicationController
     end
 
     return topcoord, leftcoord
-
   end
 
 end
+
+
