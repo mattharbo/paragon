@@ -94,7 +94,7 @@ class StandalonepagesController < ApplicationController
   end
 
   def vipkits
-    @kits=Kit.all
+    @kits=Kit.all.order("id asc")
   end
 
 # ##################################################################################################
