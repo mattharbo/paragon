@@ -10,7 +10,7 @@ task retrieve_L1_fixture_details_by_id: :environment do
 	# 871582 Clermont vs. Brest ()
 	# 871581 Angers vs. Rennes (oct 23) => fix 207
 
-	soccerapicall_getfixturedetails(871581)
+	soccerapicall_getfixturedetails(871582)
 
 	# Loop but should be an array of 1 (and only) 1 item
 
