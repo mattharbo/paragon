@@ -3,7 +3,7 @@ task retrieve_L1_fixture_details_by_id: :environment do
 
 	# 871589 Troyes vs. Lorient ()
 
-	soccerapicall_getfixturedetails(871589)
+	soccerapicall_getfixturedetails(871588)
 
 	# Loop but should be an array of 1 (and only) 1 item
 
@@ -22,7 +22,9 @@ task retrieve_L1_fixture_details_by_id: :environment do
 				scoreaway:scoreaway,
 				date:fixture["fixture"]["date"],
                 competseason:Competseason.joins(:competition, :season).where("country like ?", "%France%").where("year like ?", "%2022-2023%").take,
-                round:fixtureround
+                round:fixtureround,
+                homekit:"home",
+                awaykit:"away"
 				)
 			
 			# RECUPERER LE FIXTURE ID DE LA RENCONTRE (dernière fixture ajoutée en base)

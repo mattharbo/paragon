@@ -22,6 +22,31 @@ class FixturesController < ApplicationController
     # Récupération de toutes selections des remplaçants de la fixture pour les deux teams
     substitutes=Selection.where(fixture:params[:id]).where(starter: false)
 
+    # Récupération du kit utilisé pour la hometeam & la awayteam
+    case @fixture.homekit
+    when "home"
+      hometeamprimarybg = Kit.where(team:@fixture.hometeam).take.home_primary_color
+      hometeamsedondarybg = Kit.where(team:@fixture.hometeam).take.home_secondary_color
+    when "away"
+      hometeamprimarybg = Kit.where(team:@fixture.hometeam).take.away_primary_color
+      hometeamsedondarybg = Kit.where(team:@fixture.hometeam).take.away_secondary_color
+    when "third"
+      hometeamprimarybg = Kit.where(team:@fixture.hometeam).take.third_primary_color
+      hometeamsedondarybg = Kit.where(team:@fixture.hometeam).take.third_secondary_color
+    end
+
+    case @fixture.awaykit
+    when "home"
+      awayteamprimarybg = Kit.where(team:@fixture.awayteam).take.home_primary_color
+      awayteamsedondarybg = Kit.where(team:@fixture.awayteam).take.home_secondary_color
+    when "away"
+      awayteamprimarybg = Kit.where(team:@fixture.awayteam).take.away_primary_color
+      awayteamsedondarybg = Kit.where(team:@fixture.awayteam).take.away_secondary_color
+    when "third"
+      awayteamprimarybg = Kit.where(team:@fixture.awayteam).take.third_primary_color
+      awayteamsedondarybg = Kit.where(team:@fixture.awayteam).take.third_secondary_color
+    end
+
     @allstartingplayers = Hash.new { |hash, key| hash[key] = {} }
     
     $i = 0
@@ -32,8 +57,12 @@ class FixturesController < ApplicationController
       case @starters[$i].contract.team.id
       when hometeamid
         @allstartingplayers[$i][:team] = "home"
+        @allstartingplayers[$i][:numberbgprimarycolor] = hometeamprimarybg
+        @allstartingplayers[$i][:numberbgsecondarycolor] = hometeamsedondarybg
       when awayteamid
         @allstartingplayers[$i][:team] = "away"
+        @allstartingplayers[$i][:numberbgprimarycolor] = awayteamprimarybg
+        @allstartingplayers[$i][:numberbgsecondarycolor] = awayteamsedondarybg
       end
 
       @allstartingplayers[$i][:pitchcoord] = get_fullpitch_coords(@allstartingplayers[$i][:team],@starters[$i].grid_pos)
@@ -42,6 +71,7 @@ class FixturesController < ApplicationController
       @allstartingplayers[$i][:position] = @starters[$i].grid_pos
 
       @allstartingplayers[$i][:number] = @starters[$i].contract.jerseynumber
+
       @allstartingplayers[$i][:name] = @starters[$i].contract.player.name
       @allstartingplayers[$i][:note] = @starters[$i].note
       @allstartingplayers[$i][:notecolor] = retrieve_note_color(@starters[$i].note)

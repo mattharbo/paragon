@@ -94,7 +94,7 @@
             <li style="text-decoration-line: line-through;">Mettre une couleur neutre au badge sur terrain</li>
             <li style="text-decoration-line: line-through;">Ajouter le badge des replaçants des joueurs sur le terrain</li>
             <li style="text-decoration-line: line-through;">Gérer la position "away" de toutes les formations sur le terrain</li>
-            <li>Ajouter la couleur des équipes en base + l'appeller pour les badges</li>
+            <li style="text-decoration-line: line-through;">Ajouter la couleur des équipes en base + l'appeller pour les badges</li>
             <li>Ajouter les remplaçants (au click sur le btn lineups ou au over)</li>
             <li>Supprimer l'ancienne liste des joueurs sous le terrain</li>
             <li>Faire le formulaire de saisi des goals 🙀</li>
@@ -120,7 +120,7 @@
                 <% @allstartingplayers.each do |p| %>
                     <div class="player-container" style="top:<%= p[1][:pitchcoord][0] %>px;left:<%= p[1][:pitchcoord][1] %>px;">
                         <div class="player-jersey-line">
-                            <div class="player-number"><%= p[1][:number] %></div>
+                            <div class="player-number" style="background-color:<%=p[1][:numberbgprimarycolor]%>;color:<%=p[1][:numberbgsecondarycolor]%>"><%= p[1][:number] %></div>
                             <% if !p[1][:subtime].nil? %>
                                 <div class="player-game-sub">
                                     <p>🔁</p>
@@ -326,4 +326,4 @@
 
 </center>
 
-<!-- <%= @allstartingplayers %>  -->
+<!-- <%= @allstartingplayers %> -->
