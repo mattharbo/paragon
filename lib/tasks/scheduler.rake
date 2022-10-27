@@ -5,9 +5,8 @@ task retrieve_L1_fixture_details_by_id: :environment do
 	# 871589 Troyes vs. Lorient ()
 	# 871588 Toulouse vs. Strasbourg ()
 	# 871587 Reims vs. Auxerre ()
-	# 871585 Nice vs. Nantes ()
 
-	soccerapicall_getfixturedetails(871583)
+	soccerapicall_getfixturedetails(871585)
 
 	# Loop but should be an array of 1 (and only) 1 item
 
