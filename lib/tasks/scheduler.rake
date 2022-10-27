@@ -1,12 +1,16 @@
 desc "Retrieve Ligue 1 game with the API fixture ID"
 task retrieve_L1_fixture_details_by_id: :environment do
 
-	# PSG vs. OM (oct 16) => 871574
-	# Auxerre vs. Nice (oct 16) => 871570
-	# Strasbourg vs. Lille (oct 16) => 871576
-	# Ajaccio vs. Paris (oct 21) => 871576
+		
+	# 871589 Troyes vs. Lorient ()
+	# 871588 Toulouse vs. Strasbourg ()
+	# 871587 Reims vs. Auxerre ()
+	# 871585 Nice vs. Nantes ()
+	# 871583 Lille vs. Monaco ()
+	# 871582 Clermont vs. Brest ()
+	# 871581 Angers vs. Rennes (oct 23) => fix 207
 
-	soccerapicall_getfixturedetails(871580)
+	soccerapicall_getfixturedetails(871581)
 
 	# Loop but should be an array of 1 (and only) 1 item
 
