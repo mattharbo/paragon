@@ -290,6 +290,18 @@ class FixturesController < ApplicationController
                 '4:1': {top:270, left:220},
                 '4:2': {top:270, left:100}
                 },
+      '5-4-1': {'1:1': {top:10, left:160},
+                '2:1': {top:105, left:320},
+                '2:2': {top:85, left:240},
+                '2:3': {top:85, left:160},
+                '2:4': {top:85, left:80},
+                '2:5': {top:105, left:0},
+                '3:1': {top:220, left:320},
+                '3:2': {top:230, left:220},
+                '3:3': {top:230, left:96},
+                '3:4': {top:220, left:0},
+                '4:1': {top:280, left:160}
+                },
     }
 
     awaypitchcoordpositionformationmatrix = {
@@ -448,6 +460,18 @@ class FixturesController < ApplicationController
                 '3:3': {top:437, left:280},
                 '4:1': {top:357, left:100},
                 '4:2': {top:357, left:220}
+                },
+      '5-4-1': {'1:1': {top:617, left:160},
+                '2:1': {top:522, left:0},
+                '2:2': {top:542, left:80},
+                '2:3': {top:542, left:160},
+                '2:4': {top:542, left:240},
+                '2:5': {top:522, left:320},
+                '4:1': {top:427, left:0},
+                '4:2': {top:427, left:96},
+                '4:3': {top:427, left:220},
+                '4:4': {top:427, left:320},
+                '5:1': {top:347, left:160}
                 },
     }
 
