@@ -18,7 +18,7 @@
 }
 
 .bottom-offset{
-	margin-bottom: 20px !important;
+	/*margin-bottom: 20px !important;*/
 }
 
 .header-logo-container{
@@ -67,7 +67,7 @@
 	/*background-color: lightsalmon;*/
 
 	position: sticky;
-	padding-top: 50px;
+	/*padding-top: 50px;*/
 	top: 190px; /* ⚠️ change margin of .fixture-main-container as well*/
 }
 
@@ -78,6 +78,6 @@
 
 	position: relative;
 	width: 460px;
-	padding-top: 50px;
+	/*padding-top: 50px;*/
 	margin-bottom: 10px;
 }

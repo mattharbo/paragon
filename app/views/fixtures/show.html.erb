@@ -26,9 +26,6 @@
         </p>
     </div>
     
-    <%= link_to "Lineups", root_path, {class: "btn-secondary" }%>       
-    
-    </div>
 </div>
 
 <div class="fixture-main-container">
@@ -96,7 +93,7 @@
             <li style="text-decoration-line: line-through;">Gérer la position "away" de toutes les formations sur le terrain</li>
             <li style="text-decoration-line: line-through;">Ajouter la couleur des équipes en base + l'appeller pour les badges</li>
             <li>Ajouter les remplaçants (au click sur le btn lineups ou au over)</li>
-            <li>Supprimer l'ancienne liste des joueurs sous le terrain</li>
+            <li style="text-decoration-line: line-through;">Supprimer l'ancienne liste des joueurs sous le terrain</li>
             <li>Faire le formulaire de saisi des goals 🙀</li>
             <li>Gérer le positionnement du full pitch</li>
         </ol>
@@ -146,6 +143,8 @@
             </div>
             
             <%= svg 'full-pitch' %>
+
+            <%= link_to "Lineups", root_path, {class: "btn-secondary" }%>
 
         </div>
 
@@ -264,66 +263,5 @@
     </div>
 
 </div>
-
-<!-- #################################################### -->
-<!-- #################################################### -->
-<!-- #################################################### -->
-<!-- #################################################### -->
-<!-- #################################################### -->
-
-<center>
-
-    <table>
-        <tr style="background-color:#f3f3f3;text-align:center">
-            <td style="width:170px;"><b><%= @fixture.homeformation %></b></td>
-            <td style="width:170px;"><b><%= @fixture.awayformation %></b></td>
-        </tr>
-        <tr style="vertical-align: top;">
-            <td>
-                <table>
-
-                    <% @homeselection.each do |key, player| %>
-                        <tr style="background-color:#f3f3f3;text-align:center">
-                            <td style="width:160px;;text-align:left;padding-left:10px">
-                                <small><%= player.contract.jerseynumber %> |</small>
-                                <%= player.contract.player.name %>
-                                -
-                                <small><%= player.note %></small>
-                                <% if !player.substitute.nil? %>
-                                    <br>
-                                    <small>&#x1F504; [<%= player.substitutiontime %>']</small>
-                                    <%= player.substitute.player.name %>          
-                                <% end %>
-                            </td>
-                        </tr> 
-                    <% end %>
-            
-                </table>
-            </td>
-            <td>
-                <table>
-        
-                    <% @awayselection.each do |key, player| %>
-                        <tr style="background-color:#f3f3f3;text-align:center">
-                            <td style="width:160px;;text-align:left;padding-left:10px">
-                                <small><%= player.contract.jerseynumber %> |</small>
-                                <%= player.contract.player.name %>
-                                -
-                                <small><%= player.note %></small>
-                                <% if !player.substitute.nil? %>
-                                    <br>
-                                    <small>&#x1F504; [<%= player.substitutiontime %>']</small>
-                                    <%= player.substitute.player.name %>          
-                                <% end %>
-                            </td>
-                        </tr> 
-                    <% end %>
-            
-                </table>
-            </td>   
-        </tr>
-    </table>
-
-</center>
 
 <!-- <%= @allstartingplayers %> -->
