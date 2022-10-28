@@ -74,7 +74,7 @@ class StandalonepagesController < ApplicationController
   end
 
   def vipfixtures
-    
+    @fixtures=Fixture.all.order("date desc")
   end
 
   def vipselections
