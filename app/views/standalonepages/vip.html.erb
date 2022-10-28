@@ -50,27 +50,6 @@
 			</div>
 
 			<div class="cards-stat-container">
-				
-				<div class="card-vip-stat">
-					<p class="card-vip-stat-title">New <%= @newfixturescount > 1 ? 'fixture'.pluralize : 'fixture' %><sup>(1)</sup></p>
-					<p class="card-vip-stat-content">
-						<%=@newfixturescount%>
-					</p>
-				</div>
-
-				<div class="card-vip-stat">
-					<p class="card-vip-stat-title">New <%= @newteamscount > 1 ? 'team'.pluralize : 'team' %><sup>(1)</sup></p>
-					<p class="card-vip-stat-content">
-						<%=@newteamscount%>
-					</p>
-				</div>
-
-				<div class="card-vip-stat">
-					<p class="card-vip-stat-title">New <%= @newplayerscount > 1 ? 'player'.pluralize : 'player' %><sup>(1)</sup></p>
-					<p class="card-vip-stat-content">
-						<%=@newplayerscount%>
-					</p>
-				</div>
 
 				<div class="card-vip-stat">
 					<p class="card-vip-stat-title">Unedited <%= @uneditedplayerscount > 1 ? 'player'.pluralize : 'player' %></p>
@@ -94,6 +73,33 @@
 				</div>
 
 			</div>
+
+			<div class="cards-stat-container">
+
+				<div class="card-vip-stat">
+					<p class="card-vip-stat-title">New <%= @newplayerscount > 1 ? 'player'.pluralize : 'player' %><sup>(1)</sup></p>
+					<p class="card-vip-stat-content">
+						<%=@newplayerscount%>
+					</p>
+				</div>
+
+				<div class="card-vip-stat">
+					<p class="card-vip-stat-title">New <%= @newfixturescount > 1 ? 'fixture'.pluralize : 'fixture' %><sup>(1)</sup></p>
+					<p class="card-vip-stat-content">
+						<%=@newfixturescount%>
+					</p>
+				</div>
+
+				<div class="card-vip-stat">
+					<p class="card-vip-stat-title">New <%= @newteamscount > 1 ? 'team'.pluralize : 'team' %><sup>(1)</sup></p>
+					<p class="card-vip-stat-content">
+						<%=@newteamscount%>
+					</p>
+				</div>
+				
+			</div>
+
+			
 			
 		</div>
 	</div>
