@@ -467,7 +467,7 @@ class FixturesController < ApplicationController
                 '4:1': {top:357, left:100},
                 '4:2': {top:357, left:220},
                 },
-      '3-5-2': {'1:1': {top:617, left:160},
+      '4-5-1': {'1:1': {top:617, left:160},
                 '2:1': {top:542, left:0},
                 '2:2': {top:542, left:106},
                 '2:3': {top:542, left:212},
