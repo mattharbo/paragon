@@ -7,7 +7,7 @@ task retrieve_L1_fixture_details_by_id: :environment do
 	# PSG vs. Strasbourg (28/12)	871626
 	# Brest vs. Lyon (28/12)	871627
 
-	soccerapicall_getfixturedetails(871621)
+	soccerapicall_getfixturedetails(871622)
 
 	# Loop but should be an array of 1 (and only) 1 item
 
@@ -26,9 +26,7 @@ task retrieve_L1_fixture_details_by_id: :environment do
 				scoreaway:scoreaway,
 				date:fixture["fixture"]["date"],
                 competseason:Competseason.joins(:competition, :season).where("country like ?", "%France%").where("year like ?", "%2022-2023%").take,
-                round:fixtureround,
-                homekit:"home",
-                awaykit:"away"
+                round:fixtureround
 				)
 			
 			# RECUPERER LE FIXTURE ID DE LA RENCONTRE (dernière fixture ajoutée en base)
