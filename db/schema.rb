@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_21_151525) do
+ActiveRecord::Schema.define(version: 2023_01_25_182522) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,12 @@ ActiveRecord::Schema.define(version: 2022_10_21_151525) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "registration"
+    t.integer "xpitchcoord"
+    t.integer "ypitchcoord"
+    t.integer "xcagecoord"
+    t.integer "ycagecoord"
+    t.float "distance"
+    t.integer "goalrank"
     t.index ["eventtype_id"], name: "index_events_on_eventtype_id"
     t.index ["selection_id"], name: "index_events_on_selection_id"
   end
@@ -73,10 +79,14 @@ ActiveRecord::Schema.define(version: 2022_10_21_151525) do
     t.string "awayformation"
     t.date "date"
     t.boolean "submitted"
+    t.bigint "homekit_id"
+    t.bigint "awaykit_id"
     t.string "homekit"
     t.string "awaykit"
+    t.index ["awaykit_id"], name: "index_fixtures_on_awaykit_id"
     t.index ["awayteam_id"], name: "index_fixtures_on_awayteam_id"
     t.index ["competseason_id"], name: "index_fixtures_on_competseason_id"
+    t.index ["homekit_id"], name: "index_fixtures_on_homekit_id"
     t.index ["hometeam_id"], name: "index_fixtures_on_hometeam_id"
   end
 
