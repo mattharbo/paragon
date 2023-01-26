@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_25_182522) do
+ActiveRecord::Schema.define(version: 2023_01_26_163612) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -140,6 +140,12 @@ ActiveRecord::Schema.define(version: 2023_01_25_182522) do
     t.index ["fixture_id"], name: "index_selections_on_fixture_id"
     t.index ["position_id"], name: "index_selections_on_position_id"
     t.index ["substitute_id"], name: "index_selections_on_substitute_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "teams", force: :cascade do |t|
