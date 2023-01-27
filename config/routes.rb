@@ -31,7 +31,6 @@ Rails.application.routes.draw do
   resources :tags, only: [:index, :edit, :new, :update, :create, :destroy]
 
   resources :events do
-    get 'events' => 'events#index'
     collection do 
       get 'registered' => 'events#registered'
       get 'unregistered' => 'events#unregistered'
