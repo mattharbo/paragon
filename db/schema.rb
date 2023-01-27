@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_27_141436) do
+ActiveRecord::Schema.define(version: 2023_01_27_161516) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -114,6 +114,23 @@ ActiveRecord::Schema.define(version: 2023_01_27_141436) do
     t.index ["team_id"], name: "index_kits_on_team_id"
   end
 
+  create_table "moves", force: :cascade do |t|
+    t.bigint "event_id", null: false
+    t.bigint "movetype_id", null: false
+    t.bigint "selection_id", null: false
+    t.string "startxcoord"
+    t.string "startycoord"
+    t.string "endxcoord"
+    t.string "endycoord"
+    t.integer "rank"
+    t.boolean "key"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id"], name: "index_moves_on_event_id"
+    t.index ["movetype_id"], name: "index_moves_on_movetype_id"
+    t.index ["selection_id"], name: "index_moves_on_selection_id"
+  end
+
   create_table "movetypes", force: :cascade do |t|
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
@@ -198,6 +215,9 @@ ActiveRecord::Schema.define(version: 2023_01_27_141436) do
   add_foreign_key "fixtures", "teams", column: "hometeam_id"
   add_foreign_key "kits", "seasons"
   add_foreign_key "kits", "teams"
+  add_foreign_key "moves", "events"
+  add_foreign_key "moves", "movetypes"
+  add_foreign_key "moves", "selections"
   add_foreign_key "selections", "contracts"
   add_foreign_key "selections", "fixtures"
   add_foreign_key "selections", "players", column: "substitute_id"
