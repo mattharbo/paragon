@@ -1,0 +1,20 @@
+<div class="admin-main-container">
+	<%= render 'shared/vipnavbar'%>
+	<div class="admin-right-frame">
+		<%= render 'shared/viprightframeheader'%>
+		<div class="admin-right-frame-content">
+			<h2>All tags in DB</h2>
+				<% @tags.each do |tag| %>
+					[<%= link_to "edit", edit_tag_path(tag.id)%>] 
+					<%= tag.id %>
+					• 
+					<%= tag.description %>
+					<br>
+				<%end%>
+				<br>
+				<%= button_tag(:type => 'button') do %>
+				  <% link_to "Add a new tag", new_tag_path %>
+				<% end %>
+		</div>
+	</div>
+</div>

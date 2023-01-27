@@ -1,0 +1,19 @@
+<h2>Edit tag</h2>
+
+<%= link_to "Back to tags listing", tags_path()%>
+
+<br><br>
+
+<%= form_for @tag do | t | %>
+
+	<b><%= t.label :description, "Tag description"%>: </b>
+	<%= t.text_field :description%>
+
+    <br><br>
+
+	<%= t.submit "Update tag" %>
+
+<% end %>
+
+<br>
+<%= link_to "Delete tag", tag_path(@tag), method: :delete, data: {confirm:"Are you sure?"}%>

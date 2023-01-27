@@ -1,0 +1,15 @@
+
+<h2>All tags in DB</h2>
+
+<% @tags.each do |tag| %>
+    <%= tag.id %> • 
+    <%= tag.description %>
+    [<%= link_to "edit", edit_tag_path(tag.id) %>]  
+    <br>
+<%end%>
+
+<br>
+
+<%= button_tag(:type => 'button') do %>
+  <% link_to "Add a new tag", new_tag_path %>
+<% end %>
