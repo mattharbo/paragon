@@ -1,0 +1,2 @@
+module EventtagHelper
+end
