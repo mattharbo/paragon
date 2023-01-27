@@ -1,0 +1,20 @@
+<div class="admin-main-container">
+	<%= render 'shared/vipnavbar'%>
+	<div class="admin-right-frame">
+		<%= render 'shared/viprightframeheader'%>
+		<div class="admin-right-frame-content">
+			<h2>All movetypes in DB</h2>
+				<% @movetypes.each do |movetype| %>
+					[<%= link_to "edit", edit_movetype_path(movetype.id)%>] 
+					<%= movetype.id %>
+					• 
+					<%= movetype.description %>
+					<br>
+				<%end%>
+				<br>
+				<%= button_tag(:type => 'button') do %>
+				  <% link_to "Add a new movetype", new_movetype_path %>
+				<% end %>
+		</div>
+	</div>
+</div>

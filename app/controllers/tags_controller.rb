@@ -14,7 +14,7 @@ class TagsController < ApplicationController
 
 	def create
 		Tag.create(tag_params)
-		redirect_to tags_path
+		redirect_to vip_kits_path
 	end
 
 	def update
@@ -24,7 +24,7 @@ class TagsController < ApplicationController
 
 	def destroy
 	    @tag.destroy
-	    redirect_to tags_path
+	    redirect_to vip_kits_path
 	  end
 
 	private

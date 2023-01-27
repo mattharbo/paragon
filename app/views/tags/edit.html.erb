@@ -1,6 +1,6 @@
 <h2>Edit tag</h2>
 
-<%= link_to "Back to tags listing", tags_path()%>
+<%= link_to "Back to tags listing", vip_tags_path()%>
 
 <br><br>
 
@@ -16,4 +16,4 @@
 <% end %>
 
 <br>
-<%= link_to "Delete tag", tag_path(@tag), method: :delete, data: {confirm:"Are you sure?"}%>
+<%= link_to "Delete tag", vip_tag_path(@tag), method: :delete, data: {confirm:"Are you sure?"}%>

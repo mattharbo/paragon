@@ -1,0 +1,19 @@
+<h2>Edit movetype</h2>
+
+<%= link_to "Back to movetypes listing", vip_movetypes_path()%>
+
+<br><br>
+
+<%= form_for @movetype do | m | %>
+
+	<b><%= m.label :description, "Movetype description"%>: </b>
+	<%= m.text_field :description%>
+
+    <br><br>
+
+	<%= m.submit "Update movetype" %>
+
+<% end %>
+
+<br>
+<%= link_to "Delete movetype", movetype_path(@movetype), method: :delete, data: {confirm:"Are you sure?"}%>

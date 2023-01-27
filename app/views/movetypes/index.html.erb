@@ -1,0 +1,14 @@
+<h2>All movetypes in DB</h2>
+
+<% @movetypes.each do |movetype| %>
+    <%= movetype.id %> • 
+    <%= movetype.description %>
+    [<%= link_to "edit", edit_movetype_path(movetype.id) %>]  
+    <br>
+<%end%>
+
+<br>
+
+<%= button_tag(:type => 'button') do %>
+  <% link_to "Add a new movetype", new_movetype_path %>
+<% end %>

@@ -1,0 +1,16 @@
+<h2>Create a new movetype</h2>
+
+<%= link_to "Back to movetypes listing", vip_movetypes_path()%>
+
+<br><br>
+
+<%= form_for @movetype do | m | %>
+
+	<b><%= m.label :description, "Movetype description"%>: </b>
+	<%= m.text_field :description%>
+
+    <br><br>
+
+	<%= m.submit "Create movetype" %>
+
+<% end %>
