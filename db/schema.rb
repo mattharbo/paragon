@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_27_161516) do
+ActiveRecord::Schema.define(version: 2023_01_27_162931) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,10 +50,10 @@ ActiveRecord::Schema.define(version: 2023_01_27_161516) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "registration"
-    t.integer "xpitchcoord"
-    t.integer "ypitchcoord"
-    t.integer "xcagecoord"
-    t.integer "ycagecoord"
+    t.string "xpitchcoord"
+    t.string "ypitchcoord"
+    t.string "xcagecoord"
+    t.string "ycagecoord"
     t.float "distance"
     t.integer "goalrank"
     t.index ["eventtype_id"], name: "index_events_on_eventtype_id"

@@ -37,5 +37,4 @@ class MovetypesController < ApplicationController
 		params.require(:movetype).permit(:description)
 	end
 
-
 end
