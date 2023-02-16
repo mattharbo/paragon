@@ -6,9 +6,36 @@ class EventsController < ApplicationController
   end
 
   def edit
+
+    if @event.selection.contract.team=@event.selection.fixture.hometeam
+      @primcolor=Kit.where(team:@event.selection.contract.team).where(season:@event.selection.fixture.competseason.season).take.home_primary_color
+      @secondcolor=Kit.where(team:@event.selection.contract.team).where(season:@event.selection.fixture.competseason.season).take.home_secondary_color
+    else
+      @primcolor=Kit.where(team:@event.selection.contract.team).where(season:@event.selection.fixture.competseason.season).take.away_primary_color
+      @secondcolor=Kit.where(team:@event.selection.  contract.team).where(season:@event.selection.fixture.competseason.season).take.away_secondary_color
+    end
+
   end
 
   def update
+
+    # penalty             = 1100cm <> 85px
+    # distance recherchée = ???m <> b
+    a=((params['event']['ypitchcoord'].to_f)/100)*343
+    c=((438/2)-(((params['event']['xpitchcoord'].to_f)/100)*438)).abs()
+    b=Math.sqrt((a*a+c*c)) # My good old Pythagoras friend :)
+    distance=((b*1100)/85/100).round(1)
+
+    # Following to be updated with date retrieve from the front
+    @event.xpitchcoord=params['event']['xpitchcoord'].to_f
+    @event.ypitchcoord=params['event']['ypitchcoord'].to_f
+    @event.xcagecoord=params['event']['xcagecoord'].to_f
+    @event.ycagecoord=params['event']['ycagecoord'].to_f
+    @event.distance=distance
+    @event.save
+
+    # Redirection vers le form pour l'ajout de tag(s)
+    redirect_to new_event_eventtag_path(params['id'])
     
   end
 

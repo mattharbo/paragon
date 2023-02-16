@@ -1,0 +1,156 @@
+.eventformwrapper{
+	width: 900px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.eventformfixtureheader{
+/*	background-color: burlywood;*/
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: var(--gray);
+}
+
+.eventformfixtureheader b{
+	color: var(--pink);
+	font-size: 13px;
+	margin-left: 10px;
+}
+
+.eventformscorecard{
+	background-color: var(--light-gray);
+	font-size: 14px;
+	font-weight: bolder;
+	padding: 6px 0;
+	border-radius: 4px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: var(--black);
+	margin: 0 30px;
+	width: 150px;
+}
+
+.scorecardhome, .scorecardaway{
+	width: 45px;
+	flex-grow: 1;
+}
+
+.eventformscorer, .eventformseason{
+	width: 250px;
+	text-align: right;
+}
+
+.eventformscorer{
+	text-align: left;
+}
+
+.eventtypelabel{
+	font-size: 10px;
+	color: var(--gray);
+	background-color: var(--light-gray);
+	border-radius: 4px;
+	padding: 3px 15px;
+	display: inline-block;
+	margin: 20px 0 10px 0;
+}
+
+.eventformmovescontainer{
+	position: relative;
+	margin-bottom: 25px;
+}
+
+.itemlocator{ /*not sure it is needed!*/
+	position: absolute;
+} 
+
+.eventformpitchcontainer{
+	position: absolute;
+	width: 438px;
+    height: 343px;
+    top: 7px;
+    left: 231px;
+}
+
+.eventformcagecontainer{
+	position: absolute;
+	width: 222px;
+    height: 91px;
+    top: 5px;
+    left: 339px;
+/*    background-color: paleturquoise;*/
+}
+
+.goalpointer{
+	font-size: 18px;
+	/*width: 15px;
+	height: 15px;
+	border-radius: 100%;
+	background-color: var(--pink);*/
+}
+
+.btncontainer{
+/*	background-color: magenta;*/
+	display: flex;
+	justify-content: space-around;
+    align-items: center;
+}
+
+.btncontainer input[type=text]{
+	visibility: hidden;
+}
+
+#pitcheventform, #cageeventform{
+	cursor: pointer;
+	display: flex !important;
+}
+
+#checkboxescontainer{
+/*	background-color: yellow;*/
+
+	margin-bottom: 25px;
+}
+
+#checkboxescontainer form{
+/*	background-color: paleturquoise;*/
+
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	align-items: center;
+	width: 500px;
+	margin: 0 auto;
+}
+
+#checkboxescontainer input[type=checkbox]{
+	display: none;
+}
+
+#checkboxescontainer input[type=checkbox]:checked + .tagname{
+	outline: 1px solid var(--pink);
+/*	background-color: var(--light-gray);*/
+	color: var(--pink);
+	transition: 0.7s;
+}
+
+.tagname{
+	outline: 1px solid var(--light-plus-gray);;
+	border-radius: 7px;
+
+	display: flex;
+	flex-wrap: wrap;
+	align-content: center;
+	justify-content: center;
+
+	cursor: pointer;
+	width: 110px;
+	height: 100px;
+	margin: 5px 0;
+	font-weight: 500;
+}
+
+.tagname:hover{
+	transition: 0.7s;
+	outline: 1px solid var(--gray);
+}

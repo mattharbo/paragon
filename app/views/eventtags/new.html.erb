@@ -1,3 +1,74 @@
-<center>
-	<h3>Form to associate 1 or x Tag(s) to an Event (ie. goal)</h3>
-</center>
+<div class="eventformwrapper">
+
+	<div class="eventsteper">
+		<div class="steperstage">
+			<p class="activestatelabel">LOCATE</p>
+			<div class="steperpointer activestatebg"></div>	
+		</div>
+
+		<div class="steperstage">
+			<p class="activestatelabel">QUALIFY</p>
+			<div class="steperpointer activestatebg"></div>	
+		</div>
+
+		<div class="steperstage">
+			<p>COMPOSE</p>
+			<div class="steperpointer"></div>	
+		</div>
+	</div>
+
+	<div class="progressbarcontainer">
+		<div class="progressbar activestatebg"></div>
+		<div class="progressbar"></div>
+	</div>
+
+	<div class="eventformfixtureheader">
+		<div class="eventformseason">
+			<%=@event.selection.fixture.competseason.competition.name%>
+			<%=@event.selection.fixture.competseason.season.year%> |
+			Round <%=@event.selection.fixture.round%>
+		</div>
+		<div class="eventformscorecard">
+			<div class="scorecardhome">
+				<%=@event.selection.fixture.hometeam.shortname%>	
+			</div>
+			<div class="scorecardscore">
+				<%=@event.selection.fixture.scorehome%> - <%=@event.selection.fixture.scoreaway%>
+			</div>
+			<div class="scorecardaway">
+				<%=@event.selection.fixture.awayteam.shortname%>	
+			</div>
+		</div>
+		<div class="eventformscorer">
+			<%=@event.time%>'
+			<b>
+				<%=@event.selection.contract.player.firstname%>
+				<%=@event.selection.contract.player.name%>
+			</b>
+			for <%=@event.selection.contract.team.name%>
+		</div>
+	</div>
+
+	<div class="eventtypelabel">
+		<%=@event.eventtype.description%>		
+	</div>
+
+	<div id="checkboxescontainer">
+
+	<%= form_with(model: [@event, @eventtag], local: true) do |f| %>
+		
+		<%= f.collection_check_boxes(:tag_id, Tag.all, :id, :description) do |b| %>
+			<%= b.check_box %>
+			<%= b.label class: 'tagname' %>
+		<% end %>
+
+	</div> <!-- checkboxescontainer -->
+
+	<div class="btncontainer">
+		<%= link_to 'Discard', unregistered_events_url, class: "btn-commom-props btn-discard" %>
+
+		<%= f.submit "Add details", :class => "btn-commom-props btn-next" %>
+	</div> <!-- btncontainer -->
+	<% end %>
+	
+</div>

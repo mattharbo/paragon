@@ -34,6 +34,7 @@ Rails.application.routes.draw do
 
   resources :events do
     resources :eventtags, only: [:new, :create]
+    resources :moves, only: [:new, :create]
     collection do 
       get 'registered' => 'events#registered'
       get 'unregistered' => 'events#unregistered'

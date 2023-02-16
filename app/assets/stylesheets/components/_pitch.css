@@ -44,16 +44,15 @@
 }
 
 .player-number{
-	/*background-color: orange;*/
 	width: 20px;
 	padding-top: 2px;
 	height: 18px;
 	border-radius: 100%;
 	font-size: 10px;
 	font-weight: 700;
-
-	/*background-color: var(--medium-gray);
-	color: black;*/
+	-webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.34); 
+	box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.34);
+	z-index: 99;
 }
 
 .player-name{

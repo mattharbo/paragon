@@ -1,0 +1,32 @@
+<div class="eventformwrapper">
+
+	<div class="eventsteper">
+		<div class="steperstage">
+			<p class="activestatelabel">LOCATE</p>
+			<div class="steperpointer activestatebg"></div>	
+		</div>
+
+		<div class="steperstage">
+			<p class="activestatelabel">QUALIFY</p>
+			<div class="steperpointer activestatebg"></div>	
+		</div>
+
+		<div class="steperstage">
+			<p class="activestatelabel">COMPOSE</p>
+			<div class="steperpointer activestatebg"></div>	
+		</div>
+	</div>
+
+	<div class="progressbarcontainer">
+		<div class="progressbar activestatebg"></div>
+		<div class="progressbar activestatebg"></div>
+	</div>
+
+	Form to associate 1 or x Move(s) to an Event (ie. goal) Yeah! 🤘
+
+	<div class="btncontainer">
+		<%= link_to 'Discard', unregistered_events_url, class: "btn-commom-props btn-discard" %>
+		<%= link_to 'xxxxxx', new_event_move_path(params['event_id']), class: "btn-commom-props btn-next" %>	
+	</div>
+
+</div>

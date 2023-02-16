@@ -1,2 +1,92 @@
-<center><h3>This is where the magic should have to happen! 🙃</h3></center>
+<div class="eventformwrapper">
 
+	<div class="eventsteper">
+		<div class="steperstage">
+			<p class="activestatelabel">LOCATE</p>
+			<div class="steperpointer activestatebg"></div>	
+		</div>
+
+		<div class="steperstage">
+			<p>QUALIFY</p>
+			<div class="steperpointer"></div>	
+		</div>
+
+		<div class="steperstage">
+			<p>COMPOSE</p>
+			<div class="steperpointer"></div>	
+		</div>
+	</div>
+
+	<div class="progressbarcontainer">
+		<div class="progressbar"></div>
+		<div class="progressbar"></div>
+	</div>
+
+	<div class="eventformfixtureheader">
+		<div class="eventformseason">
+			<%=@event.selection.fixture.competseason.competition.name%>
+			<%=@event.selection.fixture.competseason.season.year%> |
+			Round <%=@event.selection.fixture.round%>
+		</div>
+		<div class="eventformscorecard">
+			<div class="scorecardhome">
+				<%=@event.selection.fixture.hometeam.shortname%>	
+			</div>
+			<div class="scorecardscore">
+				<%=@event.selection.fixture.scorehome%> - <%=@event.selection.fixture.scoreaway%>
+			</div>
+			<div class="scorecardaway">
+				<%=@event.selection.fixture.awayteam.shortname%>	
+			</div>
+		</div>
+		<div class="eventformscorer">
+			<%=@event.time%>'
+			<b>
+				<%=@event.selection.contract.player.firstname%>
+				<%=@event.selection.contract.player.name%>
+			</b>
+			for <%=@event.selection.contract.team.name%>
+		</div>
+	</div>
+
+	<div class="eventtypelabel">
+		<%=@event.eventtype.description%>		
+	</div>
+
+	<div class="eventformmovescontainer">
+		<div id="pitcheventform" class="eventformpitchcontainer">
+			<div id="scoreritemlocator" 
+					data-color="<%=@primcolor%>" data-color-bg="<%=@secondcolor%>" data-jerseynumber="<%=@event.selection.contract.jerseynumber%>" 
+					class="itemlocator player-number" style="top:10px;left:34px;background-color:<%=@secondcolor%>;color:<%=@primcolor%>">
+					<%=@event.selection.contract.jerseynumber%>
+			</div>
+		</div>
+		<%= svg 'event-form-pitch' %>
+	</div>
+
+	<div class="eventformmovescontainer">
+		<div id="cageeventform" class="eventformcagecontainer">
+			<!-- Cage content here (see js file) -->
+		</div>
+		<%= svg 'event-form-cage' %>
+	</div>
+
+	
+
+	<div class="btncontainer">
+		<%= link_to 'Discard', unregistered_events_url, class: "btn-commom-props btn-discard" %>
+		<%= form_for [@event] do | f |%>
+			<%= f.text_field :xpitchcoord, id: "xpitchcoord" %>
+			<%= f.text_field :ypitchcoord, id: "ypitchcoord" %>
+			<%= f.text_field :xcagecoord, id: "xcagecoord" %>
+			<%= f.text_field :ycagecoord, id: "ycagecoord" %>
+			<%= f.submit "Add tags", :class => "btn-commom-props btn-next" %>
+		<% end %>
+
+		<!-- the following link to be remove & redirection to be handled in the controller!! -->
+		<!-- <%= link_to 'Add tags', event_path(params['id']), method: :put, class: "btn-commom-props btn-next" %>	 -->
+	</div>
+
+</div> <!-- onepagerwrapper -->
+
+<%= javascript_pack_tag 'eventform' %>

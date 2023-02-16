@@ -1,0 +1,53 @@
+.eventsteper{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 500px;
+	margin: 40px auto 0 auto;
+}
+
+.steperstage{
+	color: var(--medium-gray);
+	font-weight: bolder;
+	text-align: center;
+	width: 60px;
+	z-index: 1;
+}
+
+.steperstage > p{
+	margin-bottom: 10px;
+}
+
+.steperpointer{
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	background-color: var(--light-gray);
+	border-radius: 100%;
+
+}
+
+.activestatelabel{
+	color: var(--pink);
+}
+
+.activestatebg{
+	background-color: var(--pink) !important;
+}
+
+.progressbarcontainer{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 440px;
+	margin: 0 auto 30px auto;
+	top: -11px;
+    position: relative;
+}
+
+.progressbar{
+	flex-grow: 1;
+	height: 3px;
+	width: 100px;
+	background-color: var(--light-gray);
+}
