@@ -27,12 +27,12 @@ class EventsController < ApplicationController
     distance=((b*1100)/85/100).round(1)
 
     # Following to be updated with date retrieve from the front
-    @event.xpitchcoord=params['event']['xpitchcoord'].to_f
-    @event.ypitchcoord=params['event']['ypitchcoord'].to_f
-    @event.xcagecoord=params['event']['xcagecoord'].to_f
-    @event.ycagecoord=params['event']['ycagecoord'].to_f
-    @event.distance=distance
-    @event.save
+    # @event.xpitchcoord=params['event']['xpitchcoord'].to_f
+    # @event.ypitchcoord=params['event']['ypitchcoord'].to_f
+    # @event.xcagecoord=params['event']['xcagecoord'].to_f
+    # @event.ycagecoord=params['event']['ycagecoord'].to_f
+    # @event.distance=distance
+    # @event.save
 
 # ----------------------------------------
 # a tester car ne fonctionne pas en prod…
@@ -40,6 +40,11 @@ class EventsController < ApplicationController
 # 1ere OPTION
 
 # faire requete unique d'update => .update avec les elements en params
+    @event.update(xpitchcoord:params['event']['xpitchcoord'].to_f,
+    ypitchcoord:params['event']['ypitchcoord'].to_f,
+    xcagecoord:params['event']['xcagecoord'].to_f,
+    ycagecoord:ycagecoord=params['event']['ycagecoord'].to_f,
+    distance:distance)
 
 # 2nd OPTION
 
