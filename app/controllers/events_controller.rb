@@ -34,6 +34,23 @@ class EventsController < ApplicationController
     @event.distance=distance
     @event.save
 
+# ----------------------------------------
+# a tester car ne fonctionne pas en prod…
+
+# 1ere OPTION
+
+# faire requete unique d'update => .update avec les elements en params
+
+# 2nd OPTION
+
+# avant cela il faut mettre à jour params[] avec (xpitch, ypitch, xcage, ycage,) distance
+
+# @event.update(event_params)
+
+# ----------------------------------------
+
+
+
     # Redirection vers le form pour l'ajout de tag(s)
     redirect_to new_event_eventtag_path(params['id'])
     
@@ -58,7 +75,7 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:player).permit(:xpitchcoord, :ypitchcoord, :xcagecoord, :ycagecoord, :distance, :registration, :goalrank)
+    params.require(:event).permit(:xpitchcoord, :ypitchcoord, :xcagecoord, :ycagecoord, :distance, :registration, :goalrank)
   end
 
 end

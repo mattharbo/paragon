@@ -7,6 +7,7 @@
 <h2>Unregistered events:</h2>
 
 <% @unregistered_events.each do |ue| %>
+    [<%= link_to "edit", edit_event_path(ue.id)%>] 
 	<%= ue.id %> • 
 
     <% unless ue.registration %>
