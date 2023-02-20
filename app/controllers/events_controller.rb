@@ -21,7 +21,7 @@ class EventsController < ApplicationController
 
     # penalty             = 1100cm <> 85px
     # distance recherchée = ???m <> b
-    a=((params['event']['ypitchcoord'].to_f)/100)*343
+    a=((params['event']['ypitchcoord'].to_f)/100)*340
     c=((438/2)-(((params['event']['xpitchcoord'].to_f)/100)*438)).abs()
     b=Math.sqrt((a*a+c*c)) # My good old Pythagoras friend :)
     distance=((b*1100)/85/100).round(1)
@@ -70,7 +70,7 @@ class EventsController < ApplicationController
   end
 
   def unregistered
-    @unregistered_events=Event.where(registration: [nil, false])
+    @unregistered_events=Event.where(registration: [nil, false]).order("id asc")
   end
 
   private

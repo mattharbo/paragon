@@ -22,7 +22,53 @@
 		<div class="progressbar activestatebg"></div>
 	</div>
 
-	Form to associate 1 or x Move(s) to an Event (ie. goal) Yeah! 🤘
+	<div class="eventformfixtureheader">
+		<div class="eventformseason">
+			<%=@event.selection.fixture.competseason.competition.name%>
+			<%=@event.selection.fixture.competseason.season.year%> |
+			Round <%=@event.selection.fixture.round%>
+		</div>
+		<div class="eventformscorecard">
+			<div class="scorecardhome">
+				<%=@event.selection.fixture.hometeam.shortname%>	
+			</div>
+			<div class="scorecardscore">
+				<%=@event.selection.fixture.scorehome%> - <%=@event.selection.fixture.scoreaway%>
+			</div>
+			<div class="scorecardaway">
+				<%=@event.selection.fixture.awayteam.shortname%>	
+			</div>
+		</div>
+		<div class="eventformscorer">
+			<%=@event.time%>'
+			<b>
+				<%=@event.selection.contract.player.firstname%>
+				<%=@event.selection.contract.player.name%>
+			</b>
+			for <%=@event.selection.contract.team.name%>
+		</div>
+	</div>
+
+	<div class="eventtypelabel">
+		<%=@event.eventtype.description%>		
+	</div>
+
+	<div class="eventformmovescontainer">
+		<div id="fullpitcheventform" class="eventformfullpitchcontainer">
+			<div id="scoreritemlocator" 
+					data-color="<%=@primcolor%>" data-color-bg="<%=@secondcolor%>" data-jerseynumber="<%=@event.selection.contract.jerseynumber%>" 
+					class="itemlocator player-number" style="top:0px;left:0px;background-color:<%=@secondcolor%>;color:<%=@primcolor%>">
+					<%=@event.selection.contract.jerseynumber%>
+			</div>
+		</div>
+		<%= svg 'event-form-pitch' %>
+	</div>
+
+
+
+	<%=@moves.size%>
+
+
 
 	<div class="btncontainer">
 		<%= link_to 'Discard', unregistered_events_url, class: "btn-commom-props btn-discard" %>

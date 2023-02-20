@@ -54,14 +54,14 @@
 	</div>
 
 	<div class="eventformmovescontainer">
-		<div id="pitcheventform" class="eventformpitchcontainer">
+		<div id="halfpitcheventform" class="eventformhalfpitchcontainer">
 			<div id="scoreritemlocator" 
 					data-color="<%=@primcolor%>" data-color-bg="<%=@secondcolor%>" data-jerseynumber="<%=@event.selection.contract.jerseynumber%>" 
 					class="itemlocator player-number" style="top:10px;left:34px;background-color:<%=@secondcolor%>;color:<%=@primcolor%>">
 					<%=@event.selection.contract.jerseynumber%>
 			</div>
 		</div>
-		<%= svg 'event-form-pitch' %>
+		<%= svg 'event-form-pitch-half' %>
 	</div>
 
 	<div class="eventformmovescontainer">

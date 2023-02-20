@@ -65,10 +65,18 @@
 	position: absolute;
 } 
 
-.eventformpitchcontainer{
+.eventformhalfpitchcontainer{
 	position: absolute;
 	width: 438px;
-    height: 343px;
+    height: 340px;
+    top: 7px;
+    left: 231px;
+}
+
+.eventformfullpitchcontainer{
+	position: absolute;
+	width: 438px;
+    height: 682px;
     top: 7px;
     left: 231px;
 }
@@ -95,6 +103,7 @@
 	display: flex;
 	justify-content: space-around;
     align-items: center;
+    margin-bottom: 20px;
 }
 
 .btncontainer input[type=text]{

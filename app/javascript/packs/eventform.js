@@ -2,7 +2,7 @@ let scorerattributes=document.getElementById("scoreritemlocator");
 let playerbadgecolor=scorerattributes.dataset.color;
 let playerbadgebgcolor=scorerattributes.dataset.colorBg;
 let playerbadgejerseynumber=scorerattributes.dataset.jerseynumber;
-let pitchcontainer=document.getElementById("pitcheventform");
+let pitchcontainer=document.getElementById("halfpitcheventform");
 
 pitchcontainer.addEventListener("click", (event) => {	
 	pitchcontainer.innerHTML = "";
