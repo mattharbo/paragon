@@ -1,3 +1,16 @@
 // Place all the styles related to the fixtures controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+
+.fixtureeventlistingtitle{
+	font-weight:bolder;
+	color:var(--pink);
+	margin-top:40px;
+}
+
+.fixtureeventligueandseason{
+	color:var(--gray);
+	margin-top:40px;
+	margin-bottom:10px;
+}

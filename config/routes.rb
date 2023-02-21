@@ -32,6 +32,12 @@ Rails.application.routes.draw do
   resources :tags, only: [:index, :edit, :new, :update, :create, :destroy]
   resources :movetypes, only: [:index, :edit, :new, :update, :create, :destroy]
 
+resources :fixtures do
+  member do 
+    get 'fixturegoals' => 'fixtures#fixturegoals'
+  end
+end
+
   resources :events do
     resources :eventtags, only: [:new, :create]
     resources :moves, only: [:new, :create]

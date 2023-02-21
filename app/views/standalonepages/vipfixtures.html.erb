@@ -41,7 +41,11 @@
                                 Kit <%= fixture.homekit.nil? & fixture.awaykit.nil? ? "🔴" : "🟢" %>
                             <%end%>
                         </div>
-                        <div class="small-grey-btn subbtn">Sub <%= fixture.submitted ? "🟢" : "🔴" %></div>
+                        <div class="small-grey-btn subbtn">
+                            <%= link_to fixturegoals_fixture_path(fixture.id), target: :_blank do %>
+                                Sub <%= fixture.submitted ? "🟢" : "🔴" %>
+                            <%end%>
+                        </div>
                         <div class="small-grey-btn fixturelinkbtn">
                             <%= link_to fixture_path(fixture.id), target: :_blank do %>
                                 Open ↗️
