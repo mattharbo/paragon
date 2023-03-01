@@ -55,6 +55,38 @@
 
 </div>
 
+
+<%@fixturegoalevents.each do |goal1|%>
+
+	<%=goal1.take.eventtype.description%> 
+	<%=goal1.take.time%> 
+	<%=goal1.take.selection.contract.jerseynumber%> 
+	<%=goal1.take.selection.contract.player.name%> 
+
+	<br>
+
+<%end%>
+
+<br><br><br>
+
+<%@fixture_goals.each do |goal2|%>
+
+	<%=goal2.eventtype.description%> 
+	<%=goal2.time%> 
+	<%=goal2.selection.contract.jerseynumber%> 
+	<%=goal2.selection.contract.player.name%> 
+
+	<br>
+
+<%end%>
+
+
+
+<br><br><br>
+
+
 2 things remaining!
 <br>• jersey colors (background & font)
 <br>• note background color
+<br>• ⚠️ problem in production! some fixtures don't show all goals… (ex: 342)
+<br>• + ⚠️ problem in production in event edit > wrong team  "for"

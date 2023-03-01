@@ -112,6 +112,10 @@ class FixturesController < ApplicationController
 
   def fixturegoals
 
+    @fixture_goals = Event.where(selection:Selection.where(fixture:Fixture.find(params[:id]))).order("created_at ASC")
+
+    # the previsou is for testing TO BE REMOVED!
+
     fixturesselections=Selection.where(fixture:@fixture)
 
     @fixturegoalevents=[]
