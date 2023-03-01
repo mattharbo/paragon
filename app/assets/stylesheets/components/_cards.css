@@ -338,6 +338,7 @@
 #card-fixture-vip:hover{
     background-color: var(--light-gray);
     border-radius: 15px;
+    transition: 0.4s;
 }
 
 .leftside, .rightside{
@@ -364,12 +365,13 @@
 	height: 25px;
 	background-color: var(--light-gray);
 	border-radius: 13px;
-	font-weight: 700;
+	font-weight: 500;
 }
 
 .small-grey-btn:hover{
 	cursor: pointer;
 	background-color: var(--light-plus-gray);
+	transition: 0.4s;
 }
 
 .dustbin{
@@ -385,7 +387,7 @@
 	align-content: center;
     justify-content: center;
     align-items: center;
-    font-weight: 600;
+    font-weight: 500;
     width: 400px;
 }
 
@@ -406,4 +408,75 @@
 	color: var(--pink);
 	width: 50px;
 	text-align: center;
+}
+
+/* ############################ */
+
+.goalcardvip{
+	width: 600px;
+	margin: 0px auto;
+	display: flex;
+	flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3px 3px;
+    margin-top: 5px;
+}
+
+.goalcardvip:hover{
+	border-radius: 15px;
+    transition: 0.4s;
+	background-color: var(--light-gray);
+}
+
+.goalcardvip > .goaldetails{
+	width: 110px;
+	text-align: left;
+	display: flex;
+}
+
+.goaldetails > .goaltype{
+	background-color: var(--light-gray);
+	color: var(--pink);
+	font-size: 9px;
+	font-weight: 500;
+	border-radius: 4px;
+	padding: 2px 8px;
+	margin-left: 5px;
+}
+
+.goaldetails > .goalminute{
+	color: var(--gray);
+	margin-left: 12px;
+}
+
+.goalcardvip > .goalscorer{
+	width: 230px;
+	display: flex;
+	flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.goalscorer > .jersey{
+	margin-right: 10px;
+	-webkit-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0) !important;
+	box-shadow: 0px 0px 0px 0px rgba(0,0,0,0) !important;
+
+/*	two lines below to be removed and added in the view */
+	background-color: darkblue;
+	color: var(--white);
+
+}
+
+.goalscorer > .note{
+	margin-left: 10px;
+	width: 26px;
+    font-weight: 700;
+    border-radius: 3px;
+    font-size: 10px;
+
+/*	two lines below to be removed and added in the view */
+	background-color: darkorange;
+	color: var(--white);
 }

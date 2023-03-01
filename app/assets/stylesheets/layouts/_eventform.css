@@ -163,3 +163,7 @@
 	transition: 0.7s;
 	outline: 1px solid var(--gray);
 }
+
+.goallistingcontainer{
+	margin-top: 50px;
+}

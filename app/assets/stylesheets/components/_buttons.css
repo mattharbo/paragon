@@ -65,15 +65,15 @@
 	cursor: pointer;
 	background-color: var(--white);
 	padding: 7px 20px;
-	border-radius: 4px;
+	border-radius: 20px;
 	font-weight: 600;
 	color: var(--gray);
-	border: 1px solid var(--medium-gray);
 	display: block; /*To make it work with logout helper link*/
 }
 
 .btn-test:hover{
-	opacity: 0.8;
+	background-color: var(--medium-gray);
+	color: var(--black);
 }
 
 .admin-menu-item{
@@ -81,7 +81,7 @@
 
 	padding: 7px 20px;
 	margin: 0 20px;
-	border-radius: 4px;
+	border-radius: 20px;
 	transition: 0.2s;
 	font-weight: 600;
 	text-align: left;

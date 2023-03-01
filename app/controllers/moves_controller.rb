@@ -1,6 +1,6 @@
 class MovesController < ApplicationController
 
-	before_action :set_move, only: [:new]
+	before_action :set_move, only: [:edit]
 	before_action :set_event, only: [:new]
 
 	def index

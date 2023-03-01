@@ -1,7 +1,6 @@
 <div class="admin-main-container">
 	<%= render 'shared/vipnavbar'%>
 	<div class="admin-right-frame">
-		<%= render 'shared/viprightframeheader'%>
 		<div class="admin-right-frame-content">
 			<h2>All tags in DB</h2>
 				<% @tags.each do |tag| %>
@@ -13,7 +12,7 @@
 				<%end%>
 				<br>
 				<%= button_tag(:type => 'button') do %>
-				  <% link_to "Add a new tag", new_tag_path %>
+				  <% link_to "Add a new tag", new_tag_path, class:'btn-commom-props btn-next' %>
 				<% end %>
 		</div>
 	</div>

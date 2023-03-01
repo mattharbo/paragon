@@ -3,7 +3,7 @@
 <div class="eventformwrapper">
 	
 	<div class="fixtureeventlistingtitle">
-		GOAL LISTING
+		FIXTURE GOAL LISTING
 	</div>
 
 	<div class="fixtureeventligueandseason">
@@ -25,21 +25,36 @@
 		</div>
 	</div>
 
+	<div class="goallistingcontainer">
 
+		<%@fixturegoalevents.each do |goal|%>
 
+			<div class="goalcardvip">
+
+				<div class="goaldetails">
+					<div class="goaltype"><%=goal.take.eventtype.description%></div>
+					<div class="goalminute"><%=goal.take.time%>'</div>
+				</div>
+				<div class="goalscorer">
+					<div class="jersey player-number"><%=goal.take.selection.contract.jerseynumber%></div>
+					<div class="name"><%=goal.take.selection.contract.player.firstname%> <b><%=goal.take.selection.contract.player.name%></b></div>
+					<div class="note"><%=goal.take.selection.note%></div>
+				</div>
+				<div class="goalstatus small-grey-btn">
+					<%= link_to edit_event_path(goal.ids), target: :_blank do %>
+		                Registered <%= goal.take.registration ? "🟢" : "🔴" %>
+		            <%end%>	
+					
+				</div>
+
+			</div>
+
+		<%end%>
+
+	</div>
 
 </div>
 
-<%@fixturegoalevents.each do |goal|%>
-
-	<%=goal.take.eventtype.description%> - 
-	<%=goal.take.selection.contract.jerseynumber%> - 
-	<%=goal.take.selection.contract.player.name%>
-	[<%=goal.take.selection.contract.team.name%>]
-	(<%=goal.take.selection.note%>)
-	➡️
-	lien vers <%= link_to "Lien", edit_event_path(goal.ids)%>
-
-	<br>
-
-<%end%>
+2 things remaining!
+<br>• jersey colors (background & font)
+<br>• note background color
