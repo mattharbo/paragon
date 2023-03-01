@@ -27,22 +27,22 @@
 
 	<div class="goallistingcontainer">
 
-		<%@fixturegoalevents.each do |goal|%>
+		<%@fixture_goals.each do |goal|%>
 
 			<div class="goalcardvip">
 
 				<div class="goaldetails">
-					<div class="goaltype"><%=goal.take.eventtype.description%></div>
-					<div class="goalminute"><%=goal.take.time%>'</div>
+					<div class="goaltype"><%=goal.eventtype.description%></div>
+					<div class="goalminute"><%=goal.time%>'</div>
 				</div>
 				<div class="goalscorer">
-					<div class="jersey player-number"><%=goal.take.selection.contract.jerseynumber%></div>
-					<div class="name"><%=goal.take.selection.contract.player.firstname%> <b><%=goal.take.selection.contract.player.name%></b></div>
-					<div class="note"><%=goal.take.selection.note%></div>
+					<div class="jersey player-number"><%=goal.selection.contract.jerseynumber%></div>
+					<div class="name"><%=goal.selection.contract.player.firstname%> <b><%=goal.selection.contract.player.name%></b></div>
+					<div class="note"><%=goal.selection.note%></div>
 				</div>
 				<div class="goalstatus small-grey-btn">
-					<%= link_to edit_event_path(goal.ids), target: :_blank do %>
-		                Registered <%= goal.take.registration ? "🟢" : "🔴" %>
+					<%= link_to edit_event_path(goal), target: :_blank do %>
+		                Registered <%= goal.registration ? "🟢" : "🔴" %>
 		            <%end%>	
 					
 				</div>
@@ -54,32 +54,6 @@
 	</div>
 
 </div>
-
-
-<%@fixturegoalevents.each do |goal1|%>
-
-	<%=goal1.take.eventtype.description%> 
-	<%=goal1.take.time%> 
-	<%=goal1.take.selection.contract.jerseynumber%> 
-	<%=goal1.take.selection.contract.player.name%> 
-
-	<br>
-
-<%end%>
-
-<br><br><br>
-
-<%@fixture_goals.each do |goal2|%>
-
-	<%=goal2.eventtype.description%> 
-	<%=goal2.time%> 
-	<%=goal2.selection.contract.jerseynumber%> 
-	<%=goal2.selection.contract.player.name%> 
-
-	<br>
-
-<%end%>
-
 
 
 <br><br><br>

@@ -3,6 +3,7 @@ class FixturesController < ApplicationController
   # To by-pass Devise authentication on some specific actions
   skip_before_action :authenticate_user!, only: [:show, :destroy]
   before_action :set_fixture, only: [:show, :edit, :update, :destroy, :fixturegoals]
+  before_action :get_fixture_goal_event, only: [:show, :fixturegoals]
 
   def index
     @fixtures=Fixture.all.order("round DESC, date DESC")
@@ -10,7 +11,6 @@ class FixturesController < ApplicationController
   end
 
   def show
-    @fixture_goals = Event.where(selection:Selection.where(fixture:Fixture.find(params[:id]))).order("created_at ASC")
     
     # Récupération des teams id home & away
     hometeamid = Fixture.find(params[:id]).hometeam.id
@@ -112,27 +112,16 @@ class FixturesController < ApplicationController
 
   def fixturegoals
 
-    @fixture_goals = Event.where(selection:Selection.where(fixture:Fixture.find(params[:id]))).order("created_at ASC")
-
-    # the previsou is for testing TO BE REMOVED!
-
-    fixturesselections=Selection.where(fixture:@fixture)
-
-    @fixturegoalevents=[]
-
-    fixturesselections.each do |selec|
-
-      if Event.where(selection:selec).count == 1
-        @fixturegoalevents << Event.where(selection:selec)
-      end
-    end
-
   end
 
   private 
 
   def set_fixture
     @fixture=Fixture.find(params[:id])
+  end
+
+  def get_fixture_goal_event
+    @fixture_goals = Event.where(selection:Selection.where(fixture:Fixture.find(params[:id]))).order("created_at ASC")
   end
 
   def fixture_params
